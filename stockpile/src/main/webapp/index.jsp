@@ -9,12 +9,11 @@
 		<title>SICONE Login</title>
 		<link rel="icon" href="./imgs/favicon.png" type="image/x-icon" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css" />
-		
+		<link rel="stylesheet" type="text/css" href="css/style-login.css" />
 		<script src="main.js"></script>
 	</head>
 		
-	<body class="p-3 mb-2 bg-dark text-white">
+	<body id ="back" class="p-3 mb-2 bg-dark text-gray">
 		<%
 			String msg = (String) session.getAttribute("MENSAGEM");
 			if (msg != null) {
@@ -27,10 +26,9 @@
 			}
 		%>
 
-	
 			<div class=" container p-3 mx-auto">
 				<img src="imgs/sicone_logo.png" alt="SICONE" class="rounded mx-auto d-block" width="50%">
-				<h3 class="text-center font-weight-light" width="50%">Sistema Integrado de Controle de Estoque</h3>
+				<h3 class="text-center font-weight-light">Sistema Integrado de Controle de Estoque</h3>
 			</div>
 	
 			<div class="container w-25 p-3 mx-auto">
@@ -38,7 +36,7 @@
 	  			<div class="form-group">
 	    			<label for="exampleInputEmail1">ID</label>
 	    			<input type="text" class="form-control" id="TXTUSER" aria-describedby="emailHelp" placeholder="Insira seu ID">
-	    			<small id="emailHelp" class="form-text text-muted">Não compartilhe seu ID ou senha com ninguém.</small>
+	    			<small id="emailHelp" class="form-text text-muted text-gray">Não compartilhe seu ID ou senha com ninguém.</small>
 	  			</div>
 			  	<div class="form-group">
 			    	<label for="exampleInputPassword1">Senha</label>
@@ -47,6 +45,7 @@
 	  			<button type="submit" class="btn btn-primary float-right" id="btnEntrar">Entrar</button>
 			</form>
 		</div>
+
 	</body>
 
 </html>
