@@ -1,76 +1,8 @@
-/*RESET
---------------------------*/
-*, *::before, *:after{margin: 0; padding: 0; box-sizing: border-box; -webkit-box-sizing: border-box;}
+/*Estilizacao da tela login (index.jsp)*/
 
-body{font-family: 'Open Sans', sans-serif;font-size: inherit;}
-
-input, select, iframe, button{border:none;font-family: 'Open Sans', sans-serif;}
-h1, h2, h3{margin: 0; padding: 0;}
-ul, ol{list-style: none;}
-a{text-decoration: none; color: inherit;}
-a:hover{color: #f9014d;}
-/*FIM DO RESET*/
-
-/*Estilizacao da DIV meio*/
-.meio{
-    text-align: center;
-    padding: 210px 0;
-    background-image: url(../imgs/background_login.gif);
-    background-size: cover; /* para cobrir totalmente*/
+#back{
+    background-image: url("../imgs/background_login.gif");
+    background-size: cover;/* para a imagem de fundo ficar do tamamnho do box*/
     background-position: center;
-    background-attachment: fixed; /*mesmo qu a pagina role o back continua fixo*/
+    background-attachment: fixed;/* para quando rolar o mouse o fundo ficar fixo*/
 }
-/*Subtitulo estilo*/
-.meio h1{
-    font-size: 25px;
-    font-weight: bold;
-}
-/*logo*/
-.meio h1 img{
-    height: 20%;
-}
-/*formulario de login*/
-.meio form{
-    position: relative;
-    display: inline-block; /*faz com que os elementos fiquem dispostos em blocos ao inves de lado a lado*/    max-width: 500px; /*tamanho maximo do form*/
-    margin-top: 40px; /*margem de cima*/
-}
-/*modificar input do tipo texto*/
-.meio form input[type="text"]{
-    width: 60%;
-    height: 40px;
-    font-size: inherit;
-    color: gray;
-    padding: 0 10px;
-    text-align: center;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-}
-/*modificar input do tipo senha*/
-.meio form input[type="password"]{
-    width: 60%;
-    margin: 1%;
-    height: 40px;
-    font-size: inherit;
-    color: gray;
-    padding: 10px;
-    position: inherit;
-    text-align: center;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-}
-/*botao*/
-.meio form button{
-    font-size: 16px;
-    background: darkred;
-    margin-right: -40%;
-    width: 80px;
-    height: 40px;
-    color: #fff;
-    top: 0;
-    right: 0;
-    cursor: pointer; /*altera curso para maozinha*/
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-}
-.meio form button:hover{background-color: cornflowerblue} /*faz ficar botao azul com mouse em cima*/
