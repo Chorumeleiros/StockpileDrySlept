@@ -44,7 +44,7 @@
 			    	<label for="exampleInputPassword1">Senha</label>
 			    	<input type="password" class="form-control" id="TXTPASS" placeholder="Insira sua Senha">
 			  	</div>
-	  			<button type="submit" class="btn btn-outline-primary float-right" id="btnEntrar">Entrar</button>
+	  			<button type="submit" class="btn btn-primary float-right" id="btnEntrar">Entrar</button>
 			</form>
 		</div>
 	</body>
