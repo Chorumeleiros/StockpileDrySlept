@@ -27,15 +27,13 @@
 			}
 		%>
 
-		<header>
-			<div class="container">
+	
+			<div class=" container p-3 mx-auto">
 				<img src="imgs/sicone_logo.png" alt="SICONE" class="rounded mx-auto d-block" width="50%">
-				<h1 class="text-justify">Sistema Integrado de Controle de Estoque</h1>
-			
+				<h3 class="text-center font-weight-light" width="50%">Sistema Integrado de Controle de Estoque</h3>
 			</div>
-		</header>
-		
-		<div class="container w-25 p-3">
+	
+			<div class="container w-25 p-3 mx-auto">
 			<form name="login" method="post" action="">
 	  			<div class="form-group">
 	    			<label for="exampleInputEmail1">ID</label>
@@ -43,10 +41,10 @@
 	    			<small id="emailHelp" class="form-text text-muted">Não compartilhe seu ID ou senha com ninguém.</small>
 	  			</div>
 			  	<div class="form-group">
-			    	<label for="exampleInputPassword1">Password</label>
+			    	<label for="exampleInputPassword1">Senha</label>
 			    	<input type="password" class="form-control" id="TXTPASS" placeholder="Insira sua Senha">
 			  	</div>
-	  			<button type="submit" class="btn btn-primary" id="btnEntrar">Entrar</button>
+	  			<button type="submit" class="btn btn-outline-primary float-right" id="btnEntrar">Entrar</button>
 			</form>
 		</div>
 	</body>
