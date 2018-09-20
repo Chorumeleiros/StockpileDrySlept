@@ -1,6 +1,8 @@
 package sicone.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,6 +27,7 @@ public class AuthController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		String user = request.getParameter("TXTUSER");
 		String pass = request.getParameter("TXTPASS");
 		String msg = null;
@@ -32,35 +35,40 @@ public class AuthController extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		try {
-			if ("funcionario".equals(user) && "".equals(pass)) {
+			if ("func".equals(user) && "func".equals(pass)) {
 				UserInfo userInfo = new UserInfo();
 				userInfo.setProfile("funcionario");
 				userInfo.setNome("Jonas da Bigorna");
 				userInfo.setLogado(true);
 				session.setAttribute("LOGADO", userInfo);
+				
+				response.sendRedirect("./stockpile.jsp");
 
-				response.sendRedirect("/stockpile.jsp");
-
-			} else if ("admin".equals(user) && "".equals(pass)) {
+			} else if ("admin".equals(user) && "admin".equals(pass)) {
 				UserInfo userInfo = new UserInfo();
 				userInfo.setProfile("admin");
 				userInfo.setNome("Admin");
 				userInfo.setLogado(true);
 				session.setAttribute("LOGADO", userInfo);
-
-				response.sendRedirect("/admin-func.jsp");
+				
+				
+				response.sendRedirect("./admin-func.jsp");
+				
 
 			} else {
 				msg = "Usuário ou senha incorretos.";
+				System.out.println(msg);
 				session.setAttribute("MENSAGEM", msg);
 				session.setAttribute("LOGADO", null);
 
-				response.sendRedirect("/index.jsp");
+				response.sendRedirect("./index.jsp");
+
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
+		response.setContentType("text/html");
 	}
 
 }

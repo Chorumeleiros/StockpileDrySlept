@@ -32,17 +32,17 @@
 			</div>
 	
 			<div class="container w-25 p-3 mx-auto">
-			<form name="login" method="post" action="">
+			<form name="login" method="post" action="./AuthController">
 	  			<div class="form-group">
 	    			<label for="exampleInputEmail1">ID</label>
-	    			<input type="text" class="form-control" id="TXTUSER" aria-describedby="emailHelp" placeholder="Insira seu ID">
+	    			<input type="text" class="form-control" name="TXTUSER" aria-describedby="emailHelp" placeholder="Insira seu ID">
 	    			<small id="emailHelp" class="form-text text-muted text-gray">Não compartilhe seu ID ou senha com ninguém.</small>
 	  			</div>
 			  	<div class="form-group">
 			    	<label for="exampleInputPassword1">Senha</label>
-			    	<input type="password" class="form-control" id="TXTPASS" placeholder="Insira sua Senha">
+			    	<input type="password" class="form-control" name="TXTPASS" placeholder="Insira sua Senha">
 			  	</div>
-	  			<button type="submit" class="btn btn-primary float-right" id="btnEntrar">Entrar</button>
+	  			<button type="submit" class="btn btn-primary float-right" name="BTNENTRAR">Entrar</button>
 			</form>
 		</div>
 
