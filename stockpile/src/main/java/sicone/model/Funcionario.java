@@ -12,8 +12,9 @@ public class Funcionario extends Pessoa implements Serializable {
 	private static final long serialVersionUID = 7680930582309971499L;
 
 	private int cpf;
-	private String nomePessoa;
-	private int idFuncionario;
+	private String nome;
+	private int id;
+	private String password;
 
 	public int getCpf() {
 		return cpf;
@@ -23,20 +24,28 @@ public class Funcionario extends Pessoa implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public String getNomePessoa() {
-		return nomePessoa;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomePessoa(String nomePessoa) {
-		this.nomePessoa = nomePessoa;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public int getIdFuncionario() {
-		return idFuncionario;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdFuncionario(int idFuncionario) {
-		this.idFuncionario = idFuncionario;
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }
