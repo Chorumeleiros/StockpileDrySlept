@@ -2,6 +2,12 @@ package sicone.model;
 
 import java.io.Serializable;
 
+/**
+ * classe responsavel pelas informacoes do produto.
+ * 
+ * @author Dodo
+ *
+ */
 public class Produto implements Serializable {
 	private static final long serialVersionUID = -5532756923012952866L;
 

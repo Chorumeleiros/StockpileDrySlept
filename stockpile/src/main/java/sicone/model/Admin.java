@@ -1,25 +1,26 @@
 package sicone.model;
 
-public class Admin {
-	
-	private String profile;
-	private boolean logado;
+import java.io.Serializable;
+
+/**
+ * classe responsavel por manter as informacoes do admin.
+ * 
+ * @author Dodo
+ *
+ */
+public class Admin implements Serializable {
+	private static final long serialVersionUID = -1210253221574220516L;
+
+	private int id;
 	private String nome;
+	private String password;
 
-	public String getProfile() {
-		return profile;
+	public int getId() {
+		return id;
 	}
 
-	public void setProfile(String profile) {
-		this.profile = profile;
-	}
-
-	public boolean isLogado() {
-		return logado;
-	}
-
-	public void setLogado(boolean logado) {
-		this.logado = logado;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -30,8 +31,12 @@ public class Admin {
 		this.nome = nome;
 	}
 
-	public Admin() {
-		// TODO Auto-generated constructor stub
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }
