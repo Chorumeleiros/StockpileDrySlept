@@ -1,5 +1,9 @@
 package sicone.model;
-
+/**
+ * classe responsavel por manter as informacoes do usuario logado.
+ * @author Dodo
+ *
+ */
 public class UserInfo {
 
 	private String profile;

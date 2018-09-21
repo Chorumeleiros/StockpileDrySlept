@@ -5,7 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+/**
+ * classe responsavel criar e fechar a conexao com o banco de dados.
+ * @author Dodo
+ *
+ */
 public class ConnectionFactory {
 
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
