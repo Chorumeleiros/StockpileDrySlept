@@ -7,9 +7,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Admin Dashboard</title>
 		<link rel="icon" href="./imgs/favicon.png" type="image/x-icon" />
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" href="css/style-menu" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
+			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
+			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
+			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
+			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+			<link rel="stylesheet" type="text/css" href="css/style-admindashboard.css" />
+			
 	</head>
 	
 	<body>
@@ -23,12 +33,13 @@
 	          			<li class="nav-item"><a href="#" class="nav-link">Fornecedores</a></li>
 	          			<li class="nav-item"><a href="#" class="nav-link">Clientes</a></li>
 	          			<li class="nav-item"><a href="#" class="nav-link">Funcionários</a></li>
+	          			<li class="nav-item"><a href="#" class="nav-link">Estoque</a></li>
 	        		</ul>
 	      		</div>
 	      		<div class="container text-center">
-	      			<ul class="navbar-nav ml-md-auto">
+	      			<ul class="navbar-nav ml-auto">
 			      		<nav class="nav-flex-column">
-			      			<li class="nav-item dropdown">
+			      			<li class="nav-item dropdown" id="iddrop">
 			      				<a href="#" class="nav-item nav-link-dropdown-toggle" data-toggle="dropdown" 
 			      					role="button" aria-haspopup="true" aria-expanded="false">
 			      					<i class="fas fa-user-tie fas fa-stroopwafel fa-2x" style="color: #fff"></i>
@@ -45,6 +56,34 @@
 	      		</div>
 	    	</nav>
 	  </header>
-	
+	  
+	  <div class="container ml-0 position-fixed" id="cardoptions">
+		  <div class="card text-white bg-dark mb-3 mt-3" style="width: 18rem;">
+		  	  <div class="card-body text-center">
+				  <a href="#"><i class="fas fa-briefcase fa-5x" style="color: #fff"></i></a>
+				  <p class="card-text">Fornecedores</p>
+		  	  </div>
+		  </div>
+		  <div class="card text-white bg-dark mb-3" style="width: 18rem;">
+		  	  <div class="card-body text-center">
+				  <a href="#"><i class="fas fa-users fa-5x" style="color: #fff"></i></a>
+				  <p class="card-text">Clientes</p>
+		  	  </div>
+		  </div>
+		  <div class="card text-white bg-dark mb-3" style="width: 18rem;">
+		  	  <div class="card-body text-center">
+				  <a href="#"><i class="far fa-id-badge fa-5x" style="color: #fff"></i></a>
+				  <p class="card-text">Funcionários</p>
+		  	  </div>
+		  </div>
+		  <div class="card text-white bg-dark mb-3" style="width: 18rem;">
+		  	  <div class="card-body text-center">
+				  <a href="#"><i class="fas fa-archive fa-5x" style="color: #fff"></i></a>
+				  <p class="card-text">Estoque</p>
+		  	  </div>
+		  </div>
+	  </div>
+
+	  
 	</body>
 </html>

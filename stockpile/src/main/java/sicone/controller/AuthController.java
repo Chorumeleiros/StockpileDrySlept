@@ -44,7 +44,7 @@ public class AuthController extends HttpServlet {
 				userInfo.setProfile("funcionario");
 				userInfo.setNome(funcionario.getNome());
 				userInfo.setLogado(true);
-				session.setAttribute("LOGADO", userInfo);
+				session.setAttribute("FUNCIONARIO_LOGADO", userInfo);
 
 				response.sendRedirect("./???.jsp");
 
@@ -53,9 +53,9 @@ public class AuthController extends HttpServlet {
 				userInfo.setProfile("admin");
 				userInfo.setNome(admin.getNome());
 				userInfo.setLogado(true);
-				session.setAttribute("LOGADO", userInfo);
+				session.setAttribute("ADMIN_LOGADO", userInfo);
 
-				response.sendRedirect("./admindashboard.jsp");
+				response.sendRedirect("./funcionario.jsp");
 
 			} else {
 				msg = "Usuário ou senha incorretos.";

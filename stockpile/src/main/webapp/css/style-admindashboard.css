@@ -1,0 +1,11 @@
+@charset "ISO-8859-1";
+
+
+@media (max-width: 576px){
+	#iddrop{
+		display:none;
+	}
+	#cardoptions{
+		max-width:10%;
+	}
+}
