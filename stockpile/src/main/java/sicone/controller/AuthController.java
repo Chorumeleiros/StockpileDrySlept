@@ -21,7 +21,7 @@ public class AuthController extends HttpServlet {
 	Admin admin = new Admin();
 
 	public AuthController() {
-		super();
+
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,7 +46,7 @@ public class AuthController extends HttpServlet {
 				userInfo.setLogado(true);
 				session.setAttribute("FUNCIONARIO_LOGADO", userInfo);
 
-				response.sendRedirect("./???.jsp");
+				response.sendRedirect("./estoque.jsp");
 
 			} else if (String.valueOf(admin.getId()).equals(user) && admin.getPassword().equals(pass)) {
 				UserInfo userInfo = new UserInfo();
@@ -59,7 +59,7 @@ public class AuthController extends HttpServlet {
 
 			} else {
 				msg = "Usuário ou senha incorretos.";
-				System.out.println(msg);
+				//System.out.println(msg);
 				session.setAttribute("MENSAGEM", msg);
 				session.setAttribute("LOGADO", null);
 
