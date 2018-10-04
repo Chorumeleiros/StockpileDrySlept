@@ -2,15 +2,20 @@ package sicone.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * classe responsavel pelas informacoes do produto.
  * 
  * @author Dodo
  *
  */
+@Entity
 public class Produto implements Serializable {
 	private static final long serialVersionUID = -5532756923012952866L;
 
+	@Id
 	private int codProd;
 	private String nomeProd;
 	private int qtdProd;
