@@ -16,23 +16,23 @@ public class Fornecedor implements Serializable {
 	private static final long serialVersionUID = -4121986222773473431L;
 
 	@Id
-	private int cnpj;
-	private String nomeForn;
+	private String cnpj;
+	private String nome;
 
-	public int getCnpj() {
+	public String getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(int cnpj) {
-		this.cnpj = cnpj;
+	public void setCnpj(String string) {
+		this.cnpj = string;
 	}
 
-	public String getNomeForn() {
-		return nomeForn;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeForn(String nomeForn) {
-		this.nomeForn = nomeForn;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }

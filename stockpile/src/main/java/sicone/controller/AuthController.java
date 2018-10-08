@@ -59,7 +59,7 @@ public class AuthController extends HttpServlet {
 
 			} else {
 				msg = "Usuário ou senha incorretos.";
-				//System.out.println(msg);
+				
 				session.setAttribute("MENSAGEM", msg);
 				session.setAttribute("LOGADO", null);
 

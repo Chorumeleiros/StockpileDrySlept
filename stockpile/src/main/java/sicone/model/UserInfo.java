@@ -11,8 +11,8 @@ import javax.persistence.Entity;
  */
 @Entity
 public class UserInfo implements Serializable {
-	
 	private static final long serialVersionUID = 569870439550269476L;
+	
 	private String profile;
 	private boolean logado;
 	private String nome;
