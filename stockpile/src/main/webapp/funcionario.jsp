@@ -43,14 +43,54 @@
 		      					</div>
 		      					<div>
 		      						<span class="navbar-text">Admin</span>
-		      					</div>
-			      			</li>
-			      		</nav>
-	      			</ul>
-	      		</div>
-	    	</nav>
-	  </header>
-
+								</div>
+							</li>
+						</nav>
+					</ul>
+				</div>
+			</nav>
+	</header>
+	
+	<div class="container-fluid ml-3 pt-5">
+		<div class="row">
+			<div class="col-md-6 col-sm-2">
+				<table class="table table-borderlass overflow-y: hidden">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Nome</th>
+							<th scope="col">CPF</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">0001</th>
+							<th scope="row">Jonas da Bigorna</th>
+							<th scope="row">0123456789</th>
+						</tr>
+						<tr>
+							<th scope="row">0002</th>
+							<th scope="row">Xerone Milanes</th>
+							<th scope="row">9876543210</th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-1 col-sm-5">
+				<div class="container-fluid"></div>
+			</div>
+			<div class="col-md-5 col-sm-8">
+				<div class="container-fluid mr-3">
+					<div class="form-group row">
+						<label for="ID" class="col-sm-2 col-form-label">ID</label>
+							<div class="col-sm-12">
+								<input class="form-control w-25" type="text" placeholder="Próximo ID válido" readonly>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	</body>
 
 </html>

@@ -2,10 +2,8 @@ package sicone.dao;
 
 import sicone.model.Fornecedor;
 
-public class FornecedorDAO implements DaoImpl {
+public interface FornecedorDAO {
 
-	public void adicionar(Fornecedor fornecedor) {
-		
-	}
+	public void adicionar(Fornecedor fornecedor);
 
 }

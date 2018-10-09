@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import sicone.dao.FornecedorDAO;
+import sicone.dao.FornecedorDAOImpl;
 import sicone.model.Fornecedor;
 
 @WebServlet("/Fornecedor")
@@ -34,7 +35,7 @@ public class FornecedorController extends HttpServlet {
 
 		try {
 
-			FornecedorDAO fornecedorDao = new FornecedorDAO();
+			FornecedorDAO fornecedorDao = new FornecedorDAOImpl();
 
 			if ("adicionar".equals(cmd)) {
 				Fornecedor fornecedor = new Fornecedor();
