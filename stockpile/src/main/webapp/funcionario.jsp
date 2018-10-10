@@ -51,9 +51,9 @@
 			</nav>
 	</header>
 	
-	<div class="container-fluid ml-3 pt-5">
+	<div class="container ml-3 pt-4">
 		<div class="row">
-			<div class="col-md-6 col-sm-2">
+			<div class="col mr-5 col-sm-8">
 				<table class="table table-borderlass overflow-y: hidden">
 					<thead class="thead-dark">
 						<tr>
@@ -76,17 +76,32 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="col-md-1 col-sm-5">
-				<div class="container-fluid"></div>
-			</div>
-			<div class="col-md-5 col-sm-8">
-				<div class="container-fluid mr-3">
-					<div class="form-group row">
-						<label for="ID" class="col-sm-2 col-form-label">ID</label>
-							<div class="col-sm-12">
-								<input class="form-control w-25" type="text" placeholder="Próximo ID válido" readonly>
-							</div>
-					</div>
+			<div class="row ml-4">
+				<div class="col pt-4">
+					<form>
+						<div class="form-group row text-right">
+							<label for="ID" class="col-sm-2 col-form-label">ID</label>
+								<div class="col">
+									<input class="form-control w-75" type="text" placeholder="Próximo ID válido" readonly>
+								</div>
+						</div>
+						<div class="form-group row">
+							<label for="CPF" class="col-sm-2 col-form-label">CPF</label>
+								<div class="col">
+									<input class="form-control" type="text" placeholder="000.000.000-00">
+								</div>
+						</div>
+						<div class="form-group row">
+							<label for="Nome" class="col-sm-2 col-form-label">Nome</label>
+								<div class="col">
+									<input class="form-control" type="text" placeholder="Milis Davis?">
+								</div>
+						</div>
+						<div>
+							<button type="button" class="btn btn-outline-primary float-right">Adicionar</button>
+						</div>
+					</form>
+					
 				</div>
 			</div>
 		</div>
