@@ -2,22 +2,16 @@ package sicone.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 /**
  * classe responsavel por manter as informacoes do funcionario.
  * 
  * @author Dodo
  *
  */
-@Entity
+
 public class Funcionario extends Pessoa implements Serializable {
 	private static final long serialVersionUID = 7680930582309971499L;
 
-	@Id
-	@GeneratedValue
 	private int id;
 	private int cpf;
 	private String nome;

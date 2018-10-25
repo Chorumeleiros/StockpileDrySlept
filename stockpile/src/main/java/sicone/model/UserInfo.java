@@ -2,17 +2,16 @@ package sicone.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-
 /**
  * classe responsavel por manter as informacoes do usuario logado.
+ * 
  * @author Dodo
  *
  */
-@Entity
+
 public class UserInfo implements Serializable {
 	private static final long serialVersionUID = 569870439550269476L;
-	
+
 	private String profile;
 	private boolean logado;
 	private String nome;

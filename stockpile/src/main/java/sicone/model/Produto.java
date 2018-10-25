@@ -1,9 +1,7 @@
 package sicone.model;
 
 import java.io.Serializable;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.util.List;
 
 /**
  * classe responsavel pelas informacoes do produto.
@@ -11,46 +9,45 @@ import javax.persistence.Id;
  * @author Dodo
  *
  */
-@Entity
+
 public class Produto implements Serializable {
 	private static final long serialVersionUID = -5532756923012952866L;
 
-	@Id
-	private int codProd;
-	private String nomeProd;
-	private int qtdProd;
-	private String descrProd;
+	private int codigo;
+	private String nome;
+	private int qtd;
+	private String descr;
 
-	public int getCodProd() {
-		return codProd;
+	public int getCodigo() {
+		return codigo;
 	}
 
-	public void setCodProd(int codProd) {
-		this.codProd = codProd;
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 
-	public String getNomeProd() {
-		return nomeProd;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeProd(String nomeProd) {
-		this.nomeProd = nomeProd;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public int getQtdProd() {
-		return qtdProd;
+	public int getQtd() {
+		return qtd;
 	}
 
-	public void setQtdProd(int qtdProd) {
-		this.qtdProd = qtdProd;
+	public void setQtd(int qtd) {
+		this.qtd = qtd;
 	}
 
-	public String getDescrProd() {
-		return descrProd;
+	public String getDescr() {
+		return descr;
 	}
 
-	public void setDescrProd(String descrProd) {
-		this.descrProd = descrProd;
+	public void setDescrProd(String descr) {
+		this.descr = descr;
 	}
 
 }

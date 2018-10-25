@@ -6,7 +6,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Admin Dashboard</title>
+		<title>Admin | Dashboard</title>
 		<link rel="icon" href="./imgs/favicon.png" type="image/x-icon" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" href="css/style-menu" />
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
@@ -51,9 +51,9 @@
 			</nav>
 	</header>
 	
-	<div class="container ml-3 pt-4">
+	<div class="container-fluid pt-4">
 		<div class="row">
-			<div class="col mr-5 col-sm-8">
+			<div class="col mr-4">
 				<table class="table table-borderlass overflow-y: hidden">
 					<thead class="thead-dark">
 						<tr>
@@ -76,25 +76,25 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="row ml-4">
+			<div class="row border border-primary">
 				<div class="col pt-4">
 					<form>
-						<div class="form-group row text-right">
-							<label for="ID" class="col-sm-2 col-form-label">ID</label>
+						<div class="form-group">
+							<label for="ID" class="col col-form-label">ID</label>
 								<div class="col">
-									<input class="form-control w-75" type="text" placeholder="Próximo ID válido" readonly>
+									<input class="form-control" type="text" placeholder="Próximo ID válido" readonly>
 								</div>
 						</div>
-						<div class="form-group row">
-							<label for="CPF" class="col-sm-2 col-form-label">CPF</label>
+						<div class="form-group">
+							<label for="CPF" class="col col-form-label">CPF</label>
 								<div class="col">
-									<input class="form-control" type="text" placeholder="000.000.000-00">
+									<input class="form-control" type="text" placeholder="000.000.000-00" cpf-mask required="required">
 								</div>
 						</div>
-						<div class="form-group row">
-							<label for="Nome" class="col-sm-2 col-form-label">Nome</label>
+						<div class="form-group">
+							<label for="Nome" class="col col-form-label">Nome</label>
 								<div class="col">
-									<input class="form-control" type="text" placeholder="Milis Davis?">
+									<input class="form-control" type="text" placeholder="Milis Davis?" required="required">
 								</div>
 						</div>
 						<div>
