@@ -49,4 +49,16 @@ public class Funcionario extends Pessoa implements Serializable {
 		this.password = password;
 	}
 
+	@Override
+	public String toString() { 
+		StringBuffer info = new StringBuffer();
+		info.append(this.getId());
+		info.append(":");
+		info.append(this.getCpf());
+		info.append(" - ");
+		info.append(this.getNome());
+		info.append(" Senha: ");
+		info.append(this.getPassword());
+		return info.toString();
+	}
 }

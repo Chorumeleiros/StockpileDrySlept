@@ -81,7 +81,7 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			
-			if (produto.setCodigo(rs.getInt("idProduto")) =! ) {
+		/*	if (produto.setCodigo(rs.getInt("idProduto")) == 1 ) {
 				pstmt.setString(1, produto.getNome());
 				pstmt.setInt(2, produto.getQtd());
 				pstmt.setString(3, produto.getDescr());
@@ -91,7 +91,7 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 				pstmt.executeUpdate();
 				
 			}
-			
+			*/
 			
 		
 		} catch (SQLException e) {
