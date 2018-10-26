@@ -66,14 +66,7 @@
 		<div class="container">
 			<table class="table table-striped">
 				<tbody>
-					<% for () { %>
-					<tr>
-						<td><%=s.getId()%></td>
-						<td><%=s.getCPF()%></td>
-						<td><%=s.getNome()%></td>
-						
-					</tr>
-					<% } %>
+					
 				</tbody>
 			</table>
 	</div>

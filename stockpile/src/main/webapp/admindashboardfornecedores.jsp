@@ -68,14 +68,7 @@
 		<div class="container">
 			<table class="table table-striped">
 				<tbody>
-					<% for () { %>
-					<tr>
-						<td><%=s.getCNPJ()%></td>
-						<td><%=s.getNome()%></td>
-						
-						
-					</tr>
-					<% } %>
+			
 				</tbody>
 			</table>
 		

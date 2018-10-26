@@ -86,12 +86,18 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			
+<<<<<<< HEAD
 			pesquisarNomeProduto(nome);
 			
 			if (nome.equals(rs.getString("Nome"))) {
+=======
+		/*	if (produto.setCodigo(rs.getInt("idProduto")) == 1 ) {
+				pstmt.setString(1, produto.getNome());
+>>>>>>> b21546506c766256e25cb5c82ec77e05672cc141
 				pstmt.setInt(2, produto.getQtd());
 				
 				pstmt.executeUpdate();
+<<<<<<< HEAD
 
 			} else {
 			
@@ -99,6 +105,11 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 			pstmt.setInt(2, produto.getQtd());
 			pstmt.setString(3, produto.getDescr());
 			pstmt.setInt(6, produto.getCodigo());
+=======
+				
+			}
+			*/
+>>>>>>> b21546506c766256e25cb5c82ec77e05672cc141
 			
 			pstmt.executeUpdate();
 			
