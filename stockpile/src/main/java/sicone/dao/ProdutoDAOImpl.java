@@ -15,6 +15,11 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/sicone";
 	private static final String JDBC_USER = "root";
 	private static final String JDBC_PASS = "";
+	
+	private static final String OJDBC_URL = "jdbc:mysql://localhost:3306/sicone";
+	private static final String OJDBC_USER = "root";
+	private static final String OJDBC_PASS = "";
+	
 	private Connection connection;
 
 	public ProdutoDAOImpl() throws GenericDAOException {
@@ -73,7 +78,7 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 	}
 	
 	@Override
-	public void salvar(int codigo, Produto produto) throws GenericDAOException {
+	public void salvar(int codigo, String nome, Produto produto) throws GenericDAOException {
 		String sql = "UPDATE produto SET Nome = ?, Qtd = ?, Descr = ?"
 				+ "WHERE idProduto = ?";
 		
@@ -81,18 +86,23 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			
-			if (produto.setCodigo(rs.getInt("idProduto")) =! ) {
-				pstmt.setString(1, produto.getNome());
+			pesquisarNomeProduto(nome);
+			
+			if (nome.equals(rs.getString("Nome"))) {
 				pstmt.setInt(2, produto.getQtd());
-				pstmt.setString(3, produto.getDescr());
-				
-				pstmt.setInt(6, produto.getCodigo());
 				
 				pstmt.executeUpdate();
-				
+
+			} else {
+			
+			pstmt.setString(1, produto.getNome());
+			pstmt.setInt(2, produto.getQtd());
+			pstmt.setString(3, produto.getDescr());
+			pstmt.setInt(6, produto.getCodigo());
+			
+			pstmt.executeUpdate();
+			
 			}
-			
-			
 		
 		} catch (SQLException e) {
 			throw new GenericDAOException(e);
