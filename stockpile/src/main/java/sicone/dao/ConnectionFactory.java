@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 /**
- * classe responsavel criar e fechar a conexao com o banco de dados.
+ * classe responsavel por criar e fechar a conexao com o banco de dados.
  * @author Dodo
  *
  */

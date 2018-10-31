@@ -17,10 +17,6 @@ public class ClienteDAOImpl implements ClienteDAO {
 	private static final String JDBC_USER = "root";
 	private static final String JDBC_PASS = "";
 	
-	private static final String OJDBC_URL = "jdbc:mysql://localhost:3306/sicone";
-	private static final String OJDBC_USER = "root";
-	private static final String OJDBC_PASS = "";
-	
 	private Connection connection;
 	
 	public ClienteDAOImpl() throws GenericDAOException {
@@ -37,8 +33,6 @@ public class ClienteDAOImpl implements ClienteDAO {
 	public void adicionar (Cliente cliente) throws GenericDAOException {
 		String sql = "INSERT INTO produto (Cpf, Nome)" + "VALUES (?,?)";
 		String lista = null;
-		
-		pesquisarNomeCliente(lista);
 		
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);

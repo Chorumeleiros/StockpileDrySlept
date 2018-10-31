@@ -10,10 +10,11 @@ import javax.servlet.http.HttpSession;
 
 import sicone.dao.ClienteDAO;
 import sicone.dao.ClienteDAOImpl;
+import sicone.dao.GenericDAOException;
 import sicone.model.Cliente;
 
 
- @WebServlet ("/ClienteController")
+ @WebServlet ("/Cliente")
 public class ClienteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -37,20 +38,20 @@ public class ClienteController extends HttpServlet {
 	
 		try {
 
-			ClienteDAO clienteDao = new ClienteDAOImpl();
+			ClienteDAO clienteDAO = new ClienteDAOImpl();
 
 			if ("adicionar".equals(cmd)) {
 				Cliente cliente = new Cliente();
 
 				cliente.setCpf(request.getParameter("txtCpf"));
 				cliente.setNome(request.getParameter("txtNome"));
-				clienteDao.adicionar(cliente);
+				clienteDAO.adicionar(cliente);
 
 				msg = "Cliente adicionado.";
 			}
-		} catch (Exception e) {
+		} catch (GenericDAOException e) {
 			e.printStackTrace();
-			msg = "Erro ao adicionar cliente.";
+			msg = "Erro ao adicionar cliente";
 		}
 
 		session.setAttribute("MENSAGEM", msg);

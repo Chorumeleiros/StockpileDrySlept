@@ -29,5 +29,13 @@ public class Cliente extends Pessoa implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	@Override
+	public String toString() { 
+		StringBuffer info = new StringBuffer();
+		info.append(this.getCpf());
+		info.append(this.getNome());
+		return info.toString();
+	}
 
 }

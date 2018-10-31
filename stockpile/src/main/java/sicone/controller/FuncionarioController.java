@@ -42,7 +42,7 @@ public class FuncionarioController extends HttpServlet {
 
 			if ("adicionar".equals(cmd)) {
 				Funcionario funcionario = new Funcionario();
-				funcionario.setCpf(Integer.parseInt(request.getParameter("cpf")));
+				funcionario.setCpf(request.getParameter("cpf"));
 				funcionario.setNome(request.getParameter("nome"));
 				funcionario.setPassword(request.getParameter("password"));
 

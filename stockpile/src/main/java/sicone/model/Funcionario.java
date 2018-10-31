@@ -13,15 +13,15 @@ public class Funcionario extends Pessoa implements Serializable {
 	private static final long serialVersionUID = 7680930582309971499L;
 
 	private int id;
-	private int cpf;
+	private String cpf;
 	private String nome;
 	private String password;
 
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -53,11 +53,8 @@ public class Funcionario extends Pessoa implements Serializable {
 	public String toString() { 
 		StringBuffer info = new StringBuffer();
 		info.append(this.getId());
-		info.append(":");
 		info.append(this.getCpf());
-		info.append(" - ");
 		info.append(this.getNome());
-		info.append(" Senha: ");
 		info.append(this.getPassword());
 		return info.toString();
 	}
