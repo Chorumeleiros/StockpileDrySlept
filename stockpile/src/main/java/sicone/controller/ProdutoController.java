@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import sicone.dao.FuncionarioDAO;
+import sicone.model.Funcionario;
+
 @WebServlet("/ProdutoController")
 public class ProdutoController extends HttpServlet {
 	private static final long serialVersionUID = -4057237645388450674L;
@@ -30,9 +33,5 @@ public class ProdutoController extends HttpServlet {
 		String msg = null;
 		HttpSession session = request.getSession();
 		
-		
-	}
-	
-	
-
+		}
 }

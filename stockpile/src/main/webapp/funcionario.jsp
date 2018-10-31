@@ -78,23 +78,29 @@
 			</div>
 			<div class="row border border-primary">
 				<div class="col pt-4">
-					<form>
+					<form action="./FuncionarioController">
 						<div class="form-group">
 							<label for="ID" class="col col-form-label">ID</label>
 								<div class="col">
-									<input class="form-control" type="text" placeholder="Próximo ID válido" readonly>
+									<input class="form-control" type="text" placeholder="Próximo ID válido" readonly id="id" name="id">
 								</div>
 						</div>
 						<div class="form-group">
 							<label for="CPF" class="col col-form-label">CPF</label>
 								<div class="col">
-									<input class="form-control" type="text" placeholder="000.000.000-00" cpf-mask required="required">
+									<input class="form-control" type="text" placeholder="000.000.000-00" cpf-mask required="required" id="cpf" name="cpf">
 								</div>
 						</div>
 						<div class="form-group">
 							<label for="Nome" class="col col-form-label">Nome</label>
 								<div class="col">
-									<input class="form-control" type="text" placeholder="Milis Davis?" required="required">
+									<input class="form-control" type="text" placeholder="Milis Davis?" required="required" id="nome" name="nome">
+								</div>
+						</div>
+						<div class="form-group">
+							<label for="Nome" class="col col-form-label">Password</label>
+								<div class="col">
+									<input class="form-control" type="text" placeholder="*******" required="required" id="password" name="password">
 								</div>
 						</div>
 						<div>

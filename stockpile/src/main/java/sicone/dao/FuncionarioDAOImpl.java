@@ -56,7 +56,7 @@ String sql = "INSERT INTO funcionario (cpf, nome, password) VALUES (?,?,?)";
 	}
 
 	@Override
-	public List<Funcionario> pesquisaPorNome(String nome) throws GenericDAOException {
+	public List<Funcionario> pesquisarPorNome(String nome) throws GenericDAOException {
 		String sql = "SELECT * FROM funcionario WHERE nome LIKE ?";
 		List<Funcionario> funcionario = new ArrayList<>();
 		try {

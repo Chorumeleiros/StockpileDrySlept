@@ -12,7 +12,7 @@ import sicone.dao.FornecedorDAO;
 import sicone.dao.FornecedorDAOImpl;
 import sicone.model.Fornecedor;
 
-@WebServlet("/FornecedorController")
+@WebServlet("/FornecedorC")
 public class FornecedorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

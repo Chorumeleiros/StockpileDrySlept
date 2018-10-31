@@ -6,8 +6,8 @@ import sicone.model.Funcionario;
 
 public interface FuncionarioDAO {
 
-	void adicionar(Funcionario funcionario) throws GenericDAOException;
-	List<Funcionario> pesquisaPorNome(String nome) throws GenericDAOException;
-	void remover(int id) throws GenericDAOException;
-	void salvar(int id, Funcionario funcionario) throws GenericDAOException;
+	public void adicionar(Funcionario funcionario) throws GenericDAOException;
+	List<Funcionario> pesquisarPorNome(String nome) throws GenericDAOException;
+	public void remover(int id) throws GenericDAOException;
+	public void salvar(int id, Funcionario funcionario) throws GenericDAOException;
 }
