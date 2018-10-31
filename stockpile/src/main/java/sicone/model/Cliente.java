@@ -11,14 +11,14 @@ import java.io.Serializable;
 public class Cliente extends Pessoa implements Serializable {
 	private static final long serialVersionUID = -2625897989574593814L;
 
-	private int cpf;
+	private String cpf;
 	private String nome;
 
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 

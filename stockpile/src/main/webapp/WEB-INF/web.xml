@@ -22,6 +22,12 @@
   	<description></description>
   	<servlet-class>sicone.controller.FuncionarioController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ClienteController</servlet-name>
+  	<display-name>ClienteController</display-name>
+  	<description></description>
+  	<servlet-class>sicone.controller.ClienteController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>AuthController</servlet-name>
   	<url-pattern>/AuthController</url-pattern>
@@ -33,5 +39,9 @@
   <servlet-mapping>
   	<servlet-name>FuncionarioController</servlet-name>
   	<url-pattern>/FuncionarioController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ClienteController</servlet-name>
+  	<url-pattern>/ClienteController</url-pattern>
   </servlet-mapping>
 </web-app>
