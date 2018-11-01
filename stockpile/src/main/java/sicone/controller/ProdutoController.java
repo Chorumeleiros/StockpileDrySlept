@@ -1,6 +1,7 @@
 package sicone.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,29 +10,64 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import sicone.dao.FuncionarioDAO;
-import sicone.model.Funcionario;
+import sicone.dao.GenericDAOException;
+import sicone.dao.ProdutoDAO;
+import sicone.dao.ProdutoDAOImpl;
 
-@WebServlet("/ProdutoController")
+import sicone.model.Produto;
+
+@WebServlet("/ProdutoC")
 public class ProdutoController extends HttpServlet {
 	private static final long serialVersionUID = -4057237645388450674L;
-	
+
 	public ProdutoController() {
 		super();
 	}
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.getWriter().append("Você não tem permissão para acessar este conteúdo. "
 				+ "Para acessá-lo se identifique <a href=\"./index.jsp\">aqui</a>");
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String cmd = request.getParameter("cmd");
 		String msg = null;
 		HttpSession session = request.getSession();
 		
+//		"\\d{3}\\.\\d{3}\\.\\d{3}\\-{2}"
+
+		try {
+
+			ProdutoDAO produtoDAO = new ProdutoDAOImpl();
+
+			if ("adicionar".equals(cmd)) {
+				Produto produto = new Produto();
+
+				produto.setCodigo(Integer.parseInt(request.getParameter("txtCodigo")));
+				produto.setNome(request.getParameter("txtNome"));
+				produto.setQtd(Integer.parseInt(request.getParameter("txtQtd")));
+				produto.setDescr(request.getParameter("txtDescr"));
+
+				produtoDAO.adicionar(produto);
+
+				List<Produto> listaProduto = produtoDAO.pesquisarNomeProduto("");
+				session.setAttribute("LISTA", listaProduto);
+
+				msg = "Produto adicionado com sucesso";
+				
+			} else if ("pesquisar".equals(cmd)) {
+				List<Produto> listaProduto = produtoDAO.pesquisarNomeProduto(request.getParameter("txtNome"));
+				session.setAttribute("LISTA", listaProduto);
+			}
+
+		} catch (GenericDAOException e) {
+			e.printStackTrace();
+			msg = "Erro ao acessar produto :(";
+
 		}
+
+	}
 }

@@ -16,6 +16,10 @@ public class ConnectionFactory {
 	private static final String URL = "jdbc:mysql://localhost:3306/SiconeDB";
 	private static final String USER = "root";
 	private static final String PASSWORD = "";
+	
+	private static final String OJDBC_URL = "jdbc:oracle:thin:@localhost:1521:siconeORA";
+	private static final String OJDBC_USER = "sys";
+	private static final String OJDBC_PASS = "alunofatec";
 
 	/**
 	 * metodo responsavel por criar conexao com o banco de dados.

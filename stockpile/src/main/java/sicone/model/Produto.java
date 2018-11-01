@@ -1,7 +1,6 @@
 package sicone.model;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * classe responsavel pelas informacoes do produto.
@@ -46,7 +45,7 @@ public class Produto implements Serializable {
 		return descr;
 	}
 
-	public void setDescrProd(String descr) {
+	public void setDescr(String descr) {
 		this.descr = descr;
 	}
 
