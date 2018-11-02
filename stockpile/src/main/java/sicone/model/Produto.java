@@ -48,5 +48,15 @@ public class Produto implements Serializable {
 	public void setDescr(String descr) {
 		this.descr = descr;
 	}
+	
+	@Override
+	public String toString() { 
+		StringBuffer info = new StringBuffer();
+		info.append(this.getCodigo());
+		info.append(this.getNome());
+		info.append(this.getQtd());
+		info.append(this.getDescr());
+		return info.toString();
+	}
 
 }

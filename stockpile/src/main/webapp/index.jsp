@@ -6,7 +6,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>SICONE Login</title>
+		<title>SICONE | Login</title>
 		<link rel="icon" href="./imgs/favicon.png" type="image/x-icon" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/style-login.css" />
@@ -35,14 +35,14 @@
 			<form name="login" method="post" action="./AuthController">
 	  			<div class="form-group">
 	    			<label for="exampleInputEmail1">ID</label>
-	    			<input type="text" class="form-control" name="TXTUSER" aria-describedby="emailHelp" placeholder="Insira seu ID">
+	    			<input type="text" class="form-control" name="txtUser" aria-describedby="emailHelp" placeholder="Insira seu ID">
 	    			<small id="emailHelp" class="form-text text-muted text-gray">Não compartilhe seu ID ou senha com ninguém.</small>
 	  			</div>
 			  	<div class="form-group">
 			    	<label for="exampleInputPassword1">Senha</label>
-			    	<input type="password" class="form-control" name="TXTPASS" placeholder="Insira sua Senha">
+			    	<input type="password" class="form-control" name="txtPass" placeholder="Insira sua Senha">
 			  	</div>
-	  			<button type="submit" class="btn btn-primary float-right" name="BTNENTRAR">Entrar</button>
+	  			<button type="submit" class="btn btn-primary float-right" name="btnEntrar">Entrar</button>
 			</form>
 		</div>
 
