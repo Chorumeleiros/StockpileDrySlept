@@ -45,9 +45,9 @@
 	        	</button>
 	      		<div class="collapse navbar-collapse" id="navbarMenu">
 	        		<ul class="navbar-nav">
-	          			<li class="nav-item"><a href="#" class="nav-link">Fornecedores</a></li>
-	          			<li class="nav-item"><a href="#" class="nav-link">Clientes</a></li>
-	          			<li class="nav-item"><a href="#" class="nav-link">Funcionários</a></li>
+	          			<li class="nav-item"><a href="./fornecedor.jsp" class="nav-link">Fornecedores</a></li>
+	          			<li class="nav-item"><a href="./cliente.jsp" class="nav-link">Clientes</a></li>
+	          			<li class="nav-item"><a href="./funcionario.jsp" class="nav-link">Funcionários</a></li>
 	        		</ul>
 	      		</div>
 	      		<div class="container text-center">

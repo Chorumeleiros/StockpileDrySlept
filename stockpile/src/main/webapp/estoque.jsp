@@ -32,25 +32,25 @@
 	<body>
 	
 <%-- 		<%  --%>
-// 		String msg = (String)session.getAttribute("MENSAGEM");
-// 		List<Produto> listarProduto = (List<Produto>)session.getAttribute("LISTA");
+<!-- 		String msg = (String)session.getAttribute("MENSAGEM"); -->
+<!-- 		List<Produto> listarProduto = (List<Produto>)session.getAttribute("LISTA"); -->
 			   
-// 			if (listarProduto == null) { 
-// 				listarProduto = new ArrayList<Produto>();
-// 			} else { 
-// 				session.setAttribute("LISTA", null);
-// 			}
+<!-- 			if (listarProduto == null) {  -->
+<!-- 				listarProduto = new ArrayList<Produto>(); -->
+<!-- 			} else {  -->
+<!-- 				session.setAttribute("LISTA", null); -->
+<!-- 			} -->
 			   
-// 			Produto produtoAtual = (Produto)session.getAttribute("PRODUTO_ATUAL");
+<!-- 			Produto produtoAtual = (Produto)session.getAttribute("PRODUTO_ATUAL"); -->
 			  
-// 			if (produtoAtual == null) { 
-// 			   produtoAtual = new Produto();
-// 		   	} else { 
-// 			   session.setAttribute("PRODUTO_ATUAL", null);			      
-// 		   	}
+<!-- 			if (produtoAtual == null) {  -->
+<!-- 			   produtoAtual = new Produto(); -->
+<!-- 		   	} else {  -->
+<!-- 			   session.setAttribute("PRODUTO_ATUAL", null);			       -->
+<!-- 		   	} -->
 			
-// 			if (msg != null) {
-// 				session.setAttribute("MENSAGEM", null);
+<!-- 			if (msg != null) { -->
+<!--  				session.setAttribute("MENSAGEM", null); -->
 			
 <%-- 		%> --%>
 		
@@ -69,8 +69,8 @@
 	        	</button>
 	      		<div class="collapse navbar-collapse" id="navbarMenu">
 	        		<ul class="navbar-nav">
-	          			<li class="nav-item"><a href="#" class="nav-link">Estoque</a></li>
-	          			<li class="nav-item"><a href="#" class="nav-link">Pedidos</a></li>
+	          			<li class="nav-item"><a href="./estoque.jsp" class="nav-link">Estoque</a></li>
+	          			<li class="nav-item"><a href="./pedidos.jsp" class="nav-link">Pedidos</a></li>
 	        		</ul>
 	      		</div>
 	      		<div class="container text-center">
