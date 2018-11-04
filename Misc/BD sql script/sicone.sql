@@ -2,10 +2,11 @@ create database sicone;
 use sicone;
 
 -- drop database sicone;
-
+insert into ADMIN (ID, NOME, SENHA) values ('admin', 'Churumelo', 'admin');
 
 CREATE TABLE ADMIN (
   ID VARCHAR(10) NOT NULL,
+  NOME VARCHAR(40),
   SENHA VARCHAR(20),
   PRIMARY KEY (ID)
 );
@@ -51,4 +52,5 @@ CREATE TABLE ITEMPEDIDO (
   PRIMARY KEY (CODPROD)
 );
 
-show table PRODUTO;
+
+select * from PRODUTO;

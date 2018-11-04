@@ -31,32 +31,32 @@
 	
 	<body>
 	
-<%-- 		<%  --%>
-<!-- 		String msg = (String)session.getAttribute("MENSAGEM"); -->
-<!-- 		List<Produto> listarProduto = (List<Produto>)session.getAttribute("LISTA"); -->
+	<% 
+ 		String msg = (String)session.getAttribute("MENSAGEM"); 
+ 		List<Produto> listarProduto = (List<Produto>)session.getAttribute("LISTA_PROD"); 
+//  		List<Fornecedor> listarFornecedor = (List<Fornecedor>)session.getAttribute("LISTA_FORN");
 			   
-<!-- 			if (listarProduto == null) {  -->
-<!-- 				listarProduto = new ArrayList<Produto>(); -->
-<!-- 			} else {  -->
-<!-- 				session.setAttribute("LISTA", null); -->
-<!-- 			} -->
+ 			if (listarProduto == null) {  
+ 				listarProduto = new ArrayList<Produto>(); 
+ 			} else {  
+ 				session.setAttribute("LISTA", null); 
+ 			} 
 			   
-<!-- 			Produto produtoAtual = (Produto)session.getAttribute("PRODUTO_ATUAL"); -->
+ 			Produto produtoAtual = (Produto)session.getAttribute("PRODUTO_ATUAL"); 
 			  
-<!-- 			if (produtoAtual == null) {  -->
-<!-- 			   produtoAtual = new Produto(); -->
-<!-- 		   	} else {  -->
-<!-- 			   session.setAttribute("PRODUTO_ATUAL", null);			       -->
-<!-- 		   	} -->
+ 			if (produtoAtual == null) { 
+ 			   produtoAtual = new Produto(); 
+ 		   	} else {  
+ 			   session.setAttribute("PRODUTO_ATUAL", null);			       
+ 		   	} 
 			
-<!-- 			if (msg != null) { -->
-<!--  				session.setAttribute("MENSAGEM", null); -->
+			if (msg != null) { 
+			session.setAttribute("MENSAGEM", null); 
 			
-<%-- 		%> --%>
-		
-<%-- 		<h3 class="alert alert-danger"><%=msg%></h3> --%>
+ 	%>
+		<h3 class="alert alert-danger"><%=msg%></h3>
 
-<%-- 		<% } %> --%>
+		<% } %>
 	
 		<header class="header">
 			<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -101,11 +101,10 @@
 				</div>
 			</nav>
 	</header>
-	
+	<%if (listarProduto.size() > 0) {%>
 	<div class="container-fluid pt-4">
 		<div class="row justify-content-around">
 			<div class="col-7 pt-3">
-<%-- 				<%if (listarProduto.size() > 0) {%> --%>
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -116,51 +115,53 @@
 						</tr>
 					</thead>
 					<tbody>
-<%-- 						<% for (Produto produto : listarProduto) { %> --%>
-<!-- 						<tr> -->
-<%-- 							<th scope="row"><%=produto.getCodigo()%></th> --%>
-<%-- 							<th scope="row"><%=produto.getNome()%></th> --%>
-<%-- 							<th scope="row"><%=produto.getQtd()%></th> --%>
-<%-- 							<th scope="row"><%=produto.getDescr()%></th> --%>
-<!-- 						</tr> -->
-<%-- 						<% } %> --%>
+						
+						<% for (Produto produto : listarProduto) { %>
+						<tr>
+							<th scope="row"><%=produto.getCodigo()%></th>
+							<th scope="row"><%=produto.getNome()%></th>
+							<th scope="row"><%=produto.getQtd()%></th>
+							<th scope="row"><%=produto.getDescr()%></th>
+						</tr>
+						<% } %>
 					</tbody>
 				</table>
 			</div>
-<%-- 			<%} %> --%>
+					<%} %>
 			
 				<div class="col-md-4 col-sm-2">
 					<form name="adicionar-produto" action="./ProdutoC" method="post" onsubmit="return confirmacao()" class="needs-validation" novalidate>
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label for="codigo" class="form-label">Código</label>
-								<input class="form-control w-75" type="text" name="txtCod" id="codigo" readonly>
+								<input class="form-control w-75" type="text" name="txtCodigo" id="codigo" value="<%=produtoAtual.getCodigo()%>" readonly>
 							</div>
 						<div class="form-group col-md-6">
 							<label for="quantidade" class="form-label">Quantidade</label>
-							<input class="form-control w-50" type="text" name="txtQtd" id="qtd" required="required">
+							<input class="form-control w-50" type="text" name="txtQtd" id="qtd" value="<%=produtoAtual.getQtd()%>" required="required">
 						</div>
 						</div>
 						<div class="form-group w-75">
 							<label for="nome" class="form-label">Item</label>
-							<input class="form-control" type="text" name="txtNome" id="nome" required="required" />
+							<input class="form-control" type="text" name="txtNome" id="nome" value="<%=produtoAtual.getNome()%>" required="required" />
 						</div>
 						<div class="form-group w-75">
 							<label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+							<textarea class="form-control" name="txtDescr" id="exampleFormControlTextarea1" value="<%=produtoAtual.getDescr()%>" rows="3"></textarea>
 							<small id="descrHelp" class="form-text text-muted text-gray">Máximo de 200 caracteres</small>	
 						</div>
 						<div class="form-group w-75">
 							<label for="fornecedor" class="form-label">Fornecedor</label>
-							<select class="custom-select" required="required">
-<%-- 								<%List<Fornecedor> listarFornecedor = (List<Fornecedor>)session.getAttribute("LISTA"); --%>
-<%-- 								for (Fornecedor fornecedor : listarFornecedor) { %> --%>
+							<select class="custom-select">
+<%-- 								<%for (Fornecedor fornecedor : listarFornecedor) { %>  --%>
 <%--   								<option><%=fornecedor.getNome()%></option> --%>
 <%--   								<% } %> --%>
 							</select>
 						</div>
 						<div>
-							<button type="button" class="btn btn-outline-primary float-none">Adicionar</button>
+							<%if (produtoAtual.getCodigo() == 0) { %>
+							<button type="button" class="btn btn-outline-primary float-none" name="cmd" value="adicionar">Adicionar</button>
+							<%} %>
 						</div>
 					</form>
 					<div class="row-md-4 pt-5">

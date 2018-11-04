@@ -36,8 +36,6 @@ public class ProdutoController extends HttpServlet {
 		String cmd = request.getParameter("cmd");
 		String msg = null;
 		HttpSession session = request.getSession();
-		
-//		"\\d{3}\\.\\d{3}\\.\\d{3}\\-{2}"
 
 		try {
 
@@ -54,13 +52,13 @@ public class ProdutoController extends HttpServlet {
 				produtoDAO.adicionar(produto);
 
 				List<Produto> listaProduto = produtoDAO.pesquisarNomeProduto("");
-				session.setAttribute("LISTA", listaProduto);
+				session.setAttribute("LISTA_PROD", listaProduto);
 
 				msg = "Produto adicionado com sucesso";
 				
 			} else if ("pesquisar".equals(cmd)) {
 				List<Produto> listaProduto = produtoDAO.pesquisarNomeProduto(request.getParameter("txtNome"));
-				session.setAttribute("LISTA", listaProduto);
+				session.setAttribute("LISTA_PROD", listaProduto);
 			}
 
 		} catch (GenericDAOException e) {

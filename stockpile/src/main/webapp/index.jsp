@@ -35,12 +35,12 @@
 			<form name="login" method="post" action="./AuthController">
 	  			<div class="form-group">
 	    			<label for="exampleInputEmail1">ID</label>
-	    			<input type="text" class="form-control" name="txtUser" aria-describedby="emailHelp" placeholder="Insira seu ID">
-	    			<small id="emailHelp" class="form-text text-muted text-gray">Não compartilhe seu ID ou senha com ninguém.</small>
+	    			<input type="text" class="form-control" name="txtUser" aria-describedby="emailHelp">
+	    			<small id="emailHelp" class="form-text text-muted text-gray">Não compartilhe seu ID ou senha com ninguém</small>
 	  			</div>
 			  	<div class="form-group">
 			    	<label for="exampleInputPassword1">Senha</label>
-			    	<input type="password" class="form-control" name="txtPass" placeholder="Insira sua Senha">
+			    	<input type="password" class="form-control" name="txtPass">
 			  	</div>
 	  			<button type="submit" class="btn btn-primary float-right" name="btnEntrar">Entrar</button>
 			</form>

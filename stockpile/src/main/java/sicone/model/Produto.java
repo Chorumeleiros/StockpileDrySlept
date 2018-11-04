@@ -13,9 +13,9 @@ public class Produto implements Serializable {
 	private static final long serialVersionUID = -5532756923012952866L;
 
 	private int codigo;
-	private String nome;
+	private String nome = "";
 	private int qtd;
-	private String descr;
+	private String descr = "";
 
 	public int getCodigo() {
 		return codigo;
