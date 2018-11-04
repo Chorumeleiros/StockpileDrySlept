@@ -104,7 +104,7 @@
 	
 	<div class="container-fluid pt-4">
 		<div class="row justify-content-around">
-			<div class="col-7">
+			<div class="col-7 pt-3">
 <%-- 				<%if (listarProduto.size() > 0) {%> --%>
 				<table class="table table-hover">
 					<thead>
