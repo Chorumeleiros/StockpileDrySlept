@@ -75,8 +75,8 @@
 		
 		<div class="row justify-content-around">
 			<div class="col-7">
-				<table class="table table-borderlass">
-					<thead class="thead-dark">
+				<table class="table table-hover">
+					<thead>
 						<tr>
 							<th scope="col">ID</th>
 							<th scope="col">Nome</th>

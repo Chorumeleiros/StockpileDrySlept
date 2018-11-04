@@ -109,10 +109,10 @@
 	<div class="container-fluid pt-4">
 		
 		<div class="row justify-content-around">
-			<div class="col-7">
+			<div class="col-7 pt-3">
 <%-- 				<%if (listarProduto.size() > 0) {%> --%>
-				<table class="table table-borderlass">
-					<thead class="thead-dark">
+				<table class="table table-hover">
+					<thead>
 						<tr>
 							<th scope="col">Nº do Pedido</th>
 							<th scope="col">Cliente</th>
@@ -135,47 +135,40 @@
 			
 				<div class="col-md-4 pt-3 col-sm-2">
 					<form name="buscar-produto" class="form-inline justify-content-start">
-							<div class="form-row">
-								<div class="form-group col-md-8">
-									<input class="form-control" type="text" name="txtNome" id="nome" placeholder="Item">
-								</div>
-								<div class="form-group col-md-4">
-									<button type="button" class="btn btn-outline-primary ml-4">Pesquisar</button>
-								</div>
+						<div class="form-row">
+							<div class="form-group col-md-8">
+								<input class="form-control" type="text" name="txtNumPedido" id="numPedido" placeholder="Nº do Pedido">
 							</div>
-						</form>
-						<form>
-							<div class="form-row pt-3">
-								<div class="form-group col-md-6">
-									<label for="codigo" class="form-label">Código</label>
-									<input class="form-control w-50" type="text" name="txtCod" id="codigo" readonly>
-								</div>
-								<div class="form-group col-md-6">
-									<label for="quantidade" class="form-label">Quantidade</label>
-									<input class="form-control w-50" type="text" name="txtQtd" id="qtd" readonly>
-								</div>
+							<div class="form-group col-md-4">
+								<button type="button" class="btn btn-outline-primary ml-4">Pesquisar</button>
 							</div>
-							<div class="form-group w-75">
-								<label for="nome" class="form-label">Item</label>
-								<input class="form-control" type="text" name="txtNome" id="nome" readonly>
+						</div>
+					</form>
+					<form>
+						<div class="form-row pt-3">
+							<div class="form-group col-md-6">
+								<label for="codigo" class="form-label">Cliente</label>
+								<input class="form-control" type="text" name="txtCod" id="codigo" readonly>
+							</div>								
+							<div class="form-group col-md-6">
+								<label for="quantidade" class="form-label">Data</label>
+								<input class="form-control w-50" type="text" name="dataPedido" id="qtd" readonly>
 							</div>
-							<div class="form-group w-75">
-								<label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-								<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly></textarea>	
-							</div>
-							<div class="form-group w-75">
-								<label for="fornecedor" class="form-label">Fornecedor</label>
-								<input class="form-control" type="text" name="txtFornecedor" id="fornecedor" readonly>
-							</div>
-							<div>
-								<button type="button" class="btn btn-outline-success float-none mr-4">Adicionar</button>
-								<button type="button" class="btn btn-outline-warning float-none">Remover</button>
-							</div>
-							<div class="pt-5">
-								<button type="button" class="btn btn-outline-primary float-none mr-4">Finalizar Pedido</button>
-								<button type="button" class="btn btn-outline-danger float-none">Limpar Pedido</button>
-							</div>
-						</form>
+						</div>
+					</form>
+					<div class="w-75 pt-4">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th scope="col">Cód</th>
+									<th scope="col">Item</th>
+									<th scope="col">Qtd</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

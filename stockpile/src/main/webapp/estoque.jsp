@@ -106,8 +106,8 @@
 		<div class="row justify-content-around">
 			<div class="col-7">
 <%-- 				<%if (listarProduto.size() > 0) {%> --%>
-				<table class="table table-borderlass">
-					<thead class="thead-dark">
+				<table class="table table-hover">
+					<thead>
 						<tr>
 							<th scope="col">Código</th>
 							<th scope="col">Item</th>
@@ -134,7 +134,7 @@
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label for="codigo" class="form-label">Código</label>
-								<input class="form-control w-50" type="text" name="txtCod" id="codigo" readonly>
+								<input class="form-control w-75" type="text" name="txtCod" id="codigo" readonly>
 							</div>
 						<div class="form-group col-md-6">
 							<label for="quantidade" class="form-label">Quantidade</label>
@@ -178,7 +178,7 @@
 							<div class="form-row pt-3">
 								<div class="form-group col-md-6">
 									<label for="codigo" class="form-label">Código</label>
-									<input class="form-control w-50" type="text" name="txtCod" id="codigo" readonly>
+									<input class="form-control w-75" type="text" name="txtCod" id="codigo" readonly>
 								</div>
 								<div class="form-group col-md-6">
 									<label for="quantidade" class="form-label">Quantidade</label>
