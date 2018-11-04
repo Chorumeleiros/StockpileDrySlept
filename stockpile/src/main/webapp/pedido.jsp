@@ -74,7 +74,15 @@
 	      		<div class="collapse navbar-collapse" id="navbarMenu">
 	        		<ul class="navbar-nav">
 	          			<li class="nav-item"><a href="./estoque.jsp" class="nav-link">Estoque</a></li>
-	          			<li class="nav-item"><a href="./pedidos.jsp" class="nav-link">Pedidos</a></li>
+	          			<li class="nav-item dropdown">
+							<a class="nav-link" data-toggle="dropdown" href="#" role="button" 
+								aria-haspopup="true" aria-expanded="false">Pedidos
+							</a>
+						    <div class="dropdown-menu">
+						    	<a class="dropdown-item" href="./novo-pedido.jsp">Novo</a>
+						    	<a class="dropdown-item" href="./consulta-pedido">Consultar</a>
+							</div>
+						</li>
 	        		</ul>
 	      		</div>
 	      		<div class="container text-center">
