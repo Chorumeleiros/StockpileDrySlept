@@ -7,7 +7,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>SICONE | Estoque</title>
+		<title>SICONE | Pedido</title>
 		<link rel="icon" href="./imgs/favicon.png" type="image/x-icon" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" href="css/style-menu" />
 		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
@@ -18,6 +18,10 @@
 			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 			
 		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#dataPedido').mask('00/00/0000');
+			})
+		
 			function confirmacao() {
 				$.notify({
 					message: 'Funcionário adicionado com sucesso!'
@@ -103,16 +107,16 @@
 	</header>
 	
 	<div class="container-fluid pt-4">
+		
 		<div class="row justify-content-around">
 			<div class="col-7">
 <%-- 				<%if (listarProduto.size() > 0) {%> --%>
 				<table class="table table-borderlass">
 					<thead class="thead-dark">
 						<tr>
-							<th scope="col">Código</th>
-							<th scope="col">Item</th>
-							<th scope="col">Quantidade</th>
-							<th scope="col">Descrição</th>
+							<th scope="col">Nº do Pedido</th>
+							<th scope="col">Cliente</th>
+							<th scope="col">Data</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -129,42 +133,8 @@
 			</div>
 <%-- 			<%} %> --%>
 			
-				<div class="col-md-4 col-sm-2">
-					<form name="adicionar-produto" action="./ProdutoC" method="post" onsubmit="return confirmacao()" class="needs-validation" novalidate>
-						<div class="form-row">
-							<div class="form-group col-md-6">
-								<label for="codigo" class="form-label">Código</label>
-								<input class="form-control w-50" type="text" name="txtCod" id="codigo" readonly>
-							</div>
-						<div class="form-group col-md-6">
-							<label for="quantidade" class="form-label">Quantidade</label>
-							<input class="form-control w-50" type="text" name="txtQtd" id="qtd" required="required">
-						</div>
-						</div>
-						<div class="form-group w-75">
-							<label for="nome" class="form-label">Item</label>
-							<input class="form-control" type="text" name="txtNome" id="nome" required="required" />
-						</div>
-						<div class="form-group w-75">
-							<label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-							<small id="descrHelp" class="form-text text-muted text-gray">Máximo de 200 caracteres</small>	
-						</div>
-						<div class="form-group w-75">
-							<label for="fornecedor" class="form-label">Fornecedor</label>
-							<select class="custom-select" required="required">
-<%-- 								<%List<Fornecedor> listarFornecedor = (List<Fornecedor>)session.getAttribute("LISTA"); --%>
-<%-- 								for (Fornecedor fornecedor : listarFornecedor) { %> --%>
-<%--   								<option><%=fornecedor.getNome()%></option> --%>
-<%--   								<% } %> --%>
-							</select>
-						</div>
-						<div>
-							<button type="button" class="btn btn-outline-primary float-none">Adicionar</button>
-						</div>
-					</form>
-					<div class="row-md-4 pt-5">
-						<form name="buscar-produto" class="form-inline">
+				<div class="col-md-4 pt-3 col-sm-2">
+					<form name="buscar-produto" class="form-inline justify-content-start">
 							<div class="form-row">
 								<div class="form-group col-md-8">
 									<input class="form-control" type="text" name="txtNome" id="nome" placeholder="Item">
@@ -197,8 +167,15 @@
 								<label for="fornecedor" class="form-label">Fornecedor</label>
 								<input class="form-control" type="text" name="txtFornecedor" id="fornecedor" readonly>
 							</div>
+							<div>
+								<button type="button" class="btn btn-outline-success float-none mr-4">Adicionar</button>
+								<button type="button" class="btn btn-outline-warning float-none">Remover</button>
+							</div>
+							<div class="pt-5">
+								<button type="button" class="btn btn-outline-primary float-none mr-4">Finalizar Pedido</button>
+								<button type="button" class="btn btn-outline-danger float-none">Limpar Pedido</button>
+							</div>
 						</form>
-					</div>
 				</div>
 			</div>
 		</div>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="sicone.model.Produto, sicone.model.Fornecedor, java.util.List, java.util.ArrayList"%> 
+<%@ page import="sicone.model.Produto, sicone.model.Fornecedor, sicone.model.Funcionario, java.util.List, java.util.ArrayList"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -80,7 +80,7 @@
 							</a>
 						    <div class="dropdown-menu">
 						    	<a class="dropdown-item" href="./novo-pedido.jsp">Novo</a>
-						    	<a class="dropdown-item" href="./consulta-pedido">Consultar</a>
+						    	<a class="dropdown-item" href="./consulta-pedido.jsp">Consultar</a>
 							</div>
 						</li>
 	        		</ul>
@@ -104,69 +104,110 @@
 					</ul>
 				</div>
 			</nav>
-	</header>
+		</header>
 	
 	<div class="container-fluid pt-4">
-		
-		<div class="row justify-content-around">
-			<div class="col-7">
+		<div class="row pt-3 justify-content-around">
+			<div class="col-6 pt-3">
+  				<form name="pedido">
+					<div class="form-row">
+						<div class="form-inline col-md-6">
+							<label class="sr-only" for="numPedido"></label>
+  							<div class="input-group mb-2 mr-sm-2">
+    							<div class="input-group-prepend">
+      								<div class="input-group-text">Nº do Pedido</div>
+    							</div>
+    							<input type="text" class="form-control" id="numPedido" readonly>
+  							</div>
+						</div>
+						<div class="form-inline col-md-4">
+							<label class="sr-only" for="dataPedido"></label>
+  							<div class="input-group mb-2 mr-sm-2">
+    							<div class="input-group-prepend">
+      								<div class="input-group-text">Data</div>
+    							</div>
+    							<input type="text" class="form-control" id="dataPedido" readonly>
+  							</div>
+						</div>
+					</div>
+	  			</form>
+  			
 <%-- 				<%if (listarProduto.size() > 0) {%> --%>
-				<table class="table table-borderlass">
-					<thead class="thead-dark">
-						<tr>
-							<th scope="col">Nº Pedido</th>
-							<th scope="col">Cliente</th>
-							<th scope="col">Data</th>
-						</tr>
-					</thead>
-					<tbody>
-<%-- 						<% for (Produto produto : listarProduto) { %> --%>
-<!-- 						<tr> -->
-<%-- 							<th scope="row"><%=produto.getCodigo()%></th> --%>
-<%-- 							<th scope="row"><%=produto.getNome()%></th> --%>
-<%-- 							<th scope="row"><%=produto.getQtd()%></th> --%>
-<%-- 							<th scope="row"><%=produto.getDescr()%></th> --%>
-<!-- 						</tr> -->
-<%-- 						<% } %> --%>
-					</tbody>
-				</table>
+				<div class="row pt-4">
+					<table class="table table-borderlass">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">Código</th>
+								<th scope="col">Item</th>
+								<th scope="col">Quantidade</th>
+							</tr>
+						</thead>
+						<tbody>
+	<%-- 						<% for (Produto produto : listarProduto) { %> --%>
+	<!-- 						<tr> -->
+	<%-- 							<th scope="row"><%=produto.getCodigo()%></th> --%>
+	<%-- 							<th scope="row"><%=produto.getNome()%></th> --%>
+	<%-- 							<th scope="row"><%=produto.getQtd()%></th> --%>
+	<%-- 							<th scope="row"><%=produto.getDescr()%></th> --%>
+	<!-- 						</tr> -->
+	<%-- 						<% } %> --%>
+						</tbody>
+					</table>
+				</div>
 			</div>
 <%-- 			<%} %> --%>
 			
-				<div class="col-md-4 col-sm-2">
-					<form name="adicionar-pedido" action="./PedidoC" method="post" onsubmit="return confirmacao()" class="needs-validation" novalidate>
-						<div class="form-group w-25">
-							<label for="codigo" class="form-label">Código</label>
-							<input class="form-control" type="text" name="txtCod" id="codigo" readonly>
-						</div>
-						<div class="form-group w-25">
-							<label for="quantidade" class="form-label">Quantidade</label>
-							<input class="form-control" type="text" name="txtQtd" id="qtd" required="required">
-						</div>
-						<div class="form-group w-75">
-							<label for="nome" class="form-label">Nome</label>
-							<input class="form-control" type="text" name="txtNome" id="nome" required="required" />
-							
-						</div>
-						<div class="form-group w-75">
-							<label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-							<small id="descrHelp" class="form-text text-muted text-gray">Máximo de 200 caracteres</small>	
-						</div>
-						<div class="form-group w-75">
-							<label for="fornecedor" class="form-label">Fornecedor</label>
-							<select class="form-control" required="required">
-<%-- 								<%List<Fornecedor> listarFornecedor = (List<Fornecedor>)session.getAttribute("LISTA"); --%>
-<%-- 								for (Fornecedor fornecedor : listarFornecedor) { %> --%>
-<%--   								<option><%=fornecedor.getNome()%></option> --%>
-<%--   								<% } %> --%>
-							</select>
-						</div>
-						<div>
-							<button type="button" class="btn btn-outline-primary float-none">Adicionar</button>
+				<div class="col-md-4 pt-3 col-sm-2">
+					<form name="novo-pedido">
+						<div class="form-row">
+							<div class="input-group w-75">
+								<select class="custom-select" id="inputGroupSelect04" required="required">
+									<option selected>Selecione o cliente</option>
+								</select>
+								<div class="input-group-append">
+				    				<button class="btn btn-outline-primary" type="button">Novo Pedido</button>
+				  				</div>
+							</div>
 						</div>
 					</form>
-					
+					<form name="buscar-produto" class="form-inline justify-content-start">
+							<div class="form-row pt-5">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="text" name="txtNome" id="nome" placeholder="Item">
+								</div>
+								<div class="form-group col-md-4">
+									<button type="button" class="btn btn-outline-primary ml-4">Pesquisar</button>
+								</div>
+							</div>
+						</form>
+						<form>
+							<div class="form-row pt-3">
+								<div class="form-group col-md-6">
+									<label for="codigo" class="form-label">Código</label>
+									<input class="form-control w-50" type="text" name="txtCod" id="codigo" readonly>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="quantidade" class="form-label">Quantidade</label>
+									<input class="form-control w-50" type="text" name="txtQtd" id="qtd" readonly>
+								</div>
+							</div>
+							<div class="form-group w-75">
+								<label for="nome" class="form-label">Item</label>
+								<input class="form-control" type="text" name="txtNome" id="nome" readonly>
+							</div>
+							<div class="form-group w-75">
+								<label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
+								<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly></textarea>	
+							</div>
+							<div>
+								<button type="button" class="btn btn-outline-success float-none mr-4">Adicionar</button>
+								<button type="button" class="btn btn-outline-warning float-none">Remover</button>
+							</div>
+							<div class="pt-5">
+								<button type="button" class="btn btn-outline-primary float-none mr-4">Finalizar Pedido</button>
+								<button type="button" class="btn btn-outline-danger float-none">Limpar Pedido</button>
+							</div>
+						</form>
 				</div>
 			</div>
 		</div>
