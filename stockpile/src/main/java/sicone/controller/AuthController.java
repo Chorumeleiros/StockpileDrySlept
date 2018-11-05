@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import sicone.model.UserInfo;
+import sicone.dao.ChecaLogin;
+import sicone.dao.GenericDAOException;
 import sicone.model.Admin;
 import sicone.model.Funcionario;
 
@@ -38,17 +40,21 @@ public class AuthController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
+
+		ChecaLogin daoLogin = new ChecaLogin();
+
+
 		try {
-			if (String.valueOf(funcionario.getId()).equals(user) && funcionario.getPassword().equals(pass)) {
+			if (daoLogin.checkLogin(user, pass)) {
+
 				UserInfo userInfo = new UserInfo();
 				userInfo.setProfile("funcionario");
 				userInfo.setNome(funcionario.getNome());
 				userInfo.setLogado(true);
 				session.setAttribute("FUNCIONARIO_LOGADO", userInfo);
-
 				response.sendRedirect("./estoque.jsp");
 
-			} else if (String.valueOf(admin.getId()).equals(user) && admin.getPassword().equals(pass)) {
+			}  else if (String.valueOf(admin.getId()).equals("admin") && admin.getPassword().equals("admin")) {
 				UserInfo userInfo = new UserInfo();
 				userInfo.setProfile("admin");
 				userInfo.setNome(admin.getNome());
@@ -59,19 +65,24 @@ public class AuthController extends HttpServlet {
 
 			} else {
 				msg = "Usuário ou senha incorretos.";
-				
+
 				session.setAttribute("MENSAGEM", msg);
 				session.setAttribute("LOGADO", null);
 
 				response.sendRedirect("./index.jsp");
 
 			}
-
-		} catch (IOException e) {
+		} catch (GenericDAOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+		//		} catch (IOException e) {
+		//			e.printStackTrace();
+		//		}
+
 		response.setContentType("text/html");
 	}
+
 
 }
