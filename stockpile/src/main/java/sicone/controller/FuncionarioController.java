@@ -15,6 +15,13 @@ import sicone.dao.FuncionarioDAOImpl;
 import sicone.dao.GenericDAOException;
 import sicone.model.Funcionario;
 
+/**
+ * classe responsavel por receber os parametros do funcionario da view
+ * 
+ * @author Dodo
+ *
+ */
+
 @WebServlet("/FuncionarioC")
 public class FuncionarioController extends HttpServlet {
 	private static final long serialVersionUID = -7070928034240329418L;
@@ -53,7 +60,7 @@ public class FuncionarioController extends HttpServlet {
 				msg = "Funcionário adicionado com sucesso";
 
 			}
-			
+
 		} catch (GenericDAOException e) {
 			e.printStackTrace();
 			msg = "Erro ao acessar Funcionário";

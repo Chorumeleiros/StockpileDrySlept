@@ -7,7 +7,14 @@ import java.sql.SQLException;
 
 import sicone.connection.ConnectionFactory;
 
-public class ChecaLogin {
+/**
+ * classe responsavel por autenticar os dados de login com o banco de dados
+ * 
+ * @author Dodo
+ *
+ */
+
+public class AuthDAO {
 	public boolean checkLogin(String nome, String senha) throws GenericDAOException {
 
 		Connection con = ConnectionFactory.createConnection();

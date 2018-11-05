@@ -10,10 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import sicone.model.UserInfo;
-import sicone.dao.ChecaLogin;
+import sicone.dao.AuthDAO;
 import sicone.dao.GenericDAOException;
 import sicone.model.Admin;
 import sicone.model.Funcionario;
+
+/**
+ * classe responsavel por receber os parametros de autenticacao da view
+ * 
+ * @author Dodo
+ *
+ */
 
 @WebServlet("/Auth")
 public class AuthController extends HttpServlet {
@@ -41,7 +48,7 @@ public class AuthController extends HttpServlet {
 		HttpSession session = request.getSession();
 
 
-		ChecaLogin daoLogin = new ChecaLogin();
+		AuthDAO daoLogin = new AuthDAO();
 
 
 		try {

@@ -1,35 +1,31 @@
 package sicone.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import sicone.connection.ConnectionFactory;
 import sicone.model.Funcionario;
+
+/**
+ * classe responsavel pelas operacoes do funcionario com o banco de dados
+ * 
+ * @author Dodo
+ *
+ */
 
 public class FuncionarioDAOImpl implements FuncionarioDAO {
 
-	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/sicone";
-	private static final String JDBC_USER = "root";
-	private static final String JDBC_PASS = "";
-	private Connection connection;
-
 	public FuncionarioDAOImpl() throws GenericDAOException {
-		try {
-
-			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS);
-
-		} catch (SQLException | ClassNotFoundException e) {
-			throw new GenericDAOException(e);
-		}
+		
 	}
 
 	@Override
 	public void adicionar(Funcionario funcionario) throws GenericDAOException {
+		Connection connection = ConnectionFactory.createConnection();
 		String sql = "INSERT INTO funcionario (cpf, nome, password) VALUES (?,?,?)";
 
 		try {
@@ -45,6 +41,7 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 
 	@Override
 	public void remover(int id) throws GenericDAOException {
+		Connection connection = ConnectionFactory.createConnection();
 		String sql = "DELETE FROM funcionario WHERE id = ?";
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -58,6 +55,7 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 
 	@Override
 	public List<Funcionario> pesquisarPorNome(String nome) throws GenericDAOException {
+		Connection connection = ConnectionFactory.createConnection();
 		String sql = "SELECT * FROM funcionario WHERE nome LIKE ?";
 		List<Funcionario> listaFuncionario = new ArrayList<>();
 		try {
@@ -81,6 +79,7 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 
 	@Override
 	public void salvar(int id, Funcionario funcionario) throws GenericDAOException {
+		Connection connection = ConnectionFactory.createConnection();
 		String sql = "UPDATE funcionario " + "SET id = ?, cpf = ?, nome = ?, password = ? WHERE id = ?";
 
 		try {
