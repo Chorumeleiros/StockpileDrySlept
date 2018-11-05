@@ -51,7 +51,7 @@ public class FuncionarioController extends HttpServlet {
 				Funcionario funcionario = new Funcionario();
 				funcionario.setCpf(request.getParameter("cpf"));
 				funcionario.setNome(request.getParameter("nome"));
-				funcionario.setPassword(request.getParameter("password"));
+				funcionario.setPassword(request.getParameter("senha"));
 
 				funcionarioDAO.adicionar(funcionario);
 
