@@ -49,7 +49,7 @@ public class ConnectionFactory {
 	 * @param pstmt
 	 * @param rs
 	 */
-	public void closeConnection(Connection connection, PreparedStatement pstmt, ResultSet rs) {
+	public static void closeConnection(Connection connection, PreparedStatement pstmt, ResultSet rs) {
 
 		try {
 			if (connection != null) {

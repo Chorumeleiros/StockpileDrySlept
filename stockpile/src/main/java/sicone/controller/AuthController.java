@@ -15,7 +15,7 @@ import sicone.dao.GenericDAOException;
 import sicone.model.Admin;
 import sicone.model.Funcionario;
 
-@WebServlet("/Auth")
+@WebServlet("/AuthC")
 public class AuthController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -54,7 +54,8 @@ public class AuthController extends HttpServlet {
 				session.setAttribute("FUNCIONARIO_LOGADO", userInfo);
 				response.sendRedirect("./estoque.jsp");
 
-			}  else if (String.valueOf(admin.getId()).equals("admin") && admin.getPassword().equals("admin")) {
+			}  // else if (String.valueOf(admin.getId()).equals("admin") && admin.getPassword().equals("admin")) {
+			 else if (user.equals("admin") && pass.equals("admin")) {
 				UserInfo userInfo = new UserInfo();
 				userInfo.setProfile("admin");
 				userInfo.setNome(admin.getNome());

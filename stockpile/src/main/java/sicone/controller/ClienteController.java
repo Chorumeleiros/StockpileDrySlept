@@ -14,7 +14,7 @@ import sicone.dao.GenericDAOException;
 import sicone.model.Cliente;
 
 
- @WebServlet ("/Cliente")
+ @WebServlet ("/ClienteC")
 public class ClienteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
