@@ -26,12 +26,12 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 	@Override
 	public void adicionar(Funcionario funcionario) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
-		String sql = "INSERT INTO funcionario (cpf, nome, senha) VALUES (?,?,?)"; //no banco este campo password é chamado de senha
+		String sql = "INSERT INTO funcionario (nome, cpf, senha) VALUES (?,?,?)"; //no banco este campo password é chamado de senha
 
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
-			pstmt.setString(1, funcionario.getCpf());
 			pstmt.setString(2, funcionario.getNome());
+			pstmt.setString(1, funcionario.getCpf());
 			pstmt.setString(3, funcionario.getPassword());
 
 		} catch (SQLException e) {
