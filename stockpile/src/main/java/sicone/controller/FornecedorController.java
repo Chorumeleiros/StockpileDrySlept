@@ -12,7 +12,7 @@ import sicone.dao.FornecedorDAO;
 import sicone.dao.FornecedorDAOImpl;
 import sicone.model.Fornecedor;
 
-<<<<<<< HEAD
+
 /**
  * classe responsavel por receber os parametros do fornecedor da view
  * 
@@ -20,10 +20,7 @@ import sicone.model.Fornecedor;
  *
  */
 
-@WebServlet("/FornecedorController")
-=======
 @WebServlet("/FornecedorC")
->>>>>>> 7501fad477476a41d21b34c93c9b84a5521755d4
 public class FornecedorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

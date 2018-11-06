@@ -117,7 +117,7 @@
 							<input class="form-control" type="text" id="nome" required="required">	
 						</div>
 						<div >
-							<button type="button" class="btn btn-outline-primary float-none">Adicionar</button>
+							<button type="button" class="btn btn-outline-primary float-none" name="cmd">Adicionar</button>
 						</div>
 					</form>
 					

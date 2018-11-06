@@ -25,12 +25,8 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 
 	@Override
 	public void adicionar(Funcionario funcionario) throws GenericDAOException {
-<<<<<<< HEAD
 		Connection connection = ConnectionFactory.createConnection();
-		String sql = "INSERT INTO funcionario (cpf, nome, password) VALUES (?,?,?)";
-=======
 		String sql = "INSERT INTO funcionario (cpf, nome, senha) VALUES (?,?,?)"; //no banco este campo password é chamado de senha
->>>>>>> 7501fad477476a41d21b34c93c9b84a5521755d4
 
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -83,12 +79,8 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 
 	@Override
 	public void salvar(int id, Funcionario funcionario) throws GenericDAOException {
-<<<<<<< HEAD
 		Connection connection = ConnectionFactory.createConnection();
-		String sql = "UPDATE funcionario " + "SET id = ?, cpf = ?, nome = ?, password = ? WHERE id = ?";
-=======
 		String sql = "UPDATE funcionario " + "SET id = ?, cpf = ?, nome = ?, senha = ? WHERE id = ?";
->>>>>>> 7501fad477476a41d21b34c93c9b84a5521755d4
 
 		try {
 			PreparedStatement pstm = connection.prepareStatement(sql);

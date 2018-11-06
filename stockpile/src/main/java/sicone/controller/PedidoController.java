@@ -1,6 +1,7 @@
 package sicone.controller;
 
-import java.io.Serializable;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 
 /**
  * classe responsavel por receber os parametros de pedido da view 
@@ -9,8 +10,9 @@ import java.io.Serializable;
  *
  */
 
-public class PedidoController implements Serializable {
-	private static final long serialVersionUID = 5513327847992714573L;
+@WebServlet("/PedidoC")
+public class PedidoController extends HttpServlet  {
+	private static final long serialVersionUID = 7764648766493441423L;
 
 	
 }
