@@ -18,21 +18,24 @@ import sicone.model.Funcionario;
  */
 
 public class FuncionarioDAOImpl implements FuncionarioDAO {
-
+	Connection connection = ConnectionFactory.createConnection();
 	public FuncionarioDAOImpl() throws GenericDAOException {
 		
 	}
 
 	@Override
 	public void adicionar(Funcionario funcionario) throws GenericDAOException {
-		Connection connection = ConnectionFactory.createConnection();
-		String sql = "INSERT INTO funcionario (nome, cpf, senha) VALUES (?,?,?)"; //no banco este campo password é chamado de senha
+			
+		String sql = "INSERT INTO funcionario (NOME, CPF, SENHA) VALUES (?, ?, ?) ;"; //no banco este campo password é chamado de senha
 
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
-			pstmt.setString(2, funcionario.getNome());
-			pstmt.setString(1, funcionario.getCpf());
+		//	pstmt.setLong(1, 0);
+			pstmt.setString(1, funcionario.getNome());
+			pstmt.setString(2, funcionario.getCpf());
 			pstmt.setString(3, funcionario.getPassword());
+			pstmt.executeUpdate();
+			System.out.println(funcionario.getNome());
 
 		} catch (SQLException e) {
 			throw new GenericDAOException(e);
@@ -56,8 +59,9 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 	@Override
 	public List<Funcionario> pesquisarPorNome(String nome) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
-		String sql = "SELECT * FROM funcionario WHERE nome LIKE ?";
 		List<Funcionario> listaFuncionario = new ArrayList<>();
+		String sql = "SELECT * FROM funcionario WHERE nome LIKE ?";
+		
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.setString(1, "%" + nome + "%");
