@@ -9,6 +9,7 @@ import java.util.List;
 
 import sicone.connection.ConnectionFactory;
 import sicone.model.Fornecedor;
+import sicone.model.Funcionario;
 
 /**
  * classe responsavel pelas operacoes do fornecedor com o banco de dados
@@ -26,19 +27,17 @@ public class FornecedorDAOImpl implements FornecedorDAO {
 	@Override
 	public void adicionar (Fornecedor fornecedor) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
-		String sql = "INSERT INTO fornecedor (Cnpj, Nome)" + "VALUES (?,?)";
-		String lista = null;
+		String sql = "INSERT INTO FORNECEDOR (CNPJ, NOME) VALUES (?, ?)";
 		
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.setString (1, fornecedor.getCnpj());
 			pstmt.setString (2, fornecedor.getNome());
-			pstmt.executeUpdate ();
-			pesquisaFornecedor(lista);
+			pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			throw new GenericDAOException(e);
 		}
-	
 		
 	}
 	
@@ -46,7 +45,7 @@ public class FornecedorDAOImpl implements FornecedorDAO {
 	public List<Fornecedor> pesquisaFornecedor(String nome) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
 		List<Fornecedor> lista = new ArrayList<>();
-		String sql = "SELECT * FROM fornecedor";
+		String sql = "SELECT * FROM FORNECEDOR WHERE NOME LIKE ?";
 
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -55,8 +54,8 @@ public class FornecedorDAOImpl implements FornecedorDAO {
 
 			while (rs.next()) {
 				Fornecedor fornecedor = new Fornecedor();
-				fornecedor.setCnpj(rs.getString("cnpj"));
-				fornecedor.setNome(rs.getString("nome"));
+				fornecedor.setCnpj(rs.getString("CNPJ"));
+				fornecedor.setNome(rs.getString("NOME"));
 				
 				lista.add(fornecedor);
 			}

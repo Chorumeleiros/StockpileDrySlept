@@ -2,7 +2,6 @@ create database sicone;
 use sicone;
 
 -- drop database sicone;
-insert into ADMIN (ID, NOME, SENHA) values ('admin', 'Churumelo', 'admin');
 
 CREATE TABLE ADMIN (
   ID VARCHAR(10) NOT NULL,
@@ -11,35 +10,45 @@ CREATE TABLE ADMIN (
   PRIMARY KEY (ID)
 );
 
+insert into ADMIN (ID, NOME, SENHA) values ('admin', 'Churumelo', 'admin');
+
 CREATE TABLE FUNCIONARIO (
   ID INT NOT NULL AUTO_INCREMENT,
   NOME VARCHAR(40),
-  CPF CHAR(11),
+  CPF CHAR(14),
   SENHA VARCHAR(20),
   PRIMARY KEY (ID)
 );
 
-
+select * from produto;
 
 CREATE TABLE CLIENTE (
-  CPF CHAR(11) NOT NULL,
+  CPF CHAR(14) NOT NULL,
   NOME VARCHAR(40),
   PRIMARY KEY (CPF)
 );
 
 CREATE TABLE FORNECEDOR (
-  CNPJ CHAR(15),
+  ID INT AUTO_INCREMENT,
+  CNPJ CHAR(18),
   NOME VARCHAR(40),
-  PRIMARY KEY (CNPJ)
+  PRIMARY KEY (ID)
 );
 
+drop table fornecedor;
+insert into fornecedor (cnpj, nome) values ('1111111111', 'qdas');
+
 CREATE TABLE PRODUTO (
-  CODPROD INT,
-  NOMEPROD VARCHAR(20),
+  CODPROD INT AUTO_INCREMENT,
+  NOMEPROD VARCHAR(50),
   QTDPROD INT,
-  DESCRPROD VARCHAR(40),
+  DESCRPROD VARCHAR(200),
   PRIMARY KEY (CODPROD)
 );
+
+insert into produto(nomeprod,qtdprod,descrprod) values('banissopa luara', 90, 'mirossola bafinho');
+drop table produto;
+select * from produto;
 
 CREATE TABLE PEDIDO (
   NUMPEDIDO INT,
@@ -54,5 +63,4 @@ CREATE TABLE ITEMPEDIDO (
   PRIMARY KEY (CODPROD)
 );
 
-select * from funcionario;
-insert into funcionario(nome,cpf,senha) values('func','22222222222','func');
+

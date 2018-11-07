@@ -49,48 +49,40 @@
 		}
 	%>
 
-	<header class="header"> <nav
-		class="navbar navbar-expand-sm navbar-dark bg-dark"> <a href="#"
-		class="navbar-brand"> <img src="imgs/sicone_logo.png" width="200"
-		height="60" alt="Sicone">
-	</a>
-	<button class="navbar-toggler" data-toggler="collapse"
-		data-target="#navbarMenu" role="button" aria-haspopup="true"
-		aria-expanded="false">
-		<span clas="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarMenu">
-		<ul class="navbar-nav">
-			<li class="nav-item"><a href="./fornecedor.jsp" class="nav-link">Fornecedores</a></li>
-			<li class="nav-item"><a href="./cliente.jsp" class="nav-link">Clientes</a></li>
-			<li class="nav-item"><a href="./funcionario.jsp"
-				class="nav-link">Funcionários</a></li>
-		</ul>
-	</div>
-	<div class="container text-center">
-		<ul class="navbar-nav ml-md-auto">
-			<nav class="nav-flex-column">
-			<li class="nav-item dropdown"><a href="#"
-				class="nav-item nav-link-dropdown-toggle" data-toggle="dropdown"
-				role="button" aria-haspopup="true" aria-expanded="false"> <i
-					class="fas fa-user-tie fas fa-stroopwafel fa-2x"
-					style="color: #fff"></i>
-			</a>
-				<div class="dropdown-menu dropdown-menu-right">
-					<a class="dropdown-item" href="#">Sair</a>
-				</div>
-				<div>
-					<span class="navbar-text">Admin</span>
-				</div></li>
-			</nav>
-		</ul>
-	</div>
-	</nav> </header>
-	<%
-		if (listaFuncionario.size() > 0) {
-	%>
+	<header class="header"> 
+		<nav class="navbar navbar-expand-sm navbar-dark bg-dark"> 
+			<a href="#" class="navbar-brand"><img src="imgs/sicone_logo.png" width="200" height="60" alt="Sicone"></a>
+			<button class="navbar-toggler" data-toggler="collapse" data-target="#navbarMenu" role="button" aria-haspopup="true" aria-expanded="false">
+				<span clas="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarMenu">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a href="./fornecedor.jsp" class="nav-link">Fornecedores</a></li>
+					<li class="nav-item"><a href="./cliente.jsp" class="nav-link">Clientes</a></li>
+					<li class="nav-item"><a href="./funcionario.jsp" class="nav-link">Funcionários</a></li>
+				</ul>
+			</div>
+			<div class="container text-center">
+				<ul class="navbar-nav ml-md-auto">
+					<nav class="nav-flex-column">
+						<li class="nav-item dropdown">
+							<a href="#" class="nav-item nav-link-dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 
+								<i	class="fas fa-user-tie fas fa-stroopwafel fa-2x" style="color: #fff"></i>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right">
+								<a class="dropdown-item" href="#">Sair</a>
+							</div>
+							<div>
+								<span class="navbar-text">Admin</span>
+							</div>
+						</li>
+					</nav>
+				</ul>
+			</div>
+		</nav> 
+	</header>
+	
 	<div class="container-fluid pt-4">
-
 		<div class="row justify-content-around">
 			<div class="col-7">
 				<table class="table table-hover">
@@ -103,41 +95,34 @@
 					</thead>
 					<tbody>
 						<%
-							for (Funcionario funcionario : listaFuncionario) {
+						if (listaFuncionario.size() < 0) {
+						for (Funcionario funcionario : listaFuncionario) {
 						%>
 						<tr>
 							<th scope="row"><%=funcionario.getId()%></th>
 							<th scope="row"><%=funcionario.getNome()%></th>
 							<th scope="row"><%=funcionario.getCpf()%></th>
 						</tr>
-						<%
-							}
+							<%}
+						}
 						%>
 					</tbody>
 				</table>
 			</div>
-			<%
-				}
-			%>
-
+			
 			<div class="col-md-4 col-sm-2">
-				<form name="adicionar-funcionario" action="./FuncionarioC"
-					method="post" onsubmit="return confirmacao()"
-					class="needs-validation" novalidate>
+				<form name="adicionar-funcionario" action="./FuncionarioC" method="post" onsubmit="return confirmacao()" class="needs-validation" novalidate>
 					<div class="form-group w-25">
-						<label for="id" class="form-label">ID</label> <input
-							class="form-control" type="text" id="id" readonly>
+						<label for="id" class="form-label">ID</label> <input class="form-control" type="text" id="id" readonly>
 					</div>
 					<div class="form-group w-75">
 						<label for="nome" class="form-label">Nome</label>
 						 <input	class="form-control" type="text" id="nome" required="required" name="txtNome">
 					</div>
-
 					<div class="form-group w-50">
 						<label for="cpf" class="form-label">CPF</label>
 						 <input class="form-control" type="text" id="cpf" required="required" name="txtCpf" />
-						<small id="cpfHelp" class="form-text text-muted text-gray">Digite
-							apenas números</small>
+						<small id="cpfHelp" class="form-text text-muted text-gray">Digite apenas números</small>
 						<div class="invalid-feedback">CPF inválido</div>
 					</div>
 					<div class="form-group w-50">
@@ -145,11 +130,10 @@
 						<input class="form-control" type="password" name="txtSenha" id="senha" required="required">
 					</div>
 					<div>
-						<input type="submit" class="btn btn-outline-primary float-none"
-							name="cmd" value="Adicionar" id="btnAdicionar">
+						<button type="submit" class="btn btn-outline-primary float-none"
+							name="cmd" value="Adicionar" id="btnAdicionar">Adicionar</button>
 					</div>
 				</form>
-
 			</div>
 		</div>
 	</div>

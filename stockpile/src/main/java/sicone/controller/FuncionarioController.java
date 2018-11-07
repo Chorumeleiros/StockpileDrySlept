@@ -63,7 +63,7 @@ public class FuncionarioController extends HttpServlet {
 
 		} catch (GenericDAOException e) {
 			e.printStackTrace();
-			msg = "Erro ao acessar Funcionário";
+			msg = "Erro ao acessar funcionário :(";
 		}
 
 		session.setAttribute("MENSAGEM", msg);

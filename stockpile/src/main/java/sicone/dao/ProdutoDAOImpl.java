@@ -1,3 +1,4 @@
+
 package sicone.dao;
 
 import java.sql.Connection;
@@ -19,7 +20,7 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 	@Override
 	public void adicionar(Produto produto) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
-		String sql = "INSERT INTO produto (Nome, Qtd, Descr) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO PRODUTO (NOMEPROD, QTDPROD, DESCRPROD) VALUES (?, ?, ?)";
 
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -38,20 +39,20 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 	public List<Produto> pesquisarNomeProduto(String nome) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
 		List<Produto> lista = new ArrayList<>();
-		String sql = "SELECT * FROM produto WHERE Nome like ?";
+		String sql = "SELECT * FROM PRODUTO WHERE NOMEPROD LIKE ?";
 
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.setString(1, "%" + nome + "%");
 			ResultSet rs = pstmt.executeQuery();
-
+		
 			while (rs.next()) {
 				Produto produto = new Produto();
 				
-				produto.setCodigo(rs.getInt("idProduto"));
-				produto.setNome(rs.getString("Nome"));
-				produto.setQtd(rs.getInt("Qtd"));
-				produto.setDescr(rs.getString("Descr"));
+				produto.setCodigo(rs.getInt("CODPROD"));
+				produto.setNome(rs.getString("NOMEPROD"));
+				produto.setQtd(rs.getInt("QTDPROD"));
+				produto.setDescr(rs.getString("DESCRPROD"));
 
 				lista.add(produto);
 			}
@@ -66,8 +67,8 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 	@Override
 	public void salvar(int codigo, String nome, Produto produto) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
-		String sql = "UPDATE produto SET Nome = ?, Qtd = ?, Descr = ?"
-				+ "WHERE idProduto = ?";
+		String sql = "UPDATE PRODUTO SET NOMEPROD = ?, QTDPROD = ?, DESCRPROD = ?"
+				+ "WHERE CODPROD = ?";
 		
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -75,7 +76,7 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 			
 			pesquisarNomeProduto(nome);
 			
-			if (nome.equals(rs.getString("Nome"))) {
+			if (nome.equals(rs.getString("NOMEPROD"))) {
 				
 				pstmt.setInt(2, produto.getQtd());
 				pstmt.executeUpdate();

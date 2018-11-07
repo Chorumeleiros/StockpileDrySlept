@@ -17,14 +17,16 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 			
+		<%String msg = (String)session.getAttribute("MENSAGEM"); %>	
+			
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$('#ncpj').mask('00.000.000/0000-00');
+				$('#txtCnpj').mask('00.000.000/0000-00');
 			})
 			
 			function confirmacao() {
 				$.notify({
-					message: 'Funcionário adicionado com sucesso!'
+					message: <%=msg%>
 				}, {
 					type: 'success'
 				});
@@ -32,6 +34,34 @@
 			}
 		</script>
 	</head>
+	
+	<%
+	
+	
+	@SuppressWarnings("unchecked")
+ 	List<Fornecedor> listaFornecedor = (List<Fornecedor>)session.getAttribute("LISTA_FORNECEDOR"); 
+	
+	if (listaFornecedor == null) {  
+			listaFornecedor = new ArrayList<Fornecedor>(); 
+	
+		} else {  
+			session.setAttribute("LISTA", null); 
+		} 			   
+			
+		Fornecedor fornecedorAtual = (Fornecedor)session.getAttribute("FORNECEDOR_ATUAL"); 
+	  
+		if (fornecedorAtual == null) { 
+			fornecedorAtual = new Fornecedor();  	
+	   
+		} else {  
+		   session.setAttribute("FORNECEDOR_ATUAL", null);
+		   
+		} 
+		
+	if (msg != null) { 
+		session.setAttribute("MENSAGEM", null); 
+	}
+	%>
 	
 	<body>
 		<header class="header">
@@ -70,7 +100,7 @@
 				</div>
 			</nav>
 	</header>
-<%-- 	<%if (listaFuncionario.size() > 0) {%> --%>
+	
 	<div class="container-fluid pt-4">
 		
 		<div class="row justify-content-around">
@@ -78,42 +108,37 @@
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th scope="col">ID</th>
 							<th scope="col">Nome</th>
 							<th scope="col">CNPJ</th>
 						</tr>
 					</thead>
 					<tbody>
-<%-- 						<% for (Funcionario funcionario : listaFuncionario) { %> --%>
+						<%if (listaFornecedor.size() > 0) {%>
+							<%for (Fornecedor fornecedor : listaFornecedor) { %>
 						<tr>
-<%-- 							<th scope="row"><%=funcionario.getId()%></th> --%>
-<%-- 							<th scope="row"><%=funcionario.getNome()%></th> --%>
-<%-- 							<th scope="row"><%=funcionario.getCpf()%></th> --%>
+							<th scope="row"><%=fornecedor.getNome()%></th>
+							<th scope="row"><%=fornecedor.getCnpj()%></th>
 						</tr>
-<%-- 						<% } %> --%>
+							<%} %>
+						<%}%>
 					</tbody>
 				</table>
 			</div>
-<%-- 			<%} %> --%>
+			
 			
 				<div class="col-md-4 col-sm-2">
-					<form name="adicionar-fornecedor" action="./FornecedorC" method="post" onsubmit="return confirmacao()" class="needs-validation" novalidate>
-						<div class="form-group w-25">
-							<label for="id" class="form-label">ID</label>
-							<input class="form-control" type="text" id="id" readonly>
-						</div>
+					<form name="adicionar-fornecedor" action="./FornecedorC" method="post" onsubmit="return confirmacao()">
 						<div class="form-group w-50">
-							<label for="cnpj" class="form-label">CNPJ</label>
-							<input class="form-control" type="text" id="cnpj" required="required" />
-							<small id="cpfHelp" class="form-text text-muted text-gray">Digite apenas números</small>
-							<div class="invalid-feedback">CNPJ inválido</div>
+							<label for="txtCnpj" class="form-label">CNPJ</label>
+							<input class="form-control" type="text" name="txtCnpj" id="txtCnpj" required="required" />
+							<small id="cnpjHelp" class="form-text text-muted text-gray">Digite apenas números</small>
 						</div>
 						<div class="form-group w-75">
-							<label for="nome" class="form-label">Nome</label>
-							<input class="form-control" type="text" id="nome" required="required">	
+							<label for="txtNome" class="form-label">Nome</label>
+							<input class="form-control" type="text" name="txtNome" id="txtNome" required="required">	
 						</div>
 						<div >
-							<button type="button" class="btn btn-outline-primary float-none">Adicionar</button>
+							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="adicionar">Adicionar</button>
 						</div>
 					</form>
 					

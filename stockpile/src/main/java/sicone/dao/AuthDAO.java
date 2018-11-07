@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import sicone.connection.ConnectionFactory;
-import sicone.model.Funcionario;
 
 /**
  * classe responsavel por autenticar os dados de login com o banco de dados
@@ -18,15 +17,15 @@ import sicone.model.Funcionario;
 public class AuthDAO {
 	public boolean checkLogin(int id, String senha) throws GenericDAOException {
 		
-		Funcionario funcionario = new Funcionario();
 		Connection con = ConnectionFactory.createConnection();
+		String sql = "SELECT * FROM FUNCIONARIO WHERE ID = ? AND SENHA = ?";
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		boolean check = false;
 
 		try {
 			// comando para selecionar login e senha do usuario
-			stmt = con.prepareStatement("SELECT * FROM FUNCIONARIO where ID = ? and SENHA = ? ;");
+			stmt = con.prepareStatement(sql);
 
 			stmt.setInt(1, id);
 			stmt.setString(2, senha);

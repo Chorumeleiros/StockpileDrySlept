@@ -1,6 +1,8 @@
 package sicone.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,8 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import sicone.dao.FornecedorDAO;
 import sicone.dao.FornecedorDAOImpl;
+import sicone.dao.GenericDAOException;
 import sicone.model.Fornecedor;
-
 
 /**
  * classe responsavel por receber os parametros do fornecedor da view
@@ -43,20 +45,24 @@ public class FornecedorController extends HttpServlet {
 
 		try {
 
-			FornecedorDAO fornecedorDao = new FornecedorDAOImpl();
+			FornecedorDAO fornecedorDAO = new FornecedorDAOImpl();
 
 			if ("adicionar".equals(cmd)) {
 				Fornecedor fornecedor = new Fornecedor();
 
-				fornecedor.setNome(request.getParameter("txtNome"));
 				fornecedor.setCnpj(request.getParameter("txtCnpj"));
-				fornecedorDao.adicionar(fornecedor);
+				fornecedor.setNome(request.getParameter("txtNome"));
 
-				msg = "Fornecedor adicionado.";
+				fornecedorDAO.adicionar(fornecedor);
+
+				List<Fornecedor> listaFornecedor = fornecedorDAO.pesquisaFornecedor("");
+				session.setAttribute("LISTA_FORNECEDOR", listaFornecedor);
+
+				msg = "Fornecedor adicionado com sucesso";
 			}
-		} catch (Exception e) {
+		} catch (GenericDAOException e) {
 			e.printStackTrace();
-			msg = "Erro ao adicionar fornecedor.";
+			msg = "Erro ao adicionar fornecedor :(";
 		}
 
 		session.setAttribute("MENSAGEM", msg);

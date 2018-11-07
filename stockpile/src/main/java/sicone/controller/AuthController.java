@@ -15,7 +15,6 @@ import sicone.dao.GenericDAOException;
 import sicone.model.Admin;
 import sicone.model.Funcionario;
 
-
 /**
  * classe responsavel por receber os parametros de autenticacao da view
  * 
@@ -49,52 +48,45 @@ public class AuthController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-
 		AuthDAO daoLogin = new AuthDAO();
 
-		if("Entrar".equals(cmd)) {
-		try {
-			if (user.equals("admin") && pass.equals("admin")) {
+		if ("Entrar".equals(cmd)) {
 
-				UserInfo userInfo = new UserInfo();
-				userInfo.setProfile("admin");
-				userInfo.setNome(admin.getNome());
-				userInfo.setLogado(true);
-				session.setAttribute("ADMIN_LOGADO", userInfo);
-				System.out.println("ADMIN LOGADO");
-				response.sendRedirect("./funcionario.jsp");
-				
-			}  // else if (String.valueOf(admin.getId()).equals("admin") && admin.getPassword().equals("admin")) {
-			 else if (daoLogin.checkLogin(Integer.parseInt(user), pass)) {
-				
-				UserInfo userInfo = new UserInfo();
-				userInfo.setProfile("funcionario");
-				userInfo.setNome(funcionario.getNome());
-				userInfo.setLogado(true);
-				session.setAttribute("FUNCIONARIO_LOGADO", userInfo);
-				response.sendRedirect("./estoque.jsp");
-				
+			try {
+				if (user.equals("admin") && pass.equals("admin")) {
 
-			} else {
-				msg = "Usuário ou senha incorretos.";
+					UserInfo userInfo = new UserInfo();
+					userInfo.setProfile("admin");
+					userInfo.setNome(admin.getNome());
+					userInfo.setLogado(true);
+					session.setAttribute("ADMIN_LOGADO", userInfo);
+					System.out.println("ADMIN LOGADO");
+					response.sendRedirect("./funcionario.jsp");
 
-				session.setAttribute("MENSAGEM", msg);
-				session.setAttribute("LOGADO", null);
+				} else if (daoLogin.checkLogin(Integer.parseInt(user), pass)) {
 
-				response.sendRedirect("./index.jsp");
+					UserInfo userInfo = new UserInfo();
+					userInfo.setProfile("funcionario");
+					userInfo.setNome(funcionario.getNome());
+					userInfo.setLogado(true);
+					session.setAttribute("FUNCIONARIO_LOGADO", userInfo);
+					response.sendRedirect("./estoque.jsp");
 
+				} else {
+					msg = "Usuário ou senha incorretos";
+
+					session.setAttribute("MENSAGEM", msg);
+					session.setAttribute("LOGADO", null);
+
+					response.sendRedirect("./index.jsp");
+
+				}
+
+			} catch (GenericDAOException e) {
+				e.printStackTrace();
 			}
-		} catch (GenericDAOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		}
-		//		} catch (IOException e) {
-		//			e.printStackTrace();
-		//		}
-
 		response.setContentType("text/html");
 	}
-
 
 }

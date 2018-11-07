@@ -51,10 +51,10 @@ public class ProdutoController extends HttpServlet {
 
 			if ("adicionar".equals(cmd)) {
 				Produto produto = new Produto();
-
+				
 				produto.setCodigo(Integer.parseInt(request.getParameter("txtCodigo")));
-				produto.setNome(request.getParameter("txtNome"));
 				produto.setQtd(Integer.parseInt(request.getParameter("txtQtd")));
+				produto.setNome(request.getParameter("txtNome"));
 				produto.setDescr(request.getParameter("txtDescr"));
 
 				produtoDAO.adicionar(produto);
@@ -74,6 +74,9 @@ public class ProdutoController extends HttpServlet {
 			msg = "Erro ao acessar produto :(";
 
 		}
+		
+		session.setAttribute("MENSAGEM", msg);
+		response.sendRedirect("./estoque.jsp");
 
 	}
 }

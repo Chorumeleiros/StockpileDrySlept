@@ -32,31 +32,54 @@
 	<body>
 	
 	<% 
- 		String msg = (String)session.getAttribute("MENSAGEM"); 
- 		List<Produto> listarProduto = (List<Produto>)session.getAttribute("LISTA_PROD"); 
-//  		List<Fornecedor> listarFornecedor = (List<Fornecedor>)session.getAttribute("LISTA_FORN");
-			   
- 			if (listarProduto == null) {  
- 				listarProduto = new ArrayList<Produto>(); 
- 			} else {  
- 				session.setAttribute("LISTA", null); 
- 			} 
-			   
- 			Produto produtoAtual = (Produto)session.getAttribute("PRODUTO_ATUAL"); 
-			  
- 			if (produtoAtual == null) { 
- 			   produtoAtual = new Produto(); 
- 		   	} else {  
- 			   session.setAttribute("PRODUTO_ATUAL", null);			       
- 		   	} 
+ 	String msg = (String)session.getAttribute("MENSAGEM");
+	
+	@SuppressWarnings("unchecked")
+ 	List<Produto> listaProduto = (List<Produto>)session.getAttribute("LISTA_PROD"); 
+	@SuppressWarnings("unchecked")
+	List<Fornecedor> listaFornecedor = (List<Fornecedor>)session.getAttribute("LISTA_FORNECEDOR");
+
+ 		if (listaProduto == null) {  
+ 			listaProduto = new ArrayList<Produto>(); 
+		
+ 		} else {  
+ 			session.setAttribute("LISTA", null); 
+ 		} 			   
+ 			
+ 		Produto produtoAtual = (Produto)session.getAttribute("PRODUTO_ATUAL"); 
+		  
+ 		if (produtoAtual == null) { 
+		   produtoAtual = new Produto();  	
+		   
+ 		} else {  
+ 		   session.setAttribute("PRODUTO_ATUAL", null);
+ 		   
+ 		} 
+ 		
+ 		if (listaFornecedor == null) {  
+ 			listaFornecedor = new ArrayList<Fornecedor>(); 
+		
+ 		} else {  
+ 			session.setAttribute("LISTA", null); 
+ 		} 			   
+ 			
+ 		Fornecedor fornecedorAtual = (Fornecedor)session.getAttribute("FORNECEDOR_ATUAL"); 
+		  
+ 		if (fornecedorAtual == null) { 
+ 			fornecedorAtual = new Fornecedor();  	
+		   
+ 		} else {  
+ 		   session.setAttribute("FORNECEDOR_ATUAL", null);
+ 		   
+ 		} 
 			
-			if (msg != null) { 
+		if (msg != null) { 
 			session.setAttribute("MENSAGEM", null); 
 			
  	%>
 		<h3 class="alert alert-danger"><%=msg%></h3>
 
-		<% } %>
+	<% } %>
 	
 		<header class="header">
 			<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -101,7 +124,7 @@
 				</div>
 			</nav>
 	</header>
-	<%if (listarProduto.size() > 0) {%>
+	
 	<div class="container-fluid pt-4">
 		<div class="row justify-content-around">
 			<div class="col-7 pt-3">
@@ -114,96 +137,95 @@
 							<th scope="col">Descrição</th>
 						</tr>
 					</thead>
-					<tbody>
-						
-						<% for (Produto produto : listarProduto) { %>
+					<tbody>	
 						<tr>
+						<%if (listaProduto.size() > 0) {%>
+							<% for (Produto produto : listaProduto) { %>
 							<th scope="row"><%=produto.getCodigo()%></th>
 							<th scope="row"><%=produto.getNome()%></th>
 							<th scope="row"><%=produto.getQtd()%></th>
 							<th scope="row"><%=produto.getDescr()%></th>
 						</tr>
-						<% } %>
+							<% } %>
+						<%} %>
 					</tbody>
 				</table>
 			</div>
-					<%} %>
-			
 				<div class="col-md-4 col-sm-2">
-					<form name="adicionar-produto" action="./ProdutoC" method="post" onsubmit="return confirmacao()" class="needs-validation" novalidate>
+					<form name="adicionar-produto" action="./ProdutoC" method="post" onsubmit="return confirmacao()">
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<label for="codigo" class="form-label">Código</label>
-								<input class="form-control w-75" type="text" name="txtCodigo" id="codigo" value="<%=produtoAtual.getCodigo()%>" readonly>
+								<label for="txtCodigo" class="form-label">Código</label>
+								<input class="form-control w-75" type="text" name="txtCodigo" id="txtCodigo" value="<%=listaProduto.size() + 1%>" readonly>
 							</div>
 						<div class="form-group col-md-6">
-							<label for="quantidade" class="form-label">Quantidade</label>
-							<input class="form-control w-50" type="text" name="txtQtd" id="qtd" value="<%=produtoAtual.getQtd()%>" required="required">
+							<label for="txtQtd" class="form-label">Quantidade</label>
+							<input class="form-control w-50" type="text" name="txtQtd" id="txtQtd" value="<%=produtoAtual.getQtd()%>" required="required">
 						</div>
 						</div>
 						<div class="form-group w-75">
-							<label for="nome" class="form-label">Item</label>
-							<input class="form-control" type="text" name="txtNome" id="nome" value="<%=produtoAtual.getNome()%>" required="required" />
+							<label for="txtNome" class="form-label">Item</label>
+							<input class="form-control" type="text" name="txtNome" id="txtNome" value="<%=produtoAtual.getNome()%>" required="required" />
 						</div>
 						<div class="form-group w-75">
-							<label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-							<textarea class="form-control" name="txtDescr" id="exampleFormControlTextarea1" value="<%=produtoAtual.getDescr()%>" rows="3"></textarea>
+							<label for="txtDescr" class="form-label">Descrição</label>
+							<textarea class="form-control" name="txtDescr" id="txtDescr" value="<%=produtoAtual.getDescr()%>" rows="3"></textarea>
 							<small id="descrHelp" class="form-text text-muted text-gray">Máximo de 200 caracteres</small>	
 						</div>
 						<div class="form-group w-75">
-							<label for="fornecedor" class="form-label">Fornecedor</label>
+							<label for="txtFornecedor" class="form-label">Fornecedor</label>
 							<select class="custom-select">
-<%-- 								<%for (Fornecedor fornecedor : listarFornecedor) { %>  --%>
-<%--   								<option><%=fornecedor.getNome()%></option> --%>
-<%--   								<% } %> --%>
+								<%if (listaFornecedor.size() > 0) {%>
+								<%for (Fornecedor fornecedor : listaFornecedor) { %> 
+  								<option><%=fornecedor.getNome()%></option>
+  								<% } 
+  								
+  								}%>
 							</select>
 						</div>
 						<div>
-							<%if (produtoAtual.getCodigo() == 0) { %>
-							<button type="button" class="btn btn-outline-primary float-none" name="cmd" value="adicionar">Adicionar</button>
-							<%} %>
+							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="adicionar">Adicionar</button>
 						</div>
 					</form>
 					<div class="row-md-4 pt-5">
-						<form name="buscar-produto" class="form-inline">
+						<form name="buscar-produto" action="./ProdutoC" method="post" class="form-inline">
 							<div class="form-row">
 								<div class="form-group col-md-8">
-									<input class="form-control" type="text" name="txtNome" id="nome" placeholder="Item">
+									<input class="form-control" type="text" name="txtNome" id="txtNome" placeholder="Item">
 								</div>
 								<div class="form-group col-md-4">
-									<button type="button" class="btn btn-outline-primary ml-4">Pesquisar</button>
+									<button type="submit" class="btn btn-outline-primary ml-4" name="cmd" value="pesquisar">Pesquisar</button>
 								</div>
 							</div>
 						</form>
 						<form>
 							<div class="form-row pt-3">
 								<div class="form-group col-md-6">
-									<label for="codigo" class="form-label">Código</label>
-									<input class="form-control w-75" type="text" name="txtCod" id="codigo" readonly>
+									<label for="txtCodigo" class="form-label">Código</label>
+									<input class="form-control w-75" type="text" name="txtCodigo" id="txtCodigo" value="<%=produtoAtual.getCodigo()%>" readonly>
 								</div>
 								<div class="form-group col-md-6">
-									<label for="quantidade" class="form-label">Quantidade</label>
-									<input class="form-control w-50" type="text" name="txtQtd" id="qtd" readonly>
+									<label for="txtQtd" class="form-label">Quantidade</label>
+									<input class="form-control w-50" type="text" name="txtQtd" id="txtQtd" value="<%=produtoAtual.getQtd()%>" readonly>
 								</div>
 							</div>
 							<div class="form-group w-75">
-								<label for="nome" class="form-label">Item</label>
-								<input class="form-control" type="text" name="txtNome" id="nome" readonly>
+								<label for="txtNome" class="form-label">Item</label>
+								<input class="form-control" type="text" name="txtNome" id="txtNome" value="<%=produtoAtual.getNome()%>" readonly>
 							</div>
 							<div class="form-group w-75">
-								<label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-								<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly></textarea>	
+								<label for="txtDescr" class="form-label">Descrição</label>
+								<textarea class="form-control" name="txtDescr" id="txtDescr" rows="3" value="<%=produtoAtual.getDescr()%>" readonly></textarea>	
 							</div>
 							<div class="form-group w-75">
-								<label for="fornecedor" class="form-label">Fornecedor</label>
-								<input class="form-control" type="text" name="txtFornecedor" id="fornecedor" readonly>
+								<label for="txtFornecedor" class="form-label">Fornecedor</label>
+								<input class="form-control" type="text" name="txtFornecedor" id="txtFornecedor" readonly>
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-
 	</body>
 
 </html>
