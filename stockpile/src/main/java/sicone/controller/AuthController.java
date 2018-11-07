@@ -10,10 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import sicone.model.UserInfo;
-import sicone.dao.ChecaLogin;
+import sicone.dao.AuthDAO;
 import sicone.dao.GenericDAOException;
 import sicone.model.Admin;
 import sicone.model.Funcionario;
+
+
+/**
+ * classe responsavel por receber os parametros de autenticacao da view
+ * 
+ * @author Dodo
+ *
+ */
 
 @WebServlet("/Auth")
 public class AuthController extends HttpServlet {
@@ -34,34 +42,38 @@ public class AuthController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String user = request.getParameter("TXTUSER");
-		String pass = request.getParameter("TXTPASS");
+		String user = request.getParameter("txtUser");
+		String pass = request.getParameter("txtPass");
+		String cmd = request.getParameter("cmd");
 		String msg = null;
 
 		HttpSession session = request.getSession();
 
 
-		ChecaLogin daoLogin = new ChecaLogin();
+		AuthDAO daoLogin = new AuthDAO();
 
-
+		if("Entrar".equals(cmd)) {
 		try {
-			if (daoLogin.checkLogin(user, pass)) {
+			if (user.equals("admin") && pass.equals("admin")) {
 
+				UserInfo userInfo = new UserInfo();
+				userInfo.setProfile("admin");
+				userInfo.setNome(admin.getNome());
+				userInfo.setLogado(true);
+				session.setAttribute("ADMIN_LOGADO", userInfo);
+				System.out.println("ADMIN LOGADO");
+				response.sendRedirect("./funcionario.jsp");
+				
+			}  // else if (String.valueOf(admin.getId()).equals("admin") && admin.getPassword().equals("admin")) {
+			 else if (daoLogin.checkLogin(Integer.parseInt(user), pass)) {
+				
 				UserInfo userInfo = new UserInfo();
 				userInfo.setProfile("funcionario");
 				userInfo.setNome(funcionario.getNome());
 				userInfo.setLogado(true);
 				session.setAttribute("FUNCIONARIO_LOGADO", userInfo);
 				response.sendRedirect("./estoque.jsp");
-
-			}  else if (String.valueOf(admin.getId()).equals("admin") && admin.getPassword().equals("admin")) {
-				UserInfo userInfo = new UserInfo();
-				userInfo.setProfile("admin");
-				userInfo.setNome(admin.getNome());
-				userInfo.setLogado(true);
-				session.setAttribute("ADMIN_LOGADO", userInfo);
-
-				response.sendRedirect("./funcionario.jsp");
+				
 
 			} else {
 				msg = "Usuário ou senha incorretos.";
@@ -76,7 +88,7 @@ public class AuthController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		}
 		//		} catch (IOException e) {
 		//			e.printStackTrace();
 		//		}

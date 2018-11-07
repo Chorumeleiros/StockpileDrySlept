@@ -1,36 +1,31 @@
 package sicone.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import sicone.connection.ConnectionFactory;
 import sicone.model.Cliente;
-import sicone.model.Produto;
+
+/**
+ * classe responsavel pelas operacoes do cliente com o banco de dados
+ * 
+ * @author Dodo
+ *
+ */
 
 public class ClienteDAOImpl implements ClienteDAO {
 	
-	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/sicone";
-	private static final String JDBC_USER = "root";
-	private static final String JDBC_PASS = "";
-	
-	private Connection connection;
-	
 	public ClienteDAOImpl() throws GenericDAOException {
-		try {
-			
-			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS);
-			
-		} catch (SQLException | ClassNotFoundException e) {
-			throw new GenericDAOException (e);
-		}
+	
 	}
+	
 	@Override
 	public void adicionar (Cliente cliente) throws GenericDAOException {
+		Connection connection = ConnectionFactory.createConnection();
 		String sql = "INSERT INTO produto (Cpf, Nome)" + "VALUES (?,?)";
 		String lista = null;
 		
@@ -48,6 +43,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 	
 	@Override
 	public List<Cliente> pesquisarNomeCliente(String nome) throws GenericDAOException {
+		Connection connection = ConnectionFactory.createConnection();
 		List<Cliente> lista = new ArrayList<>();
 		String sql = "SELECT * FROM produto";
 

@@ -1,43 +1,33 @@
 package sicone.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import sicone.connection.ConnectionFactory;
 import sicone.model.Fornecedor;
 
-/*
-@author Otavio Calado
-*/
+/**
+ * classe responsavel pelas operacoes do fornecedor com o banco de dados
+ * 
+ * @author Otavio Calado
+ * 
+ */
 
 public class FornecedorDAOImpl implements FornecedorDAO {
 	
-	private static final String JDBC_URL = "jdbc:mysql://localhost:3306/sicone";
-	private static final String JDBC_USER = "root";
-	private static final String JDBC_PASS = "";
-	
-	private Connection connection;
-	
 	public FornecedorDAOImpl() throws GenericDAOException {
-		try {
-			
-			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASS);
-			
-		} catch (SQLException | ClassNotFoundException e) {
-			throw new GenericDAOException (e);
-		}
+	
 	}
+	
 	@Override
 	public void adicionar (Fornecedor fornecedor) throws GenericDAOException {
+		Connection connection = ConnectionFactory.createConnection();
 		String sql = "INSERT INTO fornecedor (Cnpj, Nome)" + "VALUES (?,?)";
 		String lista = null;
-		
-		
 		
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -54,6 +44,7 @@ public class FornecedorDAOImpl implements FornecedorDAO {
 	
 	@Override
 	public List<Fornecedor> pesquisaFornecedor(String nome) throws GenericDAOException {
+		Connection connection = ConnectionFactory.createConnection();
 		List<Fornecedor> lista = new ArrayList<>();
 		String sql = "SELECT * FROM fornecedor";
 

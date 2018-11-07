@@ -13,8 +13,14 @@ import sicone.dao.ClienteDAOImpl;
 import sicone.dao.GenericDAOException;
 import sicone.model.Cliente;
 
+/**
+ * classe responsavel por receber os parametros do cliente da view
+ * 
+ * @author Dodo
+ *
+ */
 
- @WebServlet ("/Cliente")
+ @WebServlet ("/ClienteC")
 public class ClienteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

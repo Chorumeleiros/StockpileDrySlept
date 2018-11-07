@@ -16,6 +16,14 @@ import sicone.dao.ProdutoDAOImpl;
 
 import sicone.model.Produto;
 
+
+/**
+ * classe responsavel por receber os parametros do produto da view
+ * 
+ * @author Dodo
+ *
+ */
+
 @WebServlet("/ProdutoC")
 public class ProdutoController extends HttpServlet {
 	private static final long serialVersionUID = -4057237645388450674L;
@@ -55,7 +63,7 @@ public class ProdutoController extends HttpServlet {
 				session.setAttribute("LISTA_PROD", listaProduto);
 
 				msg = "Produto adicionado com sucesso";
-				
+
 			} else if ("pesquisar".equals(cmd)) {
 				List<Produto> listaProduto = produtoDAO.pesquisarNomeProduto(request.getParameter("txtNome"));
 				session.setAttribute("LISTA_PROD", listaProduto);

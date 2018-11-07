@@ -15,7 +15,10 @@ public class ConnectionFactory {
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost:3306/sicone";
 	private static final String USER = "root";
-	private static final String PASSWORD = "";
+	private static final String PASS = "";
+	
+
+	
 	
 	private static final String O_DRIVER = "";
 	private static final String O_URL = "jdbc:oracle:thin:@localhost:1521:siconeORA";
@@ -32,7 +35,9 @@ public class ConnectionFactory {
 
 		try {
 			Class.forName(DRIVER);
-			connection = DriverManager.getConnection(URL, USER, PASSWORD);
+			connection = DriverManager.getConnection(URL, USER, PASS);
+			//System.out.println("ENTRAMO NO BANCO CARAIO");
+			
 
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println("Erro ao criar conexão com o banco de dados: " + URL);
