@@ -1,6 +1,8 @@
 package sicone.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,7 +32,6 @@ public class ClienteController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		response.getWriter().append("Served at: ").append("Você não tem permissão para acessar este conteúdo. "
 				+ "Para acessá-lo se identifique <a href=\"./index.jsp\">aqui</a>");
 	}
@@ -52,8 +53,11 @@ public class ClienteController extends HttpServlet {
 				cliente.setCpf(request.getParameter("txtCpf"));
 				cliente.setNome(request.getParameter("txtNome"));
 				clienteDAO.adicionar(cliente);
+				
+				List<Cliente>listaCliente = clienteDAO.pesquisarNomeCliente("");
+				session.setAttribute ("LISTA_CLIENTE", listaCliente);
 
-				msg = "Cliente adicionado.";
+				msg = "Cliente adicionado com sucesso";
 			}
 		} catch (GenericDAOException e) {
 			e.printStackTrace();

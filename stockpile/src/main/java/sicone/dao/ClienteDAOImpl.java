@@ -26,18 +26,19 @@ public class ClienteDAOImpl implements ClienteDAO {
 	@Override
 	public void adicionar (Cliente cliente) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
-		String sql = "INSERT INTO produto (Cpf, Nome)" + "VALUES (?,?)";
-		String lista = null;
+		String sql = "INSERT INTO produto (CPF, NOME)" + "VALUES (?, ?)";
+		//String lista = null;
 		
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.setString (1, cliente.getCpf());
 			pstmt.setString (2, cliente.getNome());
 			pstmt.executeUpdate ();
+			
 		} catch (SQLException e) {
 			throw new GenericDAOException(e);
 		}
-		pesquisarNomeCliente(lista);
+		//pesquisarNomeCliente(lista);
 		
 	}
 	
@@ -45,7 +46,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 	public List<Cliente> pesquisarNomeCliente(String nome) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
 		List<Cliente> lista = new ArrayList<>();
-		String sql = "SELECT * FROM produto";
+		String sql = "SELECT * FROM CLIENTE WHERE NOME LIKE ?";
 
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -54,8 +55,8 @@ public class ClienteDAOImpl implements ClienteDAO {
 
 			while (rs.next()) {
 				Cliente cliente = new Cliente();
-				cliente.setCpf(rs.getString("cpf"));
-				cliente.setNome(rs.getString("nome"));
+				cliente.setCpf(rs.getString("CPF"));
+				cliente.setNome(rs.getString("NOME"));
 				
 				lista.add(cliente);
 			}

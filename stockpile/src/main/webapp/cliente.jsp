@@ -7,7 +7,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>SICONE | Admin Dashboard</title>
+		<title>SICONE | Clientes</title>
 		<link rel="icon" href="./imgs/favicon.png" type="image/x-icon" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" href="css/style-menu" />
 		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
@@ -24,7 +24,7 @@
 			
 			function confirmacao() {
 				$.notify({
-					message: 'Funcionário adicionado com sucesso!'
+					message: 'Cliente adicionado com sucesso!'
 				}, {
 					type: 'success'
 				});
@@ -32,6 +32,34 @@
 			}
 		</script>
 	</head>
+	
+	<%
+	String msg = (String)session.getAttribute("MENSAGEM");
+
+	@SuppressWarnings("unchecked")
+ 	List<Cliente> listaCliente = (List<Cliente>)session.getAttribute("LISTA_CLIENTE"); 
+	
+	if (listaCliente == null) {  
+			listaCliente = new ArrayList<Cliente>(); 
+	
+		} else {  
+			session.setAttribute("LISTA", null); 
+		} 			   
+			
+		Cliente clienteAtual = (Cliente)session.getAttribute("CLIENTE_ATUAL"); 
+	  
+		if (clienteAtual == null) { 
+			clienteAtual = new Cliente();  	
+	   
+		} else {  
+		   session.setAttribute("CLIENTE_ATUAL", null);
+		   
+		} 
+		
+	if (msg != null) { 
+		session.setAttribute("MENSAGEM", null); 
+	}
+	%>	
 	
 	<body>
 		<header class="header">
@@ -70,7 +98,7 @@
 				</div>
 			</nav>
 	</header>
-<%-- 	<%if (listaFuncionario.size() > 0) {%> --%>
+	
 	<div class="container-fluid pt-4">
 		
 		<div class="row justify-content-around">
@@ -78,30 +106,25 @@
 				<table class="table table-hover">
 					<thead>
 						<tr>
-							<th scope="col">ID</th>
 							<th scope="col">Nome</th>
 							<th scope="col">CPF</th>
 						</tr>
 					</thead>
 					<tbody>
-<%-- 						<% for (Funcionario funcionario : listaFuncionario) { %> --%>
+					    <%if (listaCliente.size() > 0) {%>
+							<%for (Cliente cliente : listaCliente) { %>
 						<tr>
-<%-- 							<th scope="row"><%=funcionario.getId()%></th> --%>
-<%-- 							<th scope="row"><%=funcionario.getNome()%></th> --%>
-<%-- 							<th scope="row"><%=funcionario.getCpf()%></th> --%>
+							<th scope="row"><%=cliente.getNome()%></th>
+							<th scope="row"><%=cliente.getCpf()%></th>
 						</tr>
-<%-- 						<% } %> --%>
+							<%} %>
+						<%}%>
 					</tbody>
 				</table>
 			</div>
-<%-- 			<%} %> --%>
 			
 				<div class="col-md-4 col-sm-2">
 					<form name="adicionar-cliente" action="./ClienteC" method="post" onsubmit="return confirmacao()" class="needs-validation" novalidate>
-						<div class="form-group w-25">
-							<label for="id" class="form-label">ID</label>
-							<input class="form-control" type="text" id="id" readonly>
-						</div>
 						<div class="form-group w-50">
 							<label for="cpf" class="form-label">CPF</label>
 							<input class="form-control" type="text" id="cpf" required="required" />

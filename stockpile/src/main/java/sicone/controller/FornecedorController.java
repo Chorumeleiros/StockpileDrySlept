@@ -52,7 +52,6 @@ public class FornecedorController extends HttpServlet {
 
 				fornecedor.setCnpj(request.getParameter("txtCnpj"));
 				fornecedor.setNome(request.getParameter("txtNome"));
-
 				fornecedorDAO.adicionar(fornecedor);
 
 				List<Fornecedor> listaFornecedor = fornecedorDAO.pesquisaFornecedor("");
