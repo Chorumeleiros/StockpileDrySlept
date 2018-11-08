@@ -22,31 +22,33 @@
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
 
-<script type="text/javascript">
+	<%String msg = (String) session.getAttribute("MENSAGEM"); %>
+
+	<script type="text/javascript">
  	$(document).ready(function() {
- 		$('#cpf').mask('000.000.000-00');
+ 		$('#txtCpf').mask('000.000.000-00');
  	})
 
 	function confirmacao() {
 		$.notify({
-			message : 'Funcionário adicionado com sucesso!'
+			message : <%=msg%>
 		}, {
 			type : 'success'
 		});
 		return true
 	}
-</script>
+	</script>
 </head>
 
 <body>
 	<%
-		String msg = (String) session.getAttribute("MENSAGEM");
-		List<Funcionario> listaFuncionario = (List<Funcionario>) session.getAttribute("LISTA");
-		if (listaFuncionario == null) {
-			listaFuncionario = new ArrayList<Funcionario>();
-		} else {
-			session.setAttribute("LISTA", null);
-		}
+	@SuppressWarnings("unchecked")
+	List<Funcionario> listaFuncionario = (List<Funcionario>) session.getAttribute("LISTA");
+	if (listaFuncionario == null) {
+		listaFuncionario = new ArrayList<Funcionario>();
+	} else {
+		session.setAttribute("LISTA", null);
+	}
 	%>
 
 	<header class="header"> 

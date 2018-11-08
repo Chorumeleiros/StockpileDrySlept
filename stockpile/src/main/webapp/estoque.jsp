@@ -35,26 +35,46 @@
  	String msg = (String)session.getAttribute("MENSAGEM");
 	
 	@SuppressWarnings("unchecked")
- 	List<Produto> listaProduto = (List<Produto>)session.getAttribute("LISTA_PROD"); 
+ 	List<Produto> listaProduto = (List<Produto>)session.getAttribute("LISTA_PROD");
+	
+	if (listaProduto == null) {  
+			listaProduto = new ArrayList<Produto>(); 
+	
+		} else {  
+			session.setAttribute("LISTA", null); 
+		} 			   
+			
+		Produto produtoAtual = (Produto)session.getAttribute("PRODUTO_ATUAL"); 
+	  
+		if (produtoAtual == null) { 
+	   produtoAtual = new Produto();  	
+	   
+		} else {  
+		   session.setAttribute("PRODUTO_ATUAL", null);
+		}
+	
+	@SuppressWarnings("unchecked")
+ 	List<Produto> buscaProduto = (List<Produto>)session.getAttribute("LISTA_PESQ_PROD");
+	
+	if (buscaProduto == null) {  
+		buscaProduto = new ArrayList<Produto>(); 
+
+	} else {  
+		session.setAttribute("LISTA", null); 
+	} 			   
+		
+	Produto buscaProdutoAtual = (Produto)session.getAttribute("BUSCA_PRODUTO_ATUAL"); 
+  
+	if (buscaProdutoAtual == null) { 
+   buscaProdutoAtual = new Produto();  	
+   
+	} else {  
+	   session.setAttribute("LISTA", null);
+	}
+	
+	
 	@SuppressWarnings("unchecked")
 	List<Fornecedor> listaFornecedor = (List<Fornecedor>)session.getAttribute("LISTA_FORNECEDOR");
-
- 		if (listaProduto == null) {  
- 			listaProduto = new ArrayList<Produto>(); 
-		
- 		} else {  
- 			session.setAttribute("LISTA", null); 
- 		} 			   
- 			
- 		Produto produtoAtual = (Produto)session.getAttribute("PRODUTO_ATUAL"); 
-		  
- 		if (produtoAtual == null) { 
-		   produtoAtual = new Produto();  	
-		   
- 		} else {  
- 		   session.setAttribute("PRODUTO_ATUAL", null);
- 		   
- 		} 
  		
  		if (listaFornecedor == null) {  
  			listaFornecedor = new ArrayList<Fornecedor>(); 
@@ -174,7 +194,7 @@
 						</div>
 						<div class="form-group w-75">
 							<label for="txtFornecedor" class="form-label">Fornecedor</label>
-							<select class="custom-select">
+							<select class="custom-select" value="Selecione o fornecedor">
 								<%if (listaFornecedor.size() > 0) {%>
 								<%for (Fornecedor fornecedor : listaFornecedor) { %> 
   								<option><%=fornecedor.getNome()%></option>
@@ -198,24 +218,25 @@
 								</div>
 							</div>
 						</form>
-						<form>
+						<form action="./ProdutoC" method="get">
 							<div class="form-row pt-3">
 								<div class="form-group col-md-6">
 									<label for="txtCodigo" class="form-label">Código</label>
-									<input class="form-control w-75" type="text" name="txtCodigo" id="txtCodigo" value="<%=produtoAtual.getCodigo()%>" readonly>
+									
+									<input class="form-control w-75" type="text" name="txtCodigo" id="txtCodigo" value="<%=buscaProdutoAtual.getCodigo()%>" readonly>
 								</div>
 								<div class="form-group col-md-6">
 									<label for="txtQtd" class="form-label">Quantidade</label>
-									<input class="form-control w-50" type="text" name="txtQtd" id="txtQtd" value="<%=produtoAtual.getQtd()%>" readonly>
+									<input class="form-control w-50" type="text" name="txtQtd" id="txtQtd" value="<%=buscaProdutoAtual.getQtd()%>" readonly>
 								</div>
 							</div>
 							<div class="form-group w-75">
 								<label for="txtNome" class="form-label">Item</label>
-								<input class="form-control" type="text" name="txtNome" id="txtNome" value="<%=produtoAtual.getNome()%>" readonly>
+								<input class="form-control" type="text" name="txtNome" id="txtNome" value="<%=buscaProdutoAtual.getNome()%>" readonly>
 							</div>
 							<div class="form-group w-75">
 								<label for="txtDescr" class="form-label">Descrição</label>
-								<textarea class="form-control" name="txtDescr" id="txtDescr" rows="3" value="<%=produtoAtual.getDescr()%>" readonly></textarea>	
+								<textarea class="form-control" name="txtDescr" id="txtDescr" rows="3" value="<%=buscaProdutoAtual.getDescr()%>" readonly></textarea>	
 							</div>
 							<div class="form-group w-75">
 								<label for="txtFornecedor" class="form-label">Fornecedor</label>

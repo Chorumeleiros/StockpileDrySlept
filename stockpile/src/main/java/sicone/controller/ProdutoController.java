@@ -65,13 +65,13 @@ public class ProdutoController extends HttpServlet {
 				msg = "Produto adicionado com sucesso";
 
 			} else if ("pesquisar".equals(cmd)) {
-				List<Produto> listaProduto = produtoDAO.pesquisarNomeProduto(request.getParameter("txtNome"));
-				session.setAttribute("LISTA_PROD", listaProduto);
+				List<Produto> buscaProduto = produtoDAO.pesquisarNomeProduto(request.getParameter("txtNome"));
+				session.setAttribute("LISTA_PESQ_PROD", buscaProduto);
 			}
 
 		} catch (GenericDAOException e) {
 			e.printStackTrace();
-			msg = "Erro ao acessar produto :(";
+			msg = "Erro ao executar operação :(";
 
 		}
 		

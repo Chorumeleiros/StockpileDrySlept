@@ -17,27 +17,16 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 			
-		<%String msg = (String)session.getAttribute("MENSAGEM"); %>	
-			
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$('#txtCnpj').mask('00.000.000/0000-00');
 			})
-			
-			function confirmacao() {
-				$.notify({
-					message: <%=msg%>
-				}, {
-					type: 'success'
-				});
-				return true
-			}
 		</script>
 	</head>
 	
 	<%
-	
-	
+	String msg = (String)session.getAttribute("MENSAGEM");
+
 	@SuppressWarnings("unchecked")
  	List<Fornecedor> listaFornecedor = (List<Fornecedor>)session.getAttribute("LISTA_FORNECEDOR"); 
 	
@@ -145,6 +134,17 @@
 				</div>
 			</div>
 		</div>
+
+		<script type="text/javascript">
+			function confirmacao() {
+				$.notify({
+					message: <%=msg%>
+				}, {
+					type: 'success'
+				});
+				return true
+			}
+		</script>
 
 	</body>
 
