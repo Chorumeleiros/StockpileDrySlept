@@ -34,6 +34,7 @@ public class FuncionarioController extends HttpServlet {
 			throws ServletException, IOException {
 		response.getWriter().append("Você não tem permissão para acessar este conteúdo. "
 				+ "Para acessá-lo se identifique <a href=\"./index.jsp\">aqui</a>");
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -42,11 +43,14 @@ public class FuncionarioController extends HttpServlet {
 		String cmd = request.getParameter("cmd");
 		String msg = null;
 		HttpSession session = request.getSession();
-
+		
+		
 		try {
 
 			FuncionarioDAO funcionarioDAO = new FuncionarioDAOImpl();
-
+			List<Funcionario> listaFuncionario = funcionarioDAO.pesquisarPorNome("");
+			session.setAttribute("LISTA", listaFuncionario);
+			
 			if ("Adicionar".equals(cmd)) {
 				Funcionario funcionario = new Funcionario();
 				funcionario.setNome(request.getParameter("txtNome"));
@@ -55,12 +59,9 @@ public class FuncionarioController extends HttpServlet {
 
 				funcionarioDAO.adicionar(funcionario);
 
-				List<Funcionario> listaFuncionario = funcionarioDAO.pesquisarPorNome("");
-				session.setAttribute("LISTA", listaFuncionario);
 				msg = "Funcionário adicionado com sucesso";
 
 			}
-
 		} catch (GenericDAOException e) {
 			e.printStackTrace();
 			msg = "Erro ao acessar funcionário :(";

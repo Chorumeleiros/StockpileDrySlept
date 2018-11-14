@@ -17,12 +17,31 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 		
+<<<<<<< HEAD
+=======
+		<%String msg = (String) session.getAttribute("MENSAGEM"); %>
+		
+		<script type="text/javascript">
+			function confirmacao() {
+				$.notify({
+					message: <%=msg%>
+				}, {
+					type: 'success'
+				});
+				return true
+			}
+		</script>
+>>>>>>> bb4797e9cf2c6bb04268d13e3573cda330efde2b
 	</head>
 	
 	<body>
 	
 	<% 
+<<<<<<< HEAD
 	String msg = (String)session.getAttribute("MENSAGEM");
+=======
+ 	
+>>>>>>> bb4797e9cf2c6bb04268d13e3573cda330efde2b
 	
 	@SuppressWarnings("unchecked")
  	List<Produto> listaProduto = (List<Produto>)session.getAttribute("LISTA_PROD");
@@ -151,7 +170,7 @@
 				</table>
 			</div>
 				<div class="col-md-4 col-sm-2">
-					<form name="adicionar-produto" action="./ProdutoC" method="post" onsubmit="return confirmacao()">
+					<form name="adicionar-produto" action="./ProdutoC" method="post" onsubmit="return confirmacao()" class="needs-validation" novalidate>
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label for="txtCodigo" class="form-label">Código</label>

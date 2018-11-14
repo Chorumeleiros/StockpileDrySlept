@@ -43,6 +43,7 @@
 <body>
 	<%
 	@SuppressWarnings("unchecked")
+	
 	List<Funcionario> listaFuncionario = (List<Funcionario>) session.getAttribute("LISTA");
 	if (listaFuncionario == null) {
 		listaFuncionario = new ArrayList<Funcionario>();
@@ -97,7 +98,9 @@
 					</thead>
 					<tbody>
 						<%
-						if (listaFuncionario.size() < 0) {
+						
+					
+					if (listaFuncionario.size() > 0) {
 						for (Funcionario funcionario : listaFuncionario) {
 						%>
 						<tr>
@@ -115,7 +118,7 @@
 			<div class="col-md-4 col-sm-2">
 				<form name="adicionar-funcionario" action="./FuncionarioC" method="post" onsubmit="return confirmacao()" class="needs-validation" novalidate>
 					<div class="form-group w-25">
-						<label for="id" class="form-label">ID</label> <input class="form-control" type="text" id="id" readonly>
+						<label for="id" class="form-label">ID</label> <input class="form-control" type="text" value="<%=listaFuncionario.size() + 1%>" id="id" readonly>
 					</div>
 					<div class="form-group w-75">
 						<label for="nome" class="form-label">Nome</label>
@@ -123,7 +126,7 @@
 					</div>
 					<div class="form-group w-50">
 						<label for="cpf" class="form-label">CPF</label>
-						 <input class="form-control" type="text" id="cpf" required="required" name="txtCpf" />
+						 <input class="form-control" type="text" id="txtCpf" required="required" name="txtCpf" />
 						<small id="cpfHelp" class="form-text text-muted text-gray">Digite apenas números</small>
 						<div class="invalid-feedback">CPF inválido</div>
 					</div>
