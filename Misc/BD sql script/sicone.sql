@@ -29,14 +29,14 @@ CREATE TABLE CLIENTE (
 );
 
 CREATE TABLE FORNECEDOR (
-  ID INT AUTO_INCREMENT,
-  CNPJ CHAR(18),
+  CNPJ CHAR(18) NOT NULL,
   NOME VARCHAR(40),
-  PRIMARY KEY (ID)
+  PRIMARY KEY (CNPJ)
 );
 
 drop table fornecedor;
 insert into fornecedor (cnpj, nome) values ('1111111111', 'qdas');
+select * from fornecedor;
 
 CREATE TABLE PRODUTO (
   CODPROD INT AUTO_INCREMENT,
