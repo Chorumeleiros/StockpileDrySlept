@@ -16,11 +16,13 @@
 		<script src="js/bootstrap-notify.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-			
+		
+		<%String msg = (String) session.getAttribute("MENSAGEM"); %>
+		
 		<script type="text/javascript">
 			function confirmacao() {
 				$.notify({
-					message: 'Funcionário adicionado com sucesso!'
+					message: <%=msg%>
 				}, {
 					type: 'success'
 				});
@@ -32,7 +34,7 @@
 	<body>
 	
 	<% 
- 	String msg = (String)session.getAttribute("MENSAGEM");
+ 	
 	
 	@SuppressWarnings("unchecked")
  	List<Produto> listaProduto = (List<Produto>)session.getAttribute("LISTA_PROD");
@@ -172,7 +174,7 @@
 				</table>
 			</div>
 				<div class="col-md-4 col-sm-2">
-					<form name="adicionar-produto" action="./ProdutoC" method="post" onsubmit="return confirmacao()">
+					<form name="adicionar-produto" action="./ProdutoC" method="post" onsubmit="return confirmacao()" class="needs-validation" novalidate>
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label for="txtCodigo" class="form-label">Código</label>
