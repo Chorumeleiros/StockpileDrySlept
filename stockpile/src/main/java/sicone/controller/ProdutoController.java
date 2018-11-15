@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import sicone.dao.GenericDAOException;
 import sicone.dao.ProdutoDAO;
 import sicone.dao.ProdutoDAOImpl;
-
+import sicone.model.Fornecedor;
 import sicone.model.Produto;
 
 
@@ -51,18 +51,22 @@ public class ProdutoController extends HttpServlet {
 
 			if ("adicionar".equals(cmd)) {
 				Produto produto = new Produto();
+				Fornecedor fornecedor = new Fornecedor();
 				
 				produto.setCodigo(Integer.parseInt(request.getParameter("txtCodigo")));
 				produto.setQtd(Integer.parseInt(request.getParameter("txtQtd")));
 				produto.setNome(request.getParameter("txtNome"));
 				produto.setDescr(request.getParameter("txtDescr"));
+				fornecedor.setCnpj(request.getParameter("txtFornecedor"));
 
-				produtoDAO.adicionar(produto);
+				produtoDAO.adicionar(produto, fornecedor);
 
 				List<Produto> listaProduto = produtoDAO.pesquisarNomeProduto("");
 				session.setAttribute("LISTA_PROD", listaProduto);
 
-				msg = "Produto adicionado com sucesso";
+				if ("adicionar" != null) {
+					msg = "Produto adicionado com sucesso";
+				}
 
 			} else if ("pesquisar".equals(cmd)) {
 				List<Produto> buscaProduto = produtoDAO.pesquisarNomeProduto(request.getParameter("txtNome"));

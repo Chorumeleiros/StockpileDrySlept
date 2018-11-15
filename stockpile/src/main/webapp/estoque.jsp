@@ -17,31 +17,14 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 		
-<<<<<<< HEAD
-=======
-		<%String msg = (String) session.getAttribute("MENSAGEM"); %>
-		
-		<script type="text/javascript">
-			function confirmacao() {
-				$.notify({
-					message: <%=msg%>
-				}, {
-					type: 'success'
-				});
-				return true
-			}
-		</script>
->>>>>>> bb4797e9cf2c6bb04268d13e3573cda330efde2b
 	</head>
 	
 	<body>
 	
 	<% 
-<<<<<<< HEAD
+
 	String msg = (String)session.getAttribute("MENSAGEM");
-=======
- 	
->>>>>>> bb4797e9cf2c6bb04268d13e3573cda330efde2b
+
 	
 	@SuppressWarnings("unchecked")
  	List<Produto> listaProduto = (List<Produto>)session.getAttribute("LISTA_PROD");
@@ -86,12 +69,12 @@
  			session.setAttribute("MENSAGEM", null); 
  		%>
  		
- 		<div class="modal" id="modalAlert">
+ 		<div class="modal fade" id="modalAlert" aria-hidden="true" tabindex="-1" role="dialog">
  			<div class="modal-dialog">
  				<div class="modal-content">
  					<div class="modal-body">
+ 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
  						<p><%=msg %></p>
- 						<button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
  					</div>
  				</div>
  			</div>
@@ -153,6 +136,7 @@
 							<th scope="col">Item</th>
 							<th scope="col">Quantidade</th>
 							<th scope="col">Descrição</th>
+							
 						</tr>
 					</thead>
 					<tbody>	
@@ -170,7 +154,7 @@
 				</table>
 			</div>
 				<div class="col-md-4 col-sm-2">
-					<form name="adicionar-produto" action="./ProdutoC" method="post" onsubmit="return confirmacao()" class="needs-validation" novalidate>
+					<form name="adicionar-produto" action="./ProdutoC" method="post">
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label for="txtCodigo" class="form-label">Código</label>
@@ -192,7 +176,7 @@
 						</div>
 						<div class="form-group w-75">
 							<label for="txtFornecedor" class="form-label">Fornecedor</label>
-							<select class="custom-select" value="Selecione o fornecedor">
+							<select class="custom-select" name="txtFornecedor" value="Selecione o fornecedor">
 								<%if (listaFornecedor.size() > 0) {%>
 									<%for (Fornecedor fornecedor : listaFornecedor) { %> 
   								<option><%=fornecedor.getNome()%></option>

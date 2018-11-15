@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="sicone.model.Produto, sicone.model.Fornecedor, sicone.model.Funcionario, java.util.List, java.util.ArrayList"%> 
+<%@ page import="sicone.model.Produto, sicone.model.Fornecedor, sicone.model.Funcionario, sicone.model.Cliente,
+java.util.List, java.util.ArrayList"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -21,46 +22,66 @@
 			$(document).ready(function(){
 				$('#dataPedido').mask('00/00/0000');
 			})
-		
-			function confirmacao() {
-				$.notify({
-					message: 'Funcionário adicionado com sucesso!'
-				}, {
-					type: 'success'
-				});
-				return true
-			}
+
 		</script>
 	</head>
 	
 	<body>
 	
-<%-- 		<%  --%>
-<!-- 		String msg = (String)session.getAttribute("MENSAGEM"); -->
-<!-- 		List<Produto> listarProduto = (List<Produto>)session.getAttribute("LISTA"); -->
-			   
-<!-- 			if (listarProduto == null) {  -->
-<!-- 				listarProduto = new ArrayList<Produto>(); -->
-<!-- 			} else {  -->
-<!-- 				session.setAttribute("LISTA", null); -->
-<!-- 			} -->
-			   
-<!-- 			Produto produtoAtual = (Produto)session.getAttribute("PRODUTO_ATUAL"); -->
-			  
-<!-- 			if (produtoAtual == null) {  -->
-<!-- 			   produtoAtual = new Produto(); -->
-<!-- 		   	} else {  -->
-<!-- 			   session.setAttribute("PRODUTO_ATUAL", null);			       -->
-<!-- 		   	} -->
-			
-<!-- 			if (msg != null) { -->
-<!--  				session.setAttribute("MENSAGEM", null); -->
-			
-<%-- 		%> --%>
+		<% 
+ 		String msg = (String)session.getAttribute("MENSAGEM"); 
 		
-<%-- 		<h3 class="alert alert-danger"><%=msg%></h3> --%>
+		@SuppressWarnings("unchecked")
+ 		List<Produto> listaItemProduto = (List<Produto>)session.getAttribute("LISTA"); 
+			   
+ 			if (listaItemProduto == null) {  
+ 				listaItemProduto = new ArrayList<Produto>(); 
+ 			} else {  
+ 				session.setAttribute("LISTA", null); 
+ 			} 
+			   
+ 			Produto produtoAtual = (Produto)session.getAttribute("PRODUTO_ATUAL");
+		  
+ 			if (produtoAtual == null) {  
+ 			   produtoAtual = new Produto(); 
+ 		   	} else {  
+ 			   session.setAttribute("PRODUTO_ATUAL", null);			       
+ 		   	}
+ 			
+ 			@SuppressWarnings("unchecked")
+ 	 		List<Cliente> listaCliente = (List<Cliente>)session.getAttribute("LISTA_CLIENTE"); 
+ 				   
+ 	 			if (listaCliente == null) {  
+ 	 				listaCliente = new ArrayList<Cliente>(); 
+ 	 			} else {  
+ 	 				session.setAttribute("LISTA", null); 
+ 	 			} 
+ 				   
+ 	 			Cliente clienteAtual = (Cliente)session.getAttribute("CLIENTE_ATUAL");
+ 			  
+ 	 			if (clienteAtual == null) {  
+ 	 				clienteAtual = new Cliente(); 
+ 	 		   	} else {  
+ 	 			   session.setAttribute("CLIENTE_ATUAL", null);			       
+ 	 		   	}
+			
+ 			if (msg != null) {
+  				session.setAttribute("MENSAGEM", null);
+			
+ 		%> 
+		
+		<div class="modal fade" id="modalAlert" aria-hidden="true" tabindex="-1" role="dialog">
+ 			<div class="modal-dialog">
+ 				<div class="modal-content">
+ 					<div class="modal-body">
+ 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+ 						<p><%=msg %></p>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</div>
 
-<%-- 		<% } %> --%>
+		<% } %>
 	
 		<header class="header">
 			<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -132,7 +153,7 @@
 					</div>
 	  			</form>
   			
-<%-- 				<%if (listarProduto.size() > 0) {%> --%>
+				
 				<div class="row pt-4">
 					<table class="table table-hover">
 						<thead>
@@ -143,29 +164,34 @@
 							</tr>
 						</thead>
 						<tbody>
-	<%-- 						<% for (Produto produto : listarProduto) { %> --%>
-	<!-- 						<tr> -->
-	<%-- 							<th scope="row"><%=produto.getCodigo()%></th> --%>
-	<%-- 							<th scope="row"><%=produto.getNome()%></th> --%>
-	<%-- 							<th scope="row"><%=produto.getQtd()%></th> --%>
-	<%-- 							<th scope="row"><%=produto.getDescr()%></th> --%>
-	<!-- 						</tr> -->
-	<%-- 						<% } %> --%>
+							<%if (listaItemProduto.size() > 0) {%>
+							<% for (Produto produto : listaItemProduto) { %>
+							<tr>
+								<th scope="row"><%=produto.getCodigo()%></th>
+								<th scope="row"><%=produto.getNome()%></th>
+								<th scope="row"><%=produto.getQtd()%></th>
+							</tr>
+							<% } %>
+							<% } %>
 						</tbody>
 					</table>
 				</div>
 			</div>
-<%-- 			<%} %> --%>
 			
 				<div class="col-md-4 pt-3 col-sm-2">
-					<form name="novo-pedido">
+					<form name="novo-pedido" action="./PedidoC" method="post">
 						<div class="form-row">
 							<div class="input-group w-75">
-								<select class="custom-select" id="inputGroupSelect04" required="required">
+								<select class="custom-select" id="txtCliente" name="txtCliente" required="required">
 									<option selected>Selecione o cliente</option>
+									<%if (listaCliente.size() > 0) {%>
+									<%for (Cliente cliente : listaCliente) { %> 
+  									<option><%=cliente.getNome()%></option>
+  									<% } 
+  								}%>
 								</select>
 								<div class="input-group-append">
-				    				<button class="btn btn-outline-primary" type="button">Novo Pedido</button>
+				    				<button class="btn btn-outline-primary" name="cmd" value="novo-pedido" type="submit">Novo Pedido</button>
 				  				</div>
 							</div>
 						</div>
@@ -173,7 +199,13 @@
 					<form name="buscar-produto" class="form-inline justify-content-start">
 							<div class="form-row pt-5">
 								<div class="form-group col-md-8">
-									<input class="form-control" type="text" name="txtNome" id="nome" placeholder="Item">
+									<select class="custom-select" id="txtCliente" name="txtCliente" placeholder="Item" required="required">
+									<%if (listaItemProduto.size() > 0) {%>
+									<%for (Produto produto : listaItemProduto) { %> 
+  								<option><%=produto.getNome()%></option>
+  									<% } 
+  								}%>
+								</select>
 								</div>
 								<div class="form-group col-md-4">
 									<button type="button" class="btn btn-outline-primary ml-4">Pesquisar</button>
