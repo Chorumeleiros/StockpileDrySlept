@@ -16,23 +16,15 @@
 		<script src="js/bootstrap-notify.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-			
-		<script type="text/javascript">
-			function confirmacao() {
-				$.notify({
-					message: 'Funcionário adicionado com sucesso!'
-				}, {
-					type: 'success'
-				});
-				return true
-			}
-		</script>
+		
 	</head>
 	
 	<body>
 	
 	<% 
- 	String msg = (String)session.getAttribute("MENSAGEM");
+
+	String msg = (String)session.getAttribute("MENSAGEM");
+
 	
 	@SuppressWarnings("unchecked")
  	List<Produto> listaProduto = (List<Produto>)session.getAttribute("LISTA_PROD");
@@ -54,26 +46,6 @@
 		}
 	
 	@SuppressWarnings("unchecked")
- 	List<Produto> buscaProduto = (List<Produto>)session.getAttribute("LISTA_PESQ_PROD");
-	
-	if (buscaProduto == null) {  
-		buscaProduto = new ArrayList<Produto>(); 
-
-	} else {  
-		session.setAttribute("LISTA", null); 
-	} 			   
-		
-	Produto buscaProdutoAtual = (Produto)session.getAttribute("BUSCA_PRODUTO_ATUAL"); 
-  
-	if (buscaProdutoAtual == null) { 
-   buscaProdutoAtual = new Produto();  	
-   
-	} else {  
-	   session.setAttribute("LISTA", null);
-	}
-	
-	
-	@SuppressWarnings("unchecked")
 	List<Fornecedor> listaFornecedor = (List<Fornecedor>)session.getAttribute("LISTA_FORNECEDOR");
  		
  		if (listaFornecedor == null) {  
@@ -93,14 +65,23 @@
  		   
  		} 
 			
-		if (msg != null) { 
-			session.setAttribute("MENSAGEM", null); 
-			
- 	%>
-		<h3 class="alert alert-danger"><%=msg%></h3>
+ 		if (msg != null) { 
+ 			session.setAttribute("MENSAGEM", null); 
+ 		%>
+ 		
+ 		<div class="modal fade" id="modalAlert" aria-hidden="true" tabindex="-1" role="dialog">
+ 			<div class="modal-dialog">
+ 				<div class="modal-content">
+ 					<div class="modal-body">
+ 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+ 						<p><%=msg %></p>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</div>
+ 		
+	<%} %>
 
-	<% } %>
-	
 		<header class="header">
 			<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 	      		<a href="#" class="navbar-brand">
@@ -155,6 +136,7 @@
 							<th scope="col">Item</th>
 							<th scope="col">Quantidade</th>
 							<th scope="col">Descrição</th>
+							
 						</tr>
 					</thead>
 					<tbody>	
@@ -172,7 +154,7 @@
 				</table>
 			</div>
 				<div class="col-md-4 col-sm-2">
-					<form name="adicionar-produto" action="./ProdutoC" method="post" onsubmit="return confirmacao()">
+					<form name="adicionar-produto" action="./ProdutoC" method="post">
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label for="txtCodigo" class="form-label">Código</label>
@@ -194,17 +176,16 @@
 						</div>
 						<div class="form-group w-75">
 							<label for="txtFornecedor" class="form-label">Fornecedor</label>
-							<select class="custom-select" value="Selecione o fornecedor">
+							<select class="custom-select" name="txtFornecedor" value="Selecione o fornecedor">
 								<%if (listaFornecedor.size() > 0) {%>
-								<%for (Fornecedor fornecedor : listaFornecedor) { %> 
+									<%for (Fornecedor fornecedor : listaFornecedor) { %> 
   								<option><%=fornecedor.getNome()%></option>
-  								<% } 
-  								
+  									<% } 
   								}%>
 							</select>
 						</div>
 						<div>
-							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="adicionar">Adicionar</button>
+							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="adicionar" data-toggle="modal" data-target="#modalAlert">Adicionar</button>
 						</div>
 					</form>
 					<div class="row-md-4 pt-5">
@@ -216,31 +197,6 @@
 								<div class="form-group col-md-4">
 									<button type="submit" class="btn btn-outline-primary ml-4" name="cmd" value="pesquisar">Pesquisar</button>
 								</div>
-							</div>
-						</form>
-						<form action="./ProdutoC" method="get">
-							<div class="form-row pt-3">
-								<div class="form-group col-md-6">
-									<label for="txtCodigo" class="form-label">Código</label>
-									
-									<input class="form-control w-75" type="text" name="txtCodigo" id="txtCodigo" value="<%=buscaProdutoAtual.getCodigo()%>" readonly>
-								</div>
-								<div class="form-group col-md-6">
-									<label for="txtQtd" class="form-label">Quantidade</label>
-									<input class="form-control w-50" type="text" name="txtQtd" id="txtQtd" value="<%=buscaProdutoAtual.getQtd()%>" readonly>
-								</div>
-							</div>
-							<div class="form-group w-75">
-								<label for="txtNome" class="form-label">Item</label>
-								<input class="form-control" type="text" name="txtNome" id="txtNome" value="<%=buscaProdutoAtual.getNome()%>" readonly>
-							</div>
-							<div class="form-group w-75">
-								<label for="txtDescr" class="form-label">Descrição</label>
-								<textarea class="form-control" name="txtDescr" id="txtDescr" rows="3" value="<%=buscaProdutoAtual.getDescr()%>" readonly></textarea>	
-							</div>
-							<div class="form-group w-75">
-								<label for="txtFornecedor" class="form-label">Fornecedor</label>
-								<input class="form-control" type="text" name="txtFornecedor" id="txtFornecedor" readonly>
 							</div>
 						</form>
 					</div>

@@ -26,8 +26,8 @@ public class ClienteDAOImpl implements ClienteDAO {
 	@Override
 	public void adicionar (Cliente cliente) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
-		String sql = "INSERT INTO produto (CPF, NOME)" + "VALUES (?, ?)";
-		//String lista = null;
+		String sql = "INSERT INTO CLIENTE (CPF, NOME) VALUES (?, ?)";
+		String lista = null;
 		
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -38,7 +38,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 		} catch (SQLException e) {
 			throw new GenericDAOException(e);
 		}
-		//pesquisarNomeCliente(lista);
+		pesquisarNomeCliente(lista);
 		
 	}
 	

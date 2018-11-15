@@ -10,6 +10,7 @@ import java.util.List;
 
 import sicone.connection.ConnectionFactory;
 import sicone.model.Produto;
+import sicone.model.Fornecedor;
 
 public class ProdutoDAOImpl implements ProdutoDAO {
 
@@ -18,15 +19,16 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 	}
 
 	@Override
-	public void adicionar(Produto produto) throws GenericDAOException {
+	public void adicionar(Produto produto, Fornecedor fornecedor) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
-		String sql = "INSERT INTO PRODUTO (NOMEPROD, QTDPROD, DESCRPROD) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO PRODUTO (NOMEPROD, QTDPROD, DESCRPROD, FK_FORNCNPJ) VALUES (?, ?, ?, ?)";
 
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.setString(1, produto.getNome());
 			pstmt.setInt(2, produto.getQtd());
 			pstmt.setString(3, produto.getDescr());
+			pstmt.setString(4,  fornecedor.getCnpj());
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
