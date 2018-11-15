@@ -34,7 +34,7 @@ CREATE TABLE FORNECEDOR (
   PRIMARY KEY (CNPJ)
 );
 
-drop table fornecedor;
+drop table PRODUTO;
 insert into fornecedor (cnpj, nome) values ('1111111111', 'qdas');
 select * from fornecedor;
 
@@ -43,7 +43,9 @@ CREATE TABLE PRODUTO (
   NOMEPROD VARCHAR(50),
   QTDPROD INT,
   DESCRPROD VARCHAR(200),
+  FK_FORNCNPJ CHAR(18),
   PRIMARY KEY (CODPROD)
+ -- FOREIGN KEY (FK_FORNCNPJ) REFERENCES FORNECEDOR(CNPJ)
 );
 
 insert into produto(nomeprod,qtdprod,descrprod) values('banissopa luara', 90, 'mirossola bafinho');
