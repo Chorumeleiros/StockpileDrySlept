@@ -34,7 +34,7 @@
 			listaFornecedor = new ArrayList<Fornecedor>(); 
 	
 		} else {  
-			session.setAttribute("LISTA", null); 
+			session.setAttribute("LISTA_FORNECEDOR", null); 
 		} 			   
 			
 		Fornecedor fornecedorAtual = (Fornecedor)session.getAttribute("FORNECEDOR_ATUAL"); 
@@ -102,7 +102,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<%if (listaFornecedor.size() > 0) {%>
+						<%if (listaFornecedor.size() < 0) {%>
 							<%for (Fornecedor fornecedor : listaFornecedor) { %>
 						<tr>
 							<th scope="row"><%=fornecedor.getNome()%></th>

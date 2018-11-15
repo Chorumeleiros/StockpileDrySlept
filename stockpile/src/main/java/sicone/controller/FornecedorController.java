@@ -38,13 +38,13 @@ public class FornecedorController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		System.out.println("fui");
 		String cmd = request.getParameter("cmd");
 		String msg = null;
 		HttpSession session = request.getSession();
 
 		try {
-
+			
 			FornecedorDAO fornecedorDAO = new FornecedorDAOImpl();
 
 			if ("adicionar".equals(cmd)) {

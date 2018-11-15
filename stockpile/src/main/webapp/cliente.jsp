@@ -19,7 +19,7 @@
 			
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$('#cpf').mask('000.000.000-00');
+				$('#txtCpf').mask('000.000.000-00');
 			})
 			
 			function confirmacao() {
@@ -127,7 +127,7 @@
 					<form name="adicionar-cliente" action="./ClienteC" method="post" onsubmit="return confirmacao()" class="needs-validation" novalidate>
 						<div class="form-group w-50">
 							<label for="cpf" class="form-label">CPF</label>
-							<input class="form-control" type="text" id="cpf" required="required" />
+							<input class="form-control" type="text" id="txtCpf" required="required" />
 							<small id="cpfHelp" class="form-text text-muted text-gray">Digite apenas números</small>
 							<div class="invalid-feedback">CPF inválido</div>
 						</div>
@@ -136,7 +136,7 @@
 							<input class="form-control" type="text" id="nome" required="required">	
 						</div>
 						<div >
-							<button type="button" class="btn btn-outline-primary float-none">Adicionar</button>
+							<button type="submit" class="btn btn-outline-primary float-none">Adicionar</button>
 						</div>
 					</form>
 					

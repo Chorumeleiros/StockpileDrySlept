@@ -9,7 +9,7 @@ import java.util.List;
 
 import sicone.connection.ConnectionFactory;
 import sicone.model.Fornecedor;
-import sicone.model.Funcionario;
+
 
 /**
  * classe responsavel pelas operacoes do fornecedor com o banco de dados
@@ -28,7 +28,7 @@ public class FornecedorDAOImpl implements FornecedorDAO {
 	public void adicionar (Fornecedor fornecedor) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
 		String sql = "INSERT INTO FORNECEDOR (CNPJ, NOME) VALUES (?, ?)";
-		
+		System.out.println("fui");
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.setString (1, fornecedor.getCnpj());
@@ -44,7 +44,7 @@ public class FornecedorDAOImpl implements FornecedorDAO {
 	@Override
 	public List<Fornecedor> pesquisaFornecedor(String nome) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
-		List<Fornecedor> lista = new ArrayList<>();
+		List<Fornecedor> listaFornecedor = new ArrayList<>();
 		String sql = "SELECT * FROM FORNECEDOR WHERE NOME LIKE ?";
 
 		try {
@@ -57,14 +57,14 @@ public class FornecedorDAOImpl implements FornecedorDAO {
 				fornecedor.setCnpj(rs.getString("CNPJ"));
 				fornecedor.setNome(rs.getString("NOME"));
 				
-				lista.add(fornecedor);
+				listaFornecedor.add(fornecedor);
 			}
 			
 		} catch (SQLException e) {
 			throw new GenericDAOException(e);
 		}
 		
-		return lista;
+		return listaFornecedor;
 	}
 	
 

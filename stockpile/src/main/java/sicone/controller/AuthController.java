@@ -13,6 +13,8 @@ import sicone.model.UserInfo;
 import sicone.dao.AuthDAO;
 import sicone.dao.GenericDAOException;
 import sicone.model.Admin;
+import sicone.model.Cliente;
+import sicone.model.Fornecedor;
 import sicone.model.Funcionario;
 
 /**
@@ -28,6 +30,8 @@ public class AuthController extends HttpServlet {
 
 	Funcionario funcionario = new Funcionario();
 	Admin admin = new Admin();
+	Cliente cliente = new Cliente();
+	Fornecedor fornecedor = new Fornecedor();
 
 	public AuthController() {
 
