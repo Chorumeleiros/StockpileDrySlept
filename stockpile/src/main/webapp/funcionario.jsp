@@ -13,12 +13,9 @@
 		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
 		<script src="js/jquery.mask.min.js" type="text/javascript"></script>
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
-		<script src="js/bootstrap-notify.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	
 		
-	
 		<script type="text/javascript">
 	 	$(document).ready(function() {
 	 		$('#txtCpf').mask('000.000.000-00');
@@ -31,9 +28,8 @@
 	String msg = (String) session.getAttribute("MENSAGEM"); 
 	
 	@SuppressWarnings("unchecked")
-	
-	
 	List<Funcionario> listaFuncionario = (List<Funcionario>) session.getAttribute("LISTA_FUNCIONARIO");
+	
 	if (listaFuncionario == null) {
 		listaFuncionario = new ArrayList<Funcionario>();
 	} else {
@@ -50,7 +46,7 @@
 		} 
 		
 	if (msg != null) { 
-		session.setAttribute("MENSAGEM", "FUNCIONARIO ADD COM SUCESSO"); 
+		session.setAttribute("MENSAGEM", null); 
 	
 	%>
 	<div class="modal fade" id="modalAlert" aria-hidden="true" tabindex="-1" role="dialog">
@@ -64,6 +60,7 @@
  			</div>
  		</div>
  		<%} %>
+ 		
 	<header class="header"> 
 		<nav class="navbar navbar-expand-sm navbar-dark bg-dark"> 
 			<a href="#" class="navbar-brand"><img src="imgs/sicone_logo.png" width="200" height="60" alt="Sicone"></a>
@@ -106,7 +103,7 @@
 							<th scope="col">ID</th>
 							<th scope="col">Nome</th>
 							<th scope="col">CPF</th>
-							<th scope="col">SENHA</th>
+							<th scope="col">Senha</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -127,30 +124,42 @@
 			</div>
 			
 			<div class="col-md-4 col-sm-2">
-				<form name="adicionar-funcionario" action="./FuncionarioC" method="post" onsubmit="return confirmacao()" class="needs-validation" novalidate>
-					<div class="form-group w-25">
-						<label for="id" class="form-label">ID</label>
-						<input class="form-control" type="text" value="<%=listaFuncionario.size() + 1%>" id="id" readonly>
+				<form name="adicionar-funcionario" action="./FuncionarioC" method="post">
+					<div class="row">
+						<div class="form-group w-25">
+							<label for="id" class="form-label">ID</label>
+							<input class="form-control" type="text" value="<%=listaFuncionario.size() + 1%>" id="id" readonly>
+						</div>
 					</div>
-					<div class="form-group w-75">
-						<label for="nome" class="form-label">Nome</label>
-						 <input	class="form-control" type="text" id="nome" required="required" name="txtNome">
+					<div class="row">
+						<div class="form-group w-75">
+							<label for="nome" class="form-label">Nome</label>
+							 <input	class="form-control" type="text" id="nome" required="required" name="txtNome" required="required">
+						</div>
 					</div>
-					<div class="form-group w-50">
-						<label for="cpf" class="form-label">CPF</label>
-						<input class="form-control" type="text" name="txtCpf" id="txtCpf"   />
-						<small id="cpfHelp" class="form-text text-muted text-gray">Digite apenas números</small>
-						<div class="invalid-feedback">CPF inválido</div>
+					<div class="row">
+						<div class="form-group w-50">
+							<label for="cpf" class="form-label">CPF</label>
+							<input class="form-control" type="text" name="txtCpf" id="txtCpf" required="required">
+							<small id="cpfHelp" class="form-text text-muted text-gray">Digite apenas números</small>
+							<div class="invalid-feedback">CPF inválido</div>
+						</div>
 					</div>
-					<div class="form-group w-50">
-						<label for="senha" class="form-label">Senha</label> 
-						<input class="form-control" type="password" name="txtSenha" id="senha" >
-					</div>
-					<div>
-						<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="atualizar">Atualizar Lista</button>
-						<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="adicionar" id="btnAdicionar">Adicionar</button>
+					<div class="row">
+						<div class="form-group w-50">
+							<label for="senha" class="form-label">Senha</label> 
+							<input class="form-control" type="password" name="txtSenha" id="senha" required="required">
+						</div>
 					</div>
 				</form>
+					<div class="row">
+						<form name="adicionar-funcionario" action="./FuncionarioC" method="post">
+							<button type="submit" class="btn btn-outline-primary float-none mr-3" name="cmd" value="adicionar" data-toggle="modal" data-target="#modalAlert">Adicionar</button>
+						</form>
+						<form name="atualizar-funcionario" action="./FuncionarioC" method="post">
+							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="atualizar" data-toggle="modal" data-target="#modalAlert">Atualizar</button>
+						</form>
+					</div>
 			</div>
 		</div>
 	</div>

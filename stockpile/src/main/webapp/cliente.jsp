@@ -13,7 +13,6 @@
 		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
 		<script src="js/jquery.mask.min.js" type="text/javascript"></script>
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
-		<script src="js/bootstrap-notify.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 			
@@ -50,8 +49,20 @@
 		
 	if (msg != null) { 
 		session.setAttribute("MENSAGEM", null); 
-	}
 	%>	
+	
+	 		<div class="modal fade" id="modalAlert" aria-hidden="true" tabindex="-1" role="dialog">
+ 			<div class="modal-dialog">
+ 				<div class="modal-content">
+ 					<div class="modal-body">
+ 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+ 						<p><%=msg %></p>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</div>
+ 		
+	<%} %>
 	
 	<body>
 		<header class="header">
@@ -116,28 +127,33 @@
 			</div>
 			
 				<div class="col-md-4 col-sm-2">
-					<form name="adicionar-cliente" action="./ClienteC" method="post" onsubmit="return confirmacao()" class="needs-validation" novalidate>
-						<div class="form-group w-50">
-							<label for="cpf" class="form-label">CPF</label>
-							<input class="form-control" type="text" id="txtCpf" required="required" />
-							<small id="cpfHelp" class="form-text text-muted text-gray">Digite apenas números</small>
-							<div class="invalid-feedback">CPF inválido</div>
+					<form name="adicionar-cliente" action="./ClienteC" method="post">
+						<div class="row">
+							<div class="form-group w-50">
+								<label for="cpf" class="form-label">CPF</label>
+								<input class="form-control" type="text" id="txtCpf" required="required">
+								<small id="cpfHelp" class="form-text text-muted text-gray">Digite apenas números</small>
+								<div class="invalid-feedback">CPF inválido</div>
+							</div>
 						</div>
-						<div class="form-group w-75">
-							<label for="nome" class="form-label">Nome</label>
-							<input class="form-control" type="text" id="nome" required="required">	
-						</div>
-						<div >
-							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="atualizar">Atualizar Lista</button>
-							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="adicionar">Adicionar</button>
+						<div class="row">
+							<div class="form-group w-75">
+								<label for="nome" class="form-label">Nome</label>
+								<input class="form-control" type="text" id="nome" required="required">	
+							</div>
 						</div>
 					</form>
-					
+					<div class="row">
+						<form name="adicionar-cliente" action="./ClienteC" method="post">
+							<button type="submit" class="btn btn-outline-primary float-none mr-3" name="cmd" value="adicionar" data-toggle="modal" data-target="#modalAlert">Adicionar</button>
+						</form>
+						<form name="atualizar-cliente" action="./ClienteC" method="post">
+							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="atualizar" data-toggle="modal" data-target="#modalAlert">Atualizar</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 
 	</body>
-
-
 </html>

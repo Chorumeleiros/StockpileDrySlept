@@ -13,7 +13,6 @@
 		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
 		<script src="js/jquery.mask.min.js" type="text/javascript"></script>
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
-		<script src="js/bootstrap-notify.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 			
@@ -52,8 +51,20 @@
 		
 	if (msg != null) { 
 		session.setAttribute("MENSAGEM", null); 
-	}
 	%>
+	
+	 		<div class="modal fade" id="modalAlert" aria-hidden="true" tabindex="-1" role="dialog">
+ 			<div class="modal-dialog">
+ 				<div class="modal-content">
+ 					<div class="modal-body">
+ 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+ 						<p><%=msg %></p>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</div>
+ 		
+	<%} %>
 	
 	<body>
 		<header class="header">
@@ -119,36 +130,32 @@
 			
 			
 				<div class="col-md-4 col-sm-2">
-					<form name="adicionar-fornecedor" action="./FornecedorC" method="post" onsubmit="return confirmacao()">
-						<div class="form-group w-50">
-							<label for="txtCnpj" class="form-label">CNPJ</label>
-							<input class="form-control" type="text" name="txtCnpj" id="txtCnpj" />
-							<small id="cnpjHelp" class="form-text text-muted text-gray">Digite apenas números</small>
+					<form name="adicionar-fornecedor" action="./FornecedorC" method="post">
+						<div class="row">
+							<div class="form-group w-50">
+								<label for="txtCnpj" class="form-label">CNPJ</label>
+								<input class="form-control" type="text" name="txtCnpj" id="txtCnpj" required="required">
+								<small id="cnpjHelp" class="form-text text-muted text-gray">Digite apenas números</small>
+							</div>
 						</div>
-						<div class="form-group w-75">
-							<label for="txtNome" class="form-label">Nome</label>
-							<input class="form-control" type="text" name="txtNome" id="txtNome">	
-						</div>
-						<div >
-							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="atualizar">Atualizar Lista</button>
-							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="adicionar">Adicionar</button>
+						<div class="row">
+							<div class="form-group w-75">
+								<label for="txtNome" class="form-label">Nome</label>
+								<input class="form-control" type="text" name="txtNome" id="txtNome" required="required">	
+							</div>
 						</div>
 					</form>
-					
+					<div class="row">
+						<form name="adicionar-fornecedor" action="./FornecedorC" method="post">
+							<button type="submit" class="btn btn-outline-primary float-none mr-3" name="cmd" value="adicionar" data-toggle="modal" data-target="#modalAlert">Adicionar</button>
+						</form>
+						<form name="atualizar-fornecedor" action="./FornecedorC" method="post">
+							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="atualizar" data-toggle="modal" data-target="#modalAlert">Atualizar</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
-
-		<script type="text/javascript">
-			function confirmacao() {
-				$.notify({
-					message: <%=msg%>
-				}, {
-					type: 'success'
-				});
-				return true
-			}
-		</script>
 
 	</body>
 
