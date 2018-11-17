@@ -19,6 +19,7 @@ import sicone.model.Cliente;
 
 public class ClienteDAOImpl implements ClienteDAO {
 	
+
 	public ClienteDAOImpl() throws GenericDAOException {
 	
 	}
@@ -27,7 +28,7 @@ public class ClienteDAOImpl implements ClienteDAO {
 	public void adicionar (Cliente cliente) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
 		String sql = "INSERT INTO CLIENTE (CPF, NOME) VALUES (?, ?)";
-		String lista = null;
+		
 		
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -38,14 +39,13 @@ public class ClienteDAOImpl implements ClienteDAO {
 		} catch (SQLException e) {
 			throw new GenericDAOException(e);
 		}
-		pesquisarNomeCliente(lista);
-		
+
 	}
 	
 	@Override
 	public List<Cliente> pesquisarNomeCliente(String nome) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
-		List<Cliente> lista = new ArrayList<>();
+		List<Cliente> listaCliente = new ArrayList<>();
 		String sql = "SELECT * FROM CLIENTE WHERE NOME LIKE ?";
 
 		try {
@@ -58,14 +58,14 @@ public class ClienteDAOImpl implements ClienteDAO {
 				cliente.setCpf(rs.getString("CPF"));
 				cliente.setNome(rs.getString("NOME"));
 				
-				lista.add(cliente);
+				listaCliente.add(cliente);
 			}
 			
 		} catch (SQLException e) {
 			throw new GenericDAOException(e);
 		}
 		
-		return lista;
+		return listaCliente;
 	}
 	
 

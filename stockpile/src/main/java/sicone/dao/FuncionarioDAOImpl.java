@@ -27,7 +27,6 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 	@Override
 	public void adicionar(Funcionario funcionario) throws GenericDAOException {
 		String sql = "INSERT INTO FUNCIONARIO (NOME, CPF, SENHA) VALUES (?, ?, ?)"; // no banco este campo password é
-//		String listaFuncionario = null;																			// chamado de senh
 
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -39,7 +38,7 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 		} catch (SQLException e) {
 			throw new GenericDAOException(e);
 		}
-//		pesquisarPorNome(listaFuncionario);
+		
 	}
 
 	@Override
@@ -58,6 +57,7 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 				funcionario.setCpf(rs.getString("CPF"));
 				funcionario.setNome(rs.getString("NOME"));
 				funcionario.setPassword(rs.getString("SENHA"));
+				
 				listaFuncionario.add(funcionario);
 			}
 

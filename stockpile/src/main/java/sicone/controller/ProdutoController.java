@@ -48,8 +48,8 @@ public class ProdutoController extends HttpServlet {
 		try {
 
 			ProdutoDAO produtoDAO = new ProdutoDAOImpl();
-
-			if ("adicionar".equals(cmd)) {
+			
+			 if ("adicionar".equals(cmd)) {
 				Produto produto = new Produto();
 				Fornecedor fornecedor = new Fornecedor();
 				

@@ -14,6 +14,7 @@ import sicone.dao.FornecedorDAO;
 import sicone.dao.FornecedorDAOImpl;
 import sicone.dao.GenericDAOException;
 import sicone.model.Fornecedor;
+import sicone.model.Funcionario;
 
 /**
  * classe responsavel por receber os parametros do fornecedor da view
@@ -46,8 +47,11 @@ public class FornecedorController extends HttpServlet {
 		try {
 			
 			FornecedorDAO fornecedorDAO = new FornecedorDAOImpl();
-
-			if ("adicionar".equals(cmd)) {
+			if ("atualizar".equals(cmd)) {
+				List<Fornecedor> listaFornecedor = fornecedorDAO.pesquisaFornecedor("");
+				session.setAttribute("LISTA_FORNECEDOR", listaFornecedor);
+			}
+			else if ("adicionar".equals(cmd)) {
 				Fornecedor fornecedor = new Fornecedor();
 
 				fornecedor.setCnpj(request.getParameter("txtCnpj"));

@@ -7,7 +7,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>SICONE | Admin Dashboard</title>
+		<title>SICONE | Admin Dashboard - FORNECEDORES</title>
 		<link rel="icon" href="./imgs/favicon.png" type="image/x-icon" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" href="css/style-menu" />
 		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
@@ -17,6 +17,7 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 			
+		
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$('#txtCnpj').mask('00.000.000/0000-00');
@@ -29,10 +30,10 @@
 	String msg = (String)session.getAttribute("MENSAGEM");
 
 	@SuppressWarnings("unchecked")
- 	List<Fornecedor> listaFornecedor = (List<Fornecedor>)session.getAttribute("LISTA_FORNECEDOR"); 
 	
+ 	List<Fornecedor> listaFornecedor = (List<Fornecedor>)session.getAttribute("LISTA_FORNECEDOR"); 
 	if (listaFornecedor == null) {  
-			listaFornecedor = new ArrayList<Fornecedor>(); 
+		listaFornecedor = new ArrayList<Fornecedor>(); 
 	
 		} else {  
 			session.setAttribute("LISTA_FORNECEDOR", null); 
@@ -103,7 +104,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<%if (listaFornecedor.size() < 0) {%>
+						<%if (listaFornecedor.size() > 0) {%>
 							<%for (Fornecedor fornecedor : listaFornecedor) { %>
 						<tr>
 							<th scope="row"><%=fornecedor.getNome()%></th>
@@ -120,14 +121,15 @@
 					<form name="adicionar-fornecedor" action="./FornecedorC" method="post" onsubmit="return confirmacao()">
 						<div class="form-group w-50">
 							<label for="txtCnpj" class="form-label">CNPJ</label>
-							<input class="form-control" type="text" name="txtCnpj" id="txtCnpj" required="required" />
+							<input class="form-control" type="text" name="txtCnpj" id="txtCnpj" />
 							<small id="cnpjHelp" class="form-text text-muted text-gray">Digite apenas números</small>
 						</div>
 						<div class="form-group w-75">
 							<label for="txtNome" class="form-label">Nome</label>
-							<input class="form-control" type="text" name="txtNome" id="txtNome" required="required">	
+							<input class="form-control" type="text" name="txtNome" id="txtNome">	
 						</div>
 						<div >
+							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="atualizar">Atualizar Lista</button>
 							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="adicionar">Adicionar</button>
 						</div>
 					</form>

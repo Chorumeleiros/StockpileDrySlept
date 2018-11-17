@@ -28,7 +28,7 @@ public class FornecedorDAOImpl implements FornecedorDAO {
 	public void adicionar (Fornecedor fornecedor) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
 		String sql = "INSERT INTO FORNECEDOR (CNPJ, NOME) VALUES (?, ?)";
-		System.out.println("fui");
+	
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.setString (1, fornecedor.getCnpj());

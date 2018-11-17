@@ -36,7 +36,7 @@ public class ConnectionFactory {
 		try {
 			Class.forName(DRIVER);
 			connection = DriverManager.getConnection(URL, USER, PASS);
-			System.out.println("ENTRAMO NO BANCO CARAIO");
+			
 			
 
 		} catch (ClassNotFoundException | SQLException e) {

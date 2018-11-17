@@ -14,6 +14,8 @@ import sicone.dao.FuncionarioDAO;
 import sicone.dao.FuncionarioDAOImpl;
 import sicone.dao.GenericDAOException;
 import sicone.model.Funcionario;
+import sicone.model.Produto;
+import sicone.model.UserInfo;
 
 /**
  * classe responsavel por receber os parametros do funcionario da view
@@ -48,20 +50,26 @@ public class FuncionarioController extends HttpServlet {
 		try {
 
 			FuncionarioDAO funcionarioDAO = new FuncionarioDAOImpl();
-			List<Funcionario> listaFuncionario = funcionarioDAO.pesquisarPorNome("");
-			session.setAttribute("LISTA", listaFuncionario);
 			
-			if ("Adicionar".equals(cmd)) {
+			if ("atualizar".equals(cmd)) {
+				List<Funcionario> listaFuncionario = funcionarioDAO.pesquisarPorNome("");
+				session.setAttribute("LISTA_FUNCIONARIO", listaFuncionario);
+			}
+			else if ("adicionar".equals(cmd)) {
 				Funcionario funcionario = new Funcionario();
 				funcionario.setNome(request.getParameter("txtNome"));
 				funcionario.setCpf(request.getParameter("txtCpf"));
 				funcionario.setPassword(request.getParameter("txtSenha"));
 
 				funcionarioDAO.adicionar(funcionario);
+				
+				List<Funcionario> listaFuncionario = funcionarioDAO.pesquisarPorNome("");
+				session.setAttribute("LISTA_FUNCIONARIO", listaFuncionario);
 
 				msg = "Funcionário adicionado com sucesso";
 
 			}
+		
 		} catch (GenericDAOException e) {
 			e.printStackTrace();
 			msg = "Erro ao acessar funcionário :(";

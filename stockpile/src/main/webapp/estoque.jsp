@@ -185,6 +185,7 @@
 							</select>
 						</div>
 						<div>
+							
 							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="adicionar" data-toggle="modal" data-target="#modalAlert">Adicionar</button>
 						</div>
 					</form>
@@ -195,6 +196,7 @@
 									<input class="form-control" type="text" name="txtNome" id="txtNome" placeholder="Item">
 								</div>
 								<div class="form-group col-md-4">
+									
 									<button type="submit" class="btn btn-outline-primary ml-4" name="cmd" value="pesquisar">Pesquisar</button>
 								</div>
 							</div>

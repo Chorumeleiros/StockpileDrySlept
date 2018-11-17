@@ -46,8 +46,11 @@ public class ClienteController extends HttpServlet {
 		try {
 
 			ClienteDAO clienteDAO = new ClienteDAOImpl();
-
-			if ("adicionar".equals(cmd)) {
+			if("atualizar".equals(cmd)) {
+				List<Cliente>listaCliente = clienteDAO.pesquisarNomeCliente("");
+				session.setAttribute ("LISTA_CLIENTE", listaCliente);
+			}
+			else if ("adicionar".equals(cmd)) {
 				Cliente cliente = new Cliente();
 
 				cliente.setCpf(request.getParameter("txtCpf"));
