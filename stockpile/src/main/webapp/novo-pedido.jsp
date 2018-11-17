@@ -128,33 +128,9 @@ java.util.List, java.util.ArrayList"%>
 		</header>
 	
 	<div class="container-fluid pt-4">
-		<div class="row pt-3 justify-content-around">
-			<div class="col-6 pt-3">
-  				<form name="pedido">
-					<div class="form-row justify-content-start">
-						<div class="form-inline col-md-6">
-							<label class="sr-only" for="numPedido"></label>
-  							<div class="input-group mb-2 mr-sm-2">
-    							<div class="input-group-prepend">
-      								<div class="input-group-text">Nº do Pedido</div>
-    							</div>
-    							<input type="text" class="form-control" id="numPedido" readonly>
-  							</div>
-						</div>
-						<div class="form-inline col-md-4">
-							<label class="sr-only" for="dataPedido"></label>
-  							<div class="input-group mb-2 mr-sm-2">
-    							<div class="input-group-prepend">
-      								<div class="input-group-text">Data</div>
-    							</div>
-    							<input type="text" class="form-control" id="dataPedido" readonly>
-  							</div>
-						</div>
-					</div>
-	  			</form>
-  			
-				
-				<div class="row pt-4">
+		<div class="row justify-content-around">
+			<div class="col-6">
+				<div class="row pt-3">
 					<table class="table table-hover">
 						<thead>
 							<tr>
@@ -195,49 +171,62 @@ java.util.List, java.util.ArrayList"%>
 				  				</div>
 							</div>
 						</div>
-					</form>
-					<form name="buscar-produto" class="form-inline justify-content-start">
-							<div class="form-row pt-5">
-								<div class="form-group col-md-8">
-									<select class="custom-select" id="txtCliente" name="txtCliente" placeholder="Item" required="required">
-									<%if (listaItemProduto.size() > 0) {%>
-									<%for (Produto produto : listaItemProduto) { %> 
-  								<option><%=produto.getNome()%></option>
-  									<% } 
-  								}%>
-								</select>
-								</div>
-								<div class="form-group col-md-4">
-									<button type="button" class="btn btn-outline-primary ml-4">Pesquisar</button>
-								</div>
-							</div>
-						</form>
+						<div class="form-row pt-4">	
+  							<div class="input-group w-75">
+    							<div class="input-group-prepend">
+      								<div class="input-group-text">Nº do Pedido</div>
+    							</div>
+    							<input type="text" class="form-control" id="numPedido" readonly>
+  							</div>
+  						</div>
+						<div class="form-row pt-3">
+  							<div class="input-group w-50">
+    							<div class="input-group-prepend">
+      								<div class="input-group-text">Data</div>
+    							</div>
+    							<input type="text" class="form-control" id="dataPedido" readonly>
+  							</div>
+						</div>
+	
+	  			</form>
 						<form>
-							<div class="form-row pt-3">
-								<div class="form-group col-md-6">
-									<label for="codigo" class="form-label">Código</label>
-									<input class="form-control w-75" type="text" name="txtCod" id="codigo" readonly>
+							<div class="form-row pt-5 w-75">
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<label class="input-group-text" for="txtItem">Item</label>
+									</div>
+									<select class="custom-select" id="txtItem" name="txtItem" required="required">
+										<option selected> </option>
+										<%if (listaItemProduto.size() > 0) {%>
+										<%for (Produto produto : listaItemProduto) { %> 
+	  									<option><%=produto.getNome()%></option>
+	  										<% } 
+	  									}%>
+									</select>
 								</div>
-								<div class="form-group col-md-6">
-									<label for="quantidade" class="form-label">Quantidade</label>
-									<input class="form-control w-50" type="text" name="txtQtd" id="qtd" readonly>
+							</div>
+							<div class="form-row pt-3 w-50">
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<label class="input-group-text" for="txtQtd">Quantidade</label>
+									</div>
+									<select class="custom-select" id="txtQtd" name="txtQtd" required="required">
+										<option selected> </option>
+										<%if (listaItemProduto.size() > 0) {%>
+										<%for (Produto produto : listaItemProduto) { %> 
+	  									<option><%=produto.getQtd()%></option>
+	  										<% } 
+	  									}%>
+									</select>
 								</div>
 							</div>
-							<div class="form-group w-75">
-								<label for="nome" class="form-label">Item</label>
-								<input class="form-control" type="text" name="txtNome" id="nome" readonly>
-							</div>
-							<div class="form-group w-75">
-								<label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-								<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" readonly></textarea>	
-							</div>
-							<div>
-								<button type="button" class="btn btn-outline-success float-none mr-4">Adicionar</button>
-								<button type="button" class="btn btn-outline-warning float-none">Remover</button>
+							<div class="pt-4">
+								<button type="submit" class="btn btn-outline-success float-none mr-4">Adicionar</button>
+								<button type="submit" class="btn btn-outline-warning float-none">Remover</button>
 							</div>
 							<div class="pt-5">
-								<button type="button" class="btn btn-outline-primary float-none mr-4">Finalizar Pedido</button>
-								<button type="button" class="btn btn-outline-danger float-none">Limpar Pedido</button>
+								<button type="submit" class="btn btn-outline-primary float-none mr-4">Finalizar Pedido</button>
+								<button type="submit" class="btn btn-outline-danger float-none">Limpar Pedido</button>
 							</div>
 						</form>
 				</div>
