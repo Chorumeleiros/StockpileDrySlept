@@ -21,19 +21,11 @@
 			$(document).ready(function(){
 				$('#txtCpf').mask('000.000.000-00');
 			})
-			
-			function confirmacao() {
-				$.notify({
-					message: 'Cliente adicionado com sucesso!'
-				}, {
-					type: 'success'
-				});
-				return true
-			}
 		</script>
 	</head>
 	
 	<%
+	
 	String msg = (String)session.getAttribute("MENSAGEM");
 
 	@SuppressWarnings("unchecked")

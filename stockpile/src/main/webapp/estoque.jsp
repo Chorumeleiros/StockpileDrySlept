@@ -17,12 +17,24 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 		
+		<script type="text/javascript">
+			function remover(id) {
+				if (confirm("Remove o sorvete com id " + id)) {
+					$('#novo-pedido').empty();
+					$('#novo-pedido').append('<input type="hidden" name="txtId" value="' + id + '"/>');
+					$('#novo-pedido').append('<input type="hidden" name="cmd" value="remover"/>');
+					$('#novo-pedido').submit();
+				}
+			}
+		</script>
+		
 	</head>
 	
 	<body>
 	
 	<% 
 
+	Funcionario funcionario = new Funcionario(); 
 	String msg = (String)session.getAttribute("MENSAGEM");
 
 	
@@ -117,7 +129,7 @@
 		      						<a class="dropdown-item" href="#">Sair</a>
 		      					</div>
 		      					<div>
-		      						<span class="navbar-text">Funcionário</span>
+		      						<span class="navbar-text"><%=funcionario.getNome() %></span>
 								</div>
 							</li>
 						</nav>
@@ -158,7 +170,7 @@
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label for="txtCodigo" class="form-label">Código</label>
-								<input class="form-control w-75" type="text" name="txtCodigo" id="txtCodigo" value="<%=listaProduto.size() + 1%>" readonly>
+								<input class="form-control w-75" type="text" name="txtCodigo" id="txtCodigo" value="<%=listaProduto.size()%>" readonly>
 							</div>
 						<div class="form-group col-md-6">
 							<label for="txtQtd" class="form-label">Quantidade</label>

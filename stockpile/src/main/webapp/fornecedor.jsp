@@ -27,6 +27,7 @@
 	</head>
 	
 	<%
+
 	String msg = (String)session.getAttribute("MENSAGEM");
 
 	@SuppressWarnings("unchecked")

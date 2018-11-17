@@ -22,13 +22,23 @@ java.util.List, java.util.ArrayList"%>
 			$(document).ready(function(){
 				$('#dataPedido').mask('00/00/0000');
 			})
-
+			
+			function remover(id) {
+				if (confirm("Remove o sorvete com id " + id)) {
+					$('#novo-pedido').empty();
+					$('#novo-pedido').append('<input type="hidden" name="txtId" value="' + id + '"/>');
+					$('#novo-pedido').append('<input type="hidden" name="cmd" value="remover"/>');
+					$('#novo-pedido').submit();
+				}
+			}
 		</script>
 	</head>
 	
 	<body>
 	
 		<% 
+		
+		Funcionario funcionario = new Funcionario(); 
  		String msg = (String)session.getAttribute("MENSAGEM"); 
 		
 		@SuppressWarnings("unchecked")
@@ -118,7 +128,7 @@ java.util.List, java.util.ArrayList"%>
 		      						<a class="dropdown-item" href="#">Sair</a>
 		      					</div>
 		      					<div>
-		      						<span class="navbar-text">Funcionário</span>
+		      						<span class="navbar-text"><%=funcionario.getNome() %></span>
 								</div>
 							</li>
 						</nav>
@@ -189,7 +199,7 @@ java.util.List, java.util.ArrayList"%>
 						</div>
 	
 	  			</form>
-						<form>
+						<form name="novo-pedido" id="novo-pedido" action="./PedidoC" method="post">
 							<div class="form-row pt-5 w-75">
 								<div class="input-group">
 									<div class="input-group-prepend">

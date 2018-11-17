@@ -22,45 +22,49 @@
 				$('#dataPedido').mask('00/00/0000');
 			})
 		
-			function confirmacao() {
-				$.notify({
-					message: 'Funcionário adicionado com sucesso!'
-				}, {
-					type: 'success'
-				});
-				return true
-			}
 		</script>
 	</head>
 	
 	<body>
 	
-<%-- 		<%  --%>
-<!-- 		String msg = (String)session.getAttribute("MENSAGEM"); -->
-<!-- 		List<Produto> listarProduto = (List<Produto>)session.getAttribute("LISTA"); -->
+		<% 
+		Funcionario funcionario = new Funcionario();
+ 		String msg = (String)session.getAttribute("MENSAGEM");
+ 		
+ 		@SuppressWarnings("unchecked")
+ 		List<Produto> listarProduto = (List<Produto>)session.getAttribute("LISTA"); 
 			   
-<!-- 			if (listarProduto == null) {  -->
-<!-- 				listarProduto = new ArrayList<Produto>(); -->
-<!-- 			} else {  -->
-<!-- 				session.setAttribute("LISTA", null); -->
-<!-- 			} -->
-			   
-<!-- 			Produto produtoAtual = (Produto)session.getAttribute("PRODUTO_ATUAL"); -->
+ 			if (listarProduto == null) {  
+ 				listarProduto = new ArrayList<Produto>(); 
+ 			} else {  
+ 				session.setAttribute("LISTA", null); 
+ 			} 
+		   
+ 			Produto produtoAtual = (Produto)session.getAttribute("PRODUTO_ATUAL"); 
 			  
-<!-- 			if (produtoAtual == null) {  -->
-<!-- 			   produtoAtual = new Produto(); -->
-<!-- 		   	} else {  -->
-<!-- 			   session.setAttribute("PRODUTO_ATUAL", null);			       -->
-<!-- 		   	} -->
+ 			if (produtoAtual == null) {  
+ 			   produtoAtual = new Produto(); 
+ 		   	} else {  
+ 			   session.setAttribute("PRODUTO_ATUAL", null);			       
+ 		   	} 
 			
-<!-- 			if (msg != null) { -->
-<!--  				session.setAttribute("MENSAGEM", null); -->
+ 			if (msg != null) {
+  				session.setAttribute("MENSAGEM", null);
 			
-<%-- 		%> --%>
+ 		%>
 		
-<%-- 		<h3 class="alert alert-danger"><%=msg%></h3> --%>
+		<div class="modal fade" id="modalAlert" aria-hidden="true" tabindex="-1" role="dialog">
+ 			<div class="modal-dialog">
+ 				<div class="modal-content">
+ 					<div class="modal-body">
+ 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+ 						<p><%=msg %></p>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</div>
 
-<%-- 		<% } %> --%>
+		<% } %>
 	
 		<header class="header">
 			<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -97,7 +101,7 @@
 		      						<a class="dropdown-item" href="#">Sair</a>
 		      					</div>
 		      					<div>
-		      						<span class="navbar-text">Funcionário</span>
+		      						<span class="navbar-text"><%=funcionario.getNome() %></span>
 								</div>
 							</li>
 						</nav>
@@ -110,7 +114,7 @@
 		
 		<div class="row justify-content-around">
 			<div class="col-7 pt-3">
-<%-- 				<%if (listarProduto.size() > 0) {%> --%>
+				
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -120,27 +124,28 @@
 						</tr>
 					</thead>
 					<tbody>
-<%-- 						<% for (Produto produto : listarProduto) { %> --%>
-<!-- 						<tr> -->
-<%-- 							<th scope="row"><%=produto.getCodigo()%></th> --%>
-<%-- 							<th scope="row"><%=produto.getNome()%></th> --%>
-<%-- 							<th scope="row"><%=produto.getQtd()%></th> --%>
-<%-- 							<th scope="row"><%=produto.getDescr()%></th> --%>
-<!-- 						</tr> -->
-<%-- 						<% } %> --%>
+						<%if (listarProduto.size() > 0) {%>
+						<% for (Produto produto : listarProduto) { %>
+						<tr>
+							<th scope="row"><%=produto.getCodigo()%></th>
+							<th scope="row"><%=produto.getNome()%></th>
+							<th scope="row"><%=produto.getQtd()%></th>
+						</tr>
+						<% } %>
+						<%} %>
 					</tbody>
 				</table>
 			</div>
-<%-- 			<%} %> --%>
+			
 			
 				<div class="col-md-4 pt-3 col-sm-2">
-					<form name="buscar-produto" class="form-inline justify-content-start">
+					<form name="buscar-produto" action="./PedidoC" method="post" class="form-inline justify-content-start">
 						<div class="form-row">
 							<div class="form-group col-md-8">
 								<input class="form-control" type="text" name="txtNumPedido" id="numPedido" placeholder="Nº do Pedido">
 							</div>
 							<div class="form-group col-md-4">
-								<button type="button" class="btn btn-outline-primary ml-4">Pesquisar</button>
+								<button type="submit" class="btn btn-outline-primary ml-4">Pesquisar</button>
 							</div>
 						</div>
 					</form>
@@ -159,6 +164,7 @@
 					<div class="w-75 pt-4">
 						<table class="table table-hover">
 							<thead>
+								
 								<tr>
 									<th scope="col">Cód</th>
 									<th scope="col">Item</th>
@@ -166,6 +172,15 @@
 								</tr>
 							</thead>
 							<tbody>
+								<%if (listarProduto.size() > 0) {%>
+								<% for (Produto produto : listarProduto) { %>
+								<tr>
+									<th scope="row"><%=produto.getCodigo()%></th>
+									<th scope="row"><%=produto.getNome()%></th>
+									<th scope="row"><%=produto.getQtd()%></th>
+								</tr>
+								<% } %>
+								<%} %>
 							</tbody>
 						</table>
 					</div>
