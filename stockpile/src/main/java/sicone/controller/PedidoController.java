@@ -1,8 +1,6 @@
 package sicone.controller;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,8 +13,6 @@ import javax.servlet.http.HttpSession;
 import sicone.dao.GenericDAOException;
 import sicone.dao.PedidoDAO;
 import sicone.dao.PedidoDAOImpl;
-import sicone.dao.ProdutoDAO;
-import sicone.dao.ProdutoDAOImpl;
 import sicone.model.Cliente;
 import sicone.model.Pedido;
 import sicone.model.Produto;
@@ -64,8 +60,8 @@ public class PedidoController extends HttpServlet  {
 
 				if ("adicionar".equals(cmd)) {
 					
-					produto.setNome(request.getParameter("txtItem"));
-					produto.setQtd(Integer.parseInt(request.getParameter("txtQtd")));
+					produto.setNome(request.getParameter("item"));
+					produto.setQtd(Integer.parseInt(request.getParameter("qtd")));
 					
 					msg = "Produto adicionado com sucesso";
 					
@@ -73,12 +69,13 @@ public class PedidoController extends HttpServlet  {
 					msg = "Produto removido com sucesso";
 					
 				} else if ("limpar-pedido".equals(cmd)) {
+					
 					msg = "Pedido não realizado";
 					
 				} else if ("finalizar-pedido".equals(cmd)) {
 					pedidoDAO.adicionar(cliente, pedido, produto);
 					
-					msg = "Pedido finalizado e armazenado com sucesso";
+					msg = "Pedido finalizado com sucesso";
 					
 				}
 				
@@ -97,7 +94,7 @@ public class PedidoController extends HttpServlet  {
 		}
 		
 		session.setAttribute("MENSAGEM", msg);
-		response.sendRedirect("./estoque.jsp");
+		response.sendRedirect("./novo-pedido.jsp");
 
 	}
 }

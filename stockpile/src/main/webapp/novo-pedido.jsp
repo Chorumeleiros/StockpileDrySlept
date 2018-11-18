@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="sicone.model.Produto, sicone.model.Fornecedor, sicone.model.Funcionario, sicone.model.Cliente,
-java.util.List, java.util.ArrayList"%> 
+<%@ page import="sicone.model.Produto, sicone.model.Fornecedor, sicone.model.Funcionario, sicone.model.Cliente, 
+sicone.model.Pedido, java.util.List, java.util.ArrayList"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -40,7 +40,7 @@ java.util.List, java.util.ArrayList"%>
 	<body>
 	
 		<% 
-		
+		Pedido pedido = new Pedido();
 		Funcionario funcionario = new Funcionario(); 
  		String msg = (String)session.getAttribute("MENSAGEM"); 
 		
@@ -154,13 +154,13 @@ java.util.List, java.util.ArrayList"%>
 						</thead>
 						<tbody>
 							<%if (listaItemProduto.size() > 0) {%>
-							<% for (Produto produto : listaItemProduto) { %>
+								<%for (Produto produto : listaItemProduto) { %>
 							<tr>
 								<th scope="row"><%=produto.getCodigo()%></th>
 								<th scope="row"><%=produto.getNome()%></th>
 								<th scope="row"><%=produto.getQtd()%></th>
 							</tr>
-							<% } %>
+								<% } %>
 							<% } %>
 						</tbody>
 					</table>
@@ -174,10 +174,10 @@ java.util.List, java.util.ArrayList"%>
 								<select class="custom-select" required="required">
 									<option selected>Selecione o cliente</option>
 									<%if (listaCliente.size() > 0) {%>
-									<%for (Cliente cliente : listaCliente) { %> 
+										<%for (Cliente cliente : listaCliente) { %> 
   									<option name="nomeCliente" value="nomeCliente"><%=cliente.getNome()%></option>
-  									<% } 
-  								}%>
+  										<% } 
+  									}%>
 								</select>
 								<div class="input-group-append">
 				    				<button class="btn btn-outline-primary" name="cmd" value="novo-pedido" type="submit">Novo Pedido</button>
@@ -189,7 +189,7 @@ java.util.List, java.util.ArrayList"%>
     							<div class="input-group-prepend">
       								<div class="input-group-text">Nº do Pedido</div>
     							</div>
-    							<input type="text" class="form-control" name="numPedido" id="numPedido" readonly>
+    							<input type="text" class="form-control" name="numPedido" id="numPedido" value="<%=pedido.getNumPedido()%>" readonly>
   							</div>
   						</div>
 						<div class="form-row pt-3">
@@ -197,7 +197,7 @@ java.util.List, java.util.ArrayList"%>
     							<div class="input-group-prepend">
       								<div class="input-group-text">Data</div>
     							</div>
-    							<input type="text" class="form-control" name="dataPedido" id="dataPedido" readonly>
+    							<input type="text" class="form-control" name="dataPedido" id="dataPedido" value="<%=pedido.getDataPedido()%>" readonly>
   							</div>
 						</div>
 	
@@ -208,11 +208,11 @@ java.util.List, java.util.ArrayList"%>
 									<div class="input-group-prepend">
 										<label class="input-group-text" for="txtItem">Item</label>
 									</div>
-									<select class="custom-select" id="txtItem" name="txtItem" required="required">
+									<select class="custom-select" required="required">
 										<option selected> </option>
 										<%if (listaItemProduto.size() > 0) {%>
 										<%for (Produto produto : listaItemProduto) { %> 
-	  									<option><%=produto.getNome()%></option>
+	  									<option name="item" value="item"><%=produto.getNome()%></option>
 	  										<% } 
 	  									}%>
 									</select>
@@ -223,11 +223,11 @@ java.util.List, java.util.ArrayList"%>
 									<div class="input-group-prepend">
 										<label class="input-group-text" for="txtQtd">Quantidade</label>
 									</div>
-									<select class="custom-select" id="txtQtd" name="txtQtd" required="required">
+									<select class="custom-select" required="required">
 										<option selected> </option>
 										<%if (listaItemProduto.size() > 0) {%>
 										<%for (Produto produto : listaItemProduto) { %> 
-	  									<option><%=produto.getQtd()%></option>
+	  									<option name="qtd" value="qtd"><%=produto.getQtd()%></option>
 	  										<% } 
 	  									}%>
 									</select>

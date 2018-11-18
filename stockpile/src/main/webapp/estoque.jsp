@@ -13,20 +13,8 @@
 		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
 		<script src="js/jquery.mask.min.js" type="text/javascript"></script>
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
-		<script src="js/bootstrap-notify.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-		
-		<script type="text/javascript">
-			function remover(id) {
-				if (confirm("Remove o sorvete com id " + id)) {
-					$('#novo-pedido').empty();
-					$('#novo-pedido').append('<input type="hidden" name="txtId" value="' + id + '"/>');
-					$('#novo-pedido').append('<input type="hidden" name="cmd" value="remover"/>');
-					$('#novo-pedido').submit();
-				}
-			}
-		</script>
 		
 	</head>
 	
@@ -170,28 +158,29 @@
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label for="txtCodigo" class="form-label">Código</label>
-								<input class="form-control w-75" type="text" name="txtCodigo" id="txtCodigo" value="<%=listaProduto.size()%>" readonly>
+								<input class="form-control w-75" type="text" name="txtCodigo" id="txtCodigo" value="<%=listaProduto.size() + 1%>" readonly>
 							</div>
 						<div class="form-group col-md-6">
 							<label for="txtQtd" class="form-label">Quantidade</label>
-							<input class="form-control w-50" type="text" name="txtQtd" id="txtQtd" value="<%=produtoAtual.getQtd()%>" required="required">
+							<input class="form-control w-50" type="text" name="txtQtd" id="txtQtd" required="required">
 						</div>
 						</div>
 						<div class="form-group w-75">
 							<label for="txtNome" class="form-label">Item</label>
-							<input class="form-control" type="text" name="txtNome" id="txtNome" value="<%=produtoAtual.getNome()%>" required="required" />
+							<input class="form-control" type="text" name="txtNome" id="txtNome" required="required" />
 						</div>
 						<div class="form-group w-75">
 							<label for="txtDescr" class="form-label">Descrição</label>
-							<textarea class="form-control" name="txtDescr" id="txtDescr" value="<%=produtoAtual.getDescr()%>" rows="3"></textarea>
+							<textarea class="form-control" name="txtDescr" id="txtDescr" rows="3"></textarea>
 							<small id="descrHelp" class="form-text text-muted text-gray">Máximo de 200 caracteres</small>	
 						</div>
 						<div class="form-group w-75">
 							<label for="txtFornecedor" class="form-label">Fornecedor</label>
-							<select class="custom-select" name="txtFornecedor" value="Selecione o fornecedor">
+							<select class="custom-select">
+								<option selected>Selecione</option>
 								<%if (listaFornecedor.size() > 0) {%>
 									<%for (Fornecedor fornecedor : listaFornecedor) { %> 
-  								<option><%=fornecedor.getNome()%></option>
+  								<option name="txtFornecedor"><%=fornecedor.getNome()%></option>
   									<% } 
   								}%>
 							</select>
