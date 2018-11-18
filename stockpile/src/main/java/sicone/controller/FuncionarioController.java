@@ -62,15 +62,11 @@ public class FuncionarioController extends HttpServlet {
 
 				funcionarioDAO.adicionar(funcionario);
 				
+				List<Funcionario> listaFuncionario = funcionarioDAO.pesquisarPorNome("");
+				session.setAttribute("LISTA_FUNCIONARIO", listaFuncionario);
+
+				msg = "Funcionário adicionado com sucesso";
 				
-//				essa lista serve pra atualizar automaticamente depois de adicionar
-//				List<Funcionario> listaFuncionario = funcionarioDAO.pesquisarPorNome("");
-//				session.setAttribute("LISTA_FUNCIONARIO", listaFuncionario);
-
-				if ("adicionar" != null) {
-					msg = "Funcionário adicionado com sucesso";
-				}
-
 			}
 		
 		} catch (GenericDAOException e) {

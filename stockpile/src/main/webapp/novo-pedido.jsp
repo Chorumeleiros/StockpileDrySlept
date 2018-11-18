@@ -14,7 +14,6 @@ java.util.List, java.util.ArrayList"%>
 		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
 		<script src="js/jquery.mask.min.js" type="text/javascript"></script>
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
-		<script src="js/bootstrap-notify.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 			
@@ -22,6 +21,10 @@ java.util.List, java.util.ArrayList"%>
 			$(document).ready(function(){
 				$('#dataPedido').mask('00/00/0000');
 			})
+			
+			$('#txtCliente').html("<option value='nomeCliente'></option>");
+			
+			blockSelect()
 			
 			function remover(id) {
 				if (confirm("Remove o sorvete com id " + id)) {
@@ -168,11 +171,11 @@ java.util.List, java.util.ArrayList"%>
 					<form name="novo-pedido" action="./PedidoC" method="post">
 						<div class="form-row">
 							<div class="input-group w-75">
-								<select class="custom-select" id="txtCliente" name="txtCliente" required="required">
+								<select class="custom-select" required="required">
 									<option selected>Selecione o cliente</option>
 									<%if (listaCliente.size() > 0) {%>
 									<%for (Cliente cliente : listaCliente) { %> 
-  									<option><%=cliente.getNome()%></option>
+  									<option name="nomeCliente" value="nomeCliente"><%=cliente.getNome()%></option>
   									<% } 
   								}%>
 								</select>
@@ -186,7 +189,7 @@ java.util.List, java.util.ArrayList"%>
     							<div class="input-group-prepend">
       								<div class="input-group-text">Nº do Pedido</div>
     							</div>
-    							<input type="text" class="form-control" id="numPedido" readonly>
+    							<input type="text" class="form-control" name="numPedido" id="numPedido" readonly>
   							</div>
   						</div>
 						<div class="form-row pt-3">
@@ -194,7 +197,7 @@ java.util.List, java.util.ArrayList"%>
     							<div class="input-group-prepend">
       								<div class="input-group-text">Data</div>
     							</div>
-    							<input type="text" class="form-control" id="dataPedido" readonly>
+    							<input type="text" class="form-control" name="dataPedido" id="dataPedido" readonly>
   							</div>
 						</div>
 	

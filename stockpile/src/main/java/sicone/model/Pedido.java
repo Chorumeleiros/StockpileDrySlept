@@ -14,7 +14,7 @@ public class Pedido implements Serializable {
 	private static final long serialVersionUID = 6320049199416842349L;
 
 	private int numPedido;
-	private Date dataPedido;
+	private String dataPedido;
 
 	public int getNumPedido() {
 		return numPedido;
@@ -24,11 +24,11 @@ public class Pedido implements Serializable {
 		this.numPedido = numPedido;
 	}
 
-	public Date getDataPedido() {
+	public String getDataPedido() {
 		return dataPedido;
 	}
 
-	public void setDataPedido(Date dataPedido) {
+	public void setDataPedido(String dataPedido) {
 		this.dataPedido = dataPedido;
 	}
 
