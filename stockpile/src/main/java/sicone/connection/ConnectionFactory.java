@@ -16,14 +16,11 @@ public class ConnectionFactory {
 	private static final String URL = "jdbc:mysql://localhost:3306/sicone";
 	private static final String USER = "root";
 	private static final String PASS = "";
-	
 
-	
-	
-	private static final String O_DRIVER = "";
-	private static final String O_URL = "jdbc:oracle:thin:@localhost:1521:siconeORA";
-	private static final String O_USER = "sys";
-	private static final String O_PASS = "alunofatec";
+//	private static final String O_DRIVER = "";
+//	private static final String O_URL = "jdbc:oracle:thin:@localhost:1521:siconeORA";
+//	private static final String O_USER = "sys";
+//	private static final String O_PASS = "alunofatec";
 
 	/**
 	 * metodo responsavel por criar conexao com o banco de dados.

@@ -4,6 +4,7 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
   <servlet>
   	<servlet-name>AuthController</servlet-name>
   	<display-name>AuthController</display-name>
@@ -28,6 +29,12 @@
   	<description></description>
   	<servlet-class>sicone.controller.ClienteController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>LogoutController</servlet-name>
+  	<display-name>LogoutController</display-name>
+  	<description></description>
+  	<servlet-class>sicone.controller.LogoutController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>AuthController</servlet-name>
   	<url-pattern>/AuthController</url-pattern>
@@ -43,5 +50,9 @@
   <servlet-mapping>
   	<servlet-name>ClienteController</servlet-name>
   	<url-pattern>/ClienteController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>LogoutController</servlet-name>
+  	<url-pattern>/LogoutController</url-pattern>
   </servlet-mapping>
 </web-app>

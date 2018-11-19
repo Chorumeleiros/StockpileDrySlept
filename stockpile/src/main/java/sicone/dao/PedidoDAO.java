@@ -8,7 +8,7 @@ import sicone.model.Produto;
 
 public interface PedidoDAO {
 	
-	public void adicionar(Cliente cliente, Pedido pedido, Produto produto) throws GenericDAOException;
+	public void adicionar(Cliente cliente, Pedido pedido, List<Produto> itemPedido) throws GenericDAOException;
 	public List<Pedido> pesquisarNumPedido(int numPedido) throws GenericDAOException;
 
 }

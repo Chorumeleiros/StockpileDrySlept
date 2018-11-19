@@ -14,7 +14,6 @@ import sicone.dao.FornecedorDAO;
 import sicone.dao.FornecedorDAOImpl;
 import sicone.dao.GenericDAOException;
 import sicone.model.Fornecedor;
-import sicone.model.Funcionario;
 
 /**
  * classe responsavel por receber os parametros do fornecedor da view

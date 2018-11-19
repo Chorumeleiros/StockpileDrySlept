@@ -26,7 +26,7 @@ public class PedidoDAOImpl implements PedidoDAO {
 	}
 
 	@Override
-	public void adicionar(Cliente cliente, Pedido pedido, Produto produto) throws GenericDAOException {
+	public void adicionar(Cliente cliente, Pedido pedido, List<Produto> itemPedido) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
 		String sql = "INSERT INTO PEDIDO (NOME, DATAPEDIDO, NOMEPROD, QTDPROD) VALUES (?, ?, ?, ?)";
 
@@ -35,8 +35,8 @@ public class PedidoDAOImpl implements PedidoDAO {
 			
 			pstmt.setString(1, cliente.getNome());
 			pstmt.setString(2, pedido.getDataPedido());
-			pstmt.setString(3, produto.getNome());
-			pstmt.setInt(4, produto.getQtd());
+			pstmt.setString(3, ((Produto) itemPedido).getNome());
+			pstmt.setInt(4, ((Produto) itemPedido).getQtd());
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {

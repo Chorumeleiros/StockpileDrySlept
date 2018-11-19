@@ -1,6 +1,7 @@
 package sicone.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -50,9 +51,11 @@ public class PedidoController extends HttpServlet  {
 			PedidoDAO pedidoDAO = new PedidoDAOImpl();
 			
 			 if ("novo-pedido".equals(cmd)) {
-				 Cliente cliente = new Cliente();
-				 Pedido pedido = new Pedido();
-				 Produto produto = new Produto();
+				List<Produto> itemPedido = new ArrayList<>();
+				 
+				Cliente cliente = new Cliente();
+				Produto produto = new Produto();
+				Pedido pedido = new Pedido();
 				
 				pedido.setNumPedido(Integer.parseInt(request.getParameter("numPedido")));
 				pedido.setDataPedido(request.getParameter("dataPedido"));
@@ -63,24 +66,37 @@ public class PedidoController extends HttpServlet  {
 					produto.setNome(request.getParameter("item"));
 					produto.setQtd(Integer.parseInt(request.getParameter("qtd")));
 					
+					itemPedido.add(produto);
+					session.setAttribute("LISTA_ITEM_PEDIDO", itemPedido);
+					
 					msg = "Produto adicionado com sucesso";
 					
 				} else if ("remover".equals(cmd)) {
+					
+					produto.setNome(request.getParameter("item"));
+					produto.setQtd(Integer.parseInt(request.getParameter("qtd")));
+					
+					itemPedido.remove(produto);
+					session.setAttribute("LISTA_ITEM_PEDIDO", itemPedido);
+					
 					msg = "Produto removido com sucesso";
 					
 				} else if ("limpar-pedido".equals(cmd)) {
 					
-					msg = "Pedido não realizado";
+					itemPedido.clear();
+					session.setAttribute("LISTA_ITEM_PEDIDO", itemPedido);
+					
+					msg = "Itens removidos com sucesso";
 					
 				} else if ("finalizar-pedido".equals(cmd)) {
-					pedidoDAO.adicionar(cliente, pedido, produto);
+					
+					pedidoDAO.adicionar(cliente, pedido, itemPedido);
 					
 					msg = "Pedido finalizado com sucesso";
 					
+					response.sendRedirect("./consulta-pedido.jsp");
 				}
 				
-//				List<Pedido> listaPedido = pedidoDAO.pesquisarNumPedido("");
-//				session.setAttribute("LISTA_PEDIDO", listaPedido);
 
 			} else if ("pesquisar".equals(cmd)) {
 //				List<Pedido> buscaProduto = pedidoDAO.pesquisarNumPedido(request.getParameter("txtNome"));

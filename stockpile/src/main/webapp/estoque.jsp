@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="sicone.model.Produto, sicone.model.Fornecedor, sicone.model.Funcionario, java.util.List, java.util.ArrayList"%> 
+<%@ page import="sicone.model.Produto, sicone.model.Fornecedor, sicone.model.UserInfo, java.util.List, java.util.ArrayList"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -11,7 +11,6 @@
 		<link rel="icon" href="./imgs/favicon.png" type="image/x-icon" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" href="css/style-menu" />
 		<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-		<script src="js/jquery.mask.min.js" type="text/javascript"></script>
 		<script src="js/bootstrap.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -22,7 +21,15 @@
 	
 	<% 
 
-	Funcionario funcionario = new Funcionario(); 
+	UserInfo funcionarioLogado = (UserInfo)session.getAttribute("FUNCIONARIO_LOGADO");
+	
+	if (funcionarioLogado == null) {
+		funcionarioLogado = new UserInfo();
+	} else {
+		session.setAttribute("FUNCIONARIO_LOGADO", null);
+	}
+	
+	
 	String msg = (String)session.getAttribute("MENSAGEM");
 
 	
@@ -114,10 +121,12 @@
 			      					<i class="fas fa-user-tie fas fa-stroopwafel fa-2x" style="color: #fff"></i>
 			      				</a>
 			      				<div class="dropdown-menu dropdown-menu-right">
-		      						<a class="dropdown-item" href="#">Sair</a>
+			      					<form action="./Logout" method="post">
+		      							<a class="dropdown-item" name="cmd" value="sair" href="#">Sair</a>
+		      						</form>
 		      					</div>
 		      					<div>
-		      						<span class="navbar-text"><%=funcionario.getNome() %></span>
+		      						<span class="navbar-text"><%=funcionarioLogado.getNome() %></span>
 								</div>
 							</li>
 						</nav>
@@ -197,7 +206,6 @@
 									<input class="form-control" type="text" name="txtNome" id="txtNome" placeholder="Item">
 								</div>
 								<div class="form-group col-md-4">
-									
 									<button type="submit" class="btn btn-outline-primary ml-4" name="cmd" value="pesquisar">Pesquisar</button>
 								</div>
 							</div>

@@ -128,7 +128,9 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
 			      					<i class="fas fa-user-tie fas fa-stroopwafel fa-2x" style="color: #fff"></i>
 			      				</a>
 			      				<div class="dropdown-menu dropdown-menu-right">
-		      						<a class="dropdown-item" href="#">Sair</a>
+			      					<form action="./Logout" method="post">
+		      							<a class="dropdown-item" name="cmd" value="sair" href="#">Sair</a>
+		      						</form>
 		      					</div>
 		      					<div>
 		      						<span class="navbar-text"><%=funcionario.getNome() %></span>

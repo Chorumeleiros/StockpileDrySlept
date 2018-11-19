@@ -12,9 +12,6 @@ import javax.servlet.http.HttpSession;
 import sicone.model.UserInfo;
 import sicone.dao.AuthDAO;
 import sicone.dao.GenericDAOException;
-import sicone.model.Admin;
-import sicone.model.Cliente;
-import sicone.model.Fornecedor;
 import sicone.model.Funcionario;
 
 /**
@@ -29,9 +26,6 @@ public class AuthController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	Funcionario funcionario = new Funcionario();
-	Admin admin = new Admin();
-	Cliente cliente = new Cliente();
-	Fornecedor fornecedor = new Fornecedor();
 
 	public AuthController() {
 
@@ -61,10 +55,10 @@ public class AuthController extends HttpServlet {
 
 					UserInfo userInfo = new UserInfo();
 					userInfo.setProfile("admin");
-					userInfo.setNome(admin.getNome());
+					userInfo.setNome("Admin");
 					userInfo.setLogado(true);
 					session.setAttribute("ADMIN_LOGADO", userInfo);
-					System.out.println("ADMIN LOGADO");
+					
 					response.sendRedirect("./funcionario.jsp");
 
 				} else if (daoLogin.checkLogin(Integer.parseInt(user), pass)) {
