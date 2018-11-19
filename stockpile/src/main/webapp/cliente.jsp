@@ -81,7 +81,7 @@
 	          			<li class="nav-item"><a href="./funcionario.jsp" class="nav-link">Funcionários</a></li>
 	        		</ul>
 					<div class="container">
-						<form class="form-inline" name="atualizar-funcionario" action="./ClienteC" method="post">
+						<form class="form-inline" name="atualizar-cliente" action="./ClienteC" method="post">
 						<button class="btn btn-sm btn-outline-secondary" type="submit" 
 							name="cmd" value="atualizar" data-toggle="modal" data-target="#modalAlert">Atualizar</button>
 						</form>
@@ -136,16 +136,16 @@
 					<form name="adicionar-cliente" action="./ClienteC" method="post">
 						<div class="row">
 							<div class="form-group w-50">
-								<label for="cpf" class="form-label">CPF</label>
-								<input class="form-control" type="text" id="txtCpf" required="required">
+								<label for="txtCpf" class="form-label">CPF</label>
+								<input class="form-control" type="text" name="txtCpf" id="txtCpf" required="required">
 								<small id="cpfHelp" class="form-text text-muted text-gray">Digite apenas números</small>
 								<div class="invalid-feedback">CPF inválido</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group w-75">
-								<label for="nome" class="form-label">Nome</label>
-								<input class="form-control" type="text" id="nome" required="required">	
+								<label for="txtNome" class="form-label">Nome</label>
+								<input class="form-control" type="text" name="txtNome" id="txtNome" required="required">	
 							</div>
 						</div>
 					<div class="row">

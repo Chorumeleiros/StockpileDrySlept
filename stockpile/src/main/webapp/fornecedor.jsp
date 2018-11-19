@@ -83,7 +83,7 @@
 	          			<li class="nav-item"><a href="./funcionario.jsp" class="nav-link">Funcionários</a></li>
 	        		</ul>
 					<div class="container">
-						<form class="form-inline" name="atualizar-funcionario" action="./FornecedorC" method="post">
+						<form class="form-inline" name="atualizar-fornecedor" action="./FornecedorC" method="post">
 						<button class="btn btn-sm btn-outline-secondary" type="submit" 
 							name="cmd" value="atualizar" data-toggle="modal" data-target="#modalAlert">Atualizar</button>
 						</form>
