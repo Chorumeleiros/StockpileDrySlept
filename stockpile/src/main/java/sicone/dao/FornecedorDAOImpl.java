@@ -58,6 +58,7 @@ public class FornecedorDAOImpl implements FornecedorDAO {
 				fornecedor.setNome(rs.getString("NOME"));
 				
 				listaFornecedor.add(fornecedor);
+				//System.out.println("forn"+fornecedor.getNome());
 			}
 			
 		} catch (SQLException e) {

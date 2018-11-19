@@ -33,7 +33,7 @@
 			listaProduto = new ArrayList<Produto>(); 
 	
 		} else {  
-			session.setAttribute("LISTA", null); 
+			session.setAttribute("LISTA_PROD", null); 
 		} 			   
 			
 		Produto produtoAtual = (Produto)session.getAttribute("PRODUTO_ATUAL"); 
@@ -52,7 +52,7 @@
  			listaFornecedor = new ArrayList<Fornecedor>(); 
 		
  		} else {  
- 			session.setAttribute("LISTA", null); 
+ 			session.setAttribute("LISTA_FORNECEDOR", null); 
  		} 			   
  			
  		Fornecedor fornecedorAtual = (Fornecedor)session.getAttribute("FORNECEDOR_ATUAL"); 
