@@ -21,19 +21,6 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
 			$(document).ready(function(){
 				$('#dataPedido').mask('00/00/0000');
 			})
-			
-			$('#txtCliente').html("<option value='nomeCliente'></option>");
-			
-			blockSelect()
-			
-			function remover(id) {
-				if (confirm("Remove o sorvete com id " + id)) {
-					$('#novo-pedido').empty();
-					$('#novo-pedido').append('<input type="hidden" name="txtId" value="' + id + '"/>');
-					$('#novo-pedido').append('<input type="hidden" name="cmd" value="remover"/>');
-					$('#novo-pedido').submit();
-				}
-			}
 		</script>
 	</head>
 	
@@ -69,14 +56,6 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
  	 			} else {  
  	 				session.setAttribute("LISTA", null); 
  	 			} 
- 				   
- 	 			Cliente clienteAtual = (Cliente)session.getAttribute("CLIENTE_ATUAL");
- 			  
- 	 			if (clienteAtual == null) {  
- 	 				clienteAtual = new Cliente(); 
- 	 		   	} else {  
- 	 			   session.setAttribute("CLIENTE_ATUAL", null);			       
- 	 		   	}
 			
  			if (msg != null) {
   				session.setAttribute("MENSAGEM", null);

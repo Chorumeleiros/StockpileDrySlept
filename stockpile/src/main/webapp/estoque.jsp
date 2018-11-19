@@ -59,18 +59,8 @@
  			listaFornecedor = new ArrayList<Fornecedor>(); 
 		
  		} else {  
- 			session.setAttribute("LISTA_FORNECEDOR", null); 
- 		} 			   
- 			
- 		Fornecedor fornecedorAtual = (Fornecedor)session.getAttribute("FORNECEDOR_ATUAL"); 
-		  
- 		if (fornecedorAtual == null) { 
- 			fornecedorAtual = new Fornecedor();  	
-		   
- 		} else {  
- 		   session.setAttribute("FORNECEDOR_ATUAL", null);
- 		   
- 		} 
+ 			session.setAttribute("LISTA", null); 
+ 		}
 			
  		if (msg != null) { 
  			session.setAttribute("MENSAGEM", null); 
@@ -111,6 +101,12 @@
 							</div>
 						</li>
 	        		</ul>
+					<div class="container">
+						<form class="form-inline" name="atualizar-produto" action="./ProdutoC" method="post">
+						<button class="btn btn-sm btn-outline-secondary" type="submit" 
+							name="cmd" value="atualizar" data-toggle="modal" data-target="#modalAlert">Atualizar</button>
+						</form>
+					</div>		        		
 	      		</div>
 	      		<div class="container text-center">
 	      			<ul class="navbar-nav ml-md-auto">
@@ -189,7 +185,7 @@
 								<option selected>Selecione</option>
 								<%if (listaFornecedor.size() > 0) {%>
 									<%for (Fornecedor fornecedor : listaFornecedor) { %> 
-  								<option name="txtFornecedor"><%=fornecedor.getNome()%></option>
+  								<option name="txtFornecedor" value="txtFornecedor"><%=fornecedor.getNome()%></option>
   									<% } 
   								}%>
 							</select>
