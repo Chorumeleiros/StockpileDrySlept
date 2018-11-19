@@ -3,15 +3,6 @@ use sicone;
 
 -- drop database sicone;
 
-CREATE TABLE ADMIN (
-  ID VARCHAR(10) NOT NULL,
-  NOME VARCHAR(40),
-  SENHA VARCHAR(20),
-  PRIMARY KEY (ID)
-);
-
-insert into ADMIN (ID, NOME, SENHA) values ('admin', 'Churumelo', 'admin');
-
 CREATE TABLE FUNCIONARIO (
   ID INT NOT NULL AUTO_INCREMENT,
   NOME VARCHAR(40),
@@ -20,7 +11,10 @@ CREATE TABLE FUNCIONARIO (
   PRIMARY KEY (ID)
 );
 
+select * from funcionario;
+select * from fornecedor;
 select * from produto;
+select * from cliente;
 
 CREATE TABLE CLIENTE (
   CPF CHAR(14) NOT NULL,
@@ -34,10 +28,6 @@ CREATE TABLE FORNECEDOR (
   PRIMARY KEY (CNPJ)
 );
 
-drop table PRODUTO;
-insert into fornecedor (cnpj, nome) values ('1111111111', 'qdas');
-select * from fornecedor;
-
 CREATE TABLE PRODUTO (
   CODPROD INT AUTO_INCREMENT,
   NOMEPROD VARCHAR(50),
@@ -45,12 +35,9 @@ CREATE TABLE PRODUTO (
   DESCRPROD VARCHAR(200),
   FK_FORNCNPJ CHAR(18),
   PRIMARY KEY (CODPROD)
- -- FOREIGN KEY (FK_FORNCNPJ) REFERENCES FORNECEDOR(CNPJ)
 );
 
-insert into produto(nomeprod,qtdprod,descrprod) values('banissopa luara', 90, 'mirossola bafinho');
-drop table produto;
-select * from produto;
+
 
 CREATE TABLE PEDIDO (
   NUMPEDIDO INT,
@@ -65,4 +52,4 @@ CREATE TABLE ITEMPEDIDO (
   PRIMARY KEY (CODPROD)
 );
 
-
+-- ALTER TABLE PRODUTO ADD CONSTRAINT CNPJ_FK_FORN FOREIGN KEY FK_FORNCNPJ REFERENCES FORNECEDOR(CNPJ);
