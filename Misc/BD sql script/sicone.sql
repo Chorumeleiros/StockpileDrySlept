@@ -3,6 +3,11 @@ use sicone;
 
 -- drop database sicone;
 
+select * from funcionario;
+select * from cliente;
+select * from fornecedor;
+select * from produto;
+
 CREATE TABLE FUNCIONARIO (
   ID INT NOT NULL AUTO_INCREMENT,
   NOME VARCHAR(40),
@@ -10,11 +15,6 @@ CREATE TABLE FUNCIONARIO (
   SENHA VARCHAR(20),
   PRIMARY KEY (ID)
 );
-
-select * from funcionario;
-select * from fornecedor;
-select * from produto;
-select * from cliente;
 
 CREATE TABLE CLIENTE (
   CPF CHAR(14) NOT NULL,
