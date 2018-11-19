@@ -39,14 +39,6 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
  			} else {  
  				session.setAttribute("LISTA", null); 
  			} 
-			   
- 			Produto produtoAtual = (Produto)session.getAttribute("PRODUTO_ATUAL");
-		  
- 			if (produtoAtual == null) {  
- 			   produtoAtual = new Produto(); 
- 		   	} else {  
- 			   session.setAttribute("PRODUTO_ATUAL", null);			       
- 		   	}
  			
  			@SuppressWarnings("unchecked")
  	 		List<Cliente> listaCliente = (List<Cliente>)session.getAttribute("LISTA_CLIENTE"); 
@@ -54,7 +46,7 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
  	 			if (listaCliente == null) {  
  	 				listaCliente = new ArrayList<Cliente>(); 
  	 			} else {  
- 	 				session.setAttribute("LISTA", null); 
+ 	 				session.setAttribute("LISTA_CLIENTE", null); 
  	 			} 
 			
  			if (msg != null) {
@@ -152,11 +144,11 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
 					<form name="novo-pedido" action="./PedidoC" method="post">
 						<div class="form-row">
 							<div class="input-group w-75">
-								<select class="custom-select" required="required">
+								<select class="custom-select">
 									<option selected>Selecione o cliente</option>
 									<%if (listaCliente.size() > 0) {%>
 										<%for (Cliente cliente : listaCliente) { %> 
-  									<option name="nomeCliente" value="nomeCliente"><%=cliente.getNome()%></option>
+  									<option name="nomeCliente" value="nomeCliente" required="required"><%=cliente.getNome()%></option>
   										<% } 
   									}%>
 								</select>

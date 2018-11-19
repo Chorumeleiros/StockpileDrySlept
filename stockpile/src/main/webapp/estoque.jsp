@@ -42,15 +42,6 @@
 		} else {  
 			session.setAttribute("LISTA_PROD", null); 
 		} 			   
-			
-		Produto produtoAtual = (Produto)session.getAttribute("PRODUTO_ATUAL"); 
-	  
-		if (produtoAtual == null) { 
-	   produtoAtual = new Produto();  	
-	   
-		} else {  
-		   session.setAttribute("PRODUTO_ATUAL", null);
-		}
 	
 	@SuppressWarnings("unchecked")
 	List<Fornecedor> listaFornecedor = (List<Fornecedor>)session.getAttribute("LISTA_FORNECEDOR");
@@ -59,7 +50,7 @@
  			listaFornecedor = new ArrayList<Fornecedor>(); 
 		
  		} else {  
- 			session.setAttribute("LISTA", null); 
+ 			session.setAttribute("LISTA_FORNECEDOR", null); 
  		}
 			
  		if (msg != null) { 
@@ -185,7 +176,7 @@
 								<option selected>Selecione</option>
 								<%if (listaFornecedor.size() > 0) {%>
 									<%for (Fornecedor fornecedor : listaFornecedor) { %> 
-  								<option name="txtFornecedor" value="txtFornecedor"><%=fornecedor.getNome()%></option>
+  								<option name="txtFornecedor" value="txtFornecedor" required="required"><%=fornecedor.getNome()%></option>
   									<% } 
   								}%>
 							</select>
