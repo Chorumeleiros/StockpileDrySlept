@@ -1,7 +1,6 @@
 package sicone.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * classe responsavel por manter as informacoes do pedido.

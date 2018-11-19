@@ -34,16 +34,7 @@
 		listaFuncionario = new ArrayList<Funcionario>();
 	} else {
 		session.setAttribute("LISTA_FUNCIONARIO", null);
-	}
-	Funcionario funcionarioAtual = (Funcionario)session.getAttribute("FUNCIONARIO_ATUAL"); 
-	  
-		if (funcionarioAtual == null) { 
-			funcionarioAtual = new Funcionario();  	
-	   
-		} else {  
-		   session.setAttribute("FUNCIONARIO_ATUAL", null);
-		   
-		} 
+	} 
 		
 	if (msg != null) { 
 		session.setAttribute("MENSAGEM", null); 
@@ -62,18 +53,29 @@
  		<%} %>
  		
 	<header class="header"> 
-		<nav class="navbar navbar-expand-sm navbar-dark bg-dark"> 
-			<a href="#" class="navbar-brand"><img src="imgs/sicone_logo.png" width="200" height="60" alt="Sicone"></a>
-			<button class="navbar-toggler" data-toggler="collapse" data-target="#navbarMenu" role="button" aria-haspopup="true" aria-expanded="false">
-				<span clas="navbar-toggler-icon"></span>
-			</button>
+		<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+			
+			<a class="navbar-brand">
+				<img src="imgs/sicone_logo.png" width="200" height="60" alt="Sicone">
+			</a>
+	      	<button class="navbar-toggler" data-toggler="collapse" data-target="#navbarMenu" role="button" 
+	      			aria-haspopup="true" aria-expanded="false">
+	        		<span clas="navbar-toggler-icon"></span>
+	        </button>
 			<div class="collapse navbar-collapse" id="navbarMenu">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a href="./fornecedor.jsp" class="nav-link">Fornecedores</a></li>
 					<li class="nav-item"><a href="./cliente.jsp" class="nav-link">Clientes</a></li>
 					<li class="nav-item"><a href="./funcionario.jsp" class="nav-link">Funcionários</a></li>
 				</ul>
+					<div class="container">
+						<form class="form-inline" name="atualizar-funcionario" action="./FuncionarioC" method="post">
+						<button class="btn btn-sm btn-outline-secondary" type="submit" 
+							name="cmd" value="atualizar" data-toggle="modal" data-target="#modalAlert">Atualizar</button>
+						</form>
+					</div>
 			</div>
+			
 			<div class="container text-center">
 				<ul class="navbar-nav ml-md-auto">
 					<nav class="nav-flex-column">
@@ -144,27 +146,27 @@
 							<label for="cpf" class="form-label">CPF</label>
 							<input class="form-control" type="text" name="txtCpf" id="txtCpf" required="required">
 							<small id="cpfHelp" class="form-text text-muted text-gray">Digite apenas números</small>
-							<div class="invalid-feedback">CPF inválido</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group w-50">
 							<label for="senha" class="form-label">Senha</label> 
 							<input class="form-control" type="password" name="txtSenha" id="senha" required="required">
+							<small id="senhaHelp" class="form-text text-muted text-gray">Até 20 caracteres</small>
 						</div>
 					</div>
-				</form>
 					<div class="row">
-						<form name="adicionar-funcionario" action="./FuncionarioC" method="post">
-							<button type="submit" class="btn btn-outline-primary float-none mr-3" name="cmd" value="adicionar" data-toggle="modal" data-target="#modalAlert">Adicionar</button>
-						</form>
-						<form name="atualizar-funcionario" action="./FuncionarioC" method="post">
-							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="atualizar" data-toggle="modal" data-target="#modalAlert">Atualizar</button>
-						</form>
+						<button type="submit" class="btn btn-outline-primary float-none mr-3" name="cmd" value="adicionar" data-toggle="modal" data-target="#modalAlert">Adicionar</button>
 					</div>
+					</form>
+						
+<!-- 							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="atualizar" data-toggle="modal" data-target="#modalAlert">Atualizar</button> -->
+						
+					</div>
+					
 			</div>
 		</div>
-	</div>
+	
 	
 </body>
 

@@ -82,6 +82,12 @@
 	          			<li class="nav-item"><a href="./cliente.jsp" class="nav-link">Clientes</a></li>
 	          			<li class="nav-item"><a href="./funcionario.jsp" class="nav-link">Funcionários</a></li>
 	        		</ul>
+					<div class="container">
+						<form class="form-inline" name="atualizar-funcionario" action="./FornecedorC" method="post">
+						<button class="btn btn-sm btn-outline-secondary" type="submit" 
+							name="cmd" value="atualizar" data-toggle="modal" data-target="#modalAlert">Atualizar</button>
+						</form>
+					</div>	        		
 	      		</div>
 	      		<div class="container text-center">
 	      			<ul class="navbar-nav ml-md-auto">
@@ -144,15 +150,12 @@
 								<input class="form-control" type="text" name="txtNome" id="txtNome" required="required">	
 							</div>
 						</div>
-					</form>
+					
 					<div class="row">
-						<form name="adicionar-fornecedor" action="./FornecedorC" method="post">
-							<button type="submit" class="btn btn-outline-primary float-none mr-3" name="cmd" value="adicionar" data-toggle="modal" data-target="#modalAlert">Adicionar</button>
-						</form>
-						<form name="atualizar-fornecedor" action="./FornecedorC" method="post">
-							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="atualizar" data-toggle="modal" data-target="#modalAlert">Atualizar</button>
-						</form>
+						<button type="submit" class="btn btn-outline-primary float-none mr-3" name="cmd" 
+							value="adicionar" data-toggle="modal" data-target="#modalAlert">Adicionar</button>
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>
