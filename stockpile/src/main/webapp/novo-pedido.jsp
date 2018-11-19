@@ -27,18 +27,27 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
 	<body>
 	
 		<% 
-		Pedido pedido = new Pedido();
-		Funcionario funcionario = new Funcionario(); 
- 		String msg = (String)session.getAttribute("MENSAGEM"); 
-		
-		@SuppressWarnings("unchecked")
- 		List<Produto> listaItemProduto = (List<Produto>)session.getAttribute("LISTA"); 
-			   
- 			if (listaItemProduto == null) {  
- 				listaItemProduto = new ArrayList<Produto>(); 
- 			} else {  
- 				session.setAttribute("LISTA", null); 
- 			} 
+			Pedido pedido = new Pedido();
+			Funcionario funcionario = new Funcionario(); 
+	 		String msg = (String)session.getAttribute("MENSAGEM"); 
+			
+			@SuppressWarnings("unchecked")
+	 		List<Produto> listaItemPedido = (List<Produto>)session.getAttribute("LISTA_ITEM_PEDIDO"); 
+				   
+	 			if (listaItemPedido == null) {  
+	 				listaItemPedido = new ArrayList<Produto>(); 
+	 			} else {  
+	 				session.setAttribute("LISTA_ITEM_PEDIDO", null); 
+	 			} 
+ 			
+ 			@SuppressWarnings("unchecked")
+ 	 		List<Produto> listaProduto = (List<Produto>)session.getAttribute("LISTA_PROD"); 
+ 				   
+ 	 			if (listaProduto == null) {  
+ 	 				listaProduto = new ArrayList<Produto>(); 
+ 	 			} else {  
+ 	 				session.setAttribute("LISTA_PROD", null); 
+ 	 			} 
  			
  			@SuppressWarnings("unchecked")
  	 		List<Cliente> listaCliente = (List<Cliente>)session.getAttribute("LISTA_CLIENTE"); 
@@ -126,8 +135,8 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
 							</tr>
 						</thead>
 						<tbody>
-							<%if (listaItemProduto.size() > 0) {%>
-								<%for (Produto produto : listaItemProduto) { %>
+							<%if (listaItemPedido.size() > 0) {%>
+								<%for (Produto produto : listaItemPedido) { %>
 							<tr>
 								<th scope="row"><%=produto.getCodigo()%></th>
 								<th scope="row"><%=produto.getNome()%></th>
@@ -181,11 +190,11 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
 									<div class="input-group-prepend">
 										<label class="input-group-text" for="txtItem">Item</label>
 									</div>
-									<select class="custom-select" required="required">
+									<select class="custom-select">
 										<option selected> </option>
-										<%if (listaItemProduto.size() > 0) {%>
-										<%for (Produto produto : listaItemProduto) { %> 
-	  									<option name="item" value="item"><%=produto.getNome()%></option>
+										<%if (listaProduto.size() > 0) {%>
+										<%for (Produto produto : listaProduto) { %> 
+	  									<option name="item" value="item" required="required"><%=produto.getNome()%></option>
 	  										<% } 
 	  									}%>
 									</select>
@@ -196,23 +205,23 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
 									<div class="input-group-prepend">
 										<label class="input-group-text" for="txtQtd">Quantidade</label>
 									</div>
-									<select class="custom-select" required="required">
+									<select class="custom-select">
 										<option selected> </option>
-										<%if (listaItemProduto.size() > 0) {%>
-										<%for (Produto produto : listaItemProduto) { %> 
-	  									<option name="qtd" value="qtd"><%=produto.getQtd()%></option>
+										<%if (listaProduto.size() > 0) {%>
+										<%for (Produto produto : listaProduto) { %> 
+	  									<option name="qtd" value="qtd" required="required"><%=produto.getQtd()%></option>
 	  										<% } 
 	  									}%>
 									</select>
 								</div>
 							</div>
 							<div class="pt-4">
-								<button type="submit" class="btn btn-outline-success float-none mr-4">Adicionar</button>
-								<button type="submit" class="btn btn-outline-warning float-none">Remover</button>
+								<button type="submit" class="btn btn-outline-success float-none mr-4" name="cmd" value="adicionar" >Adicionar</button>
+								<button type="submit" class="btn btn-outline-warning float-none" name="cmd" value="remover">Remover</button>
 							</div>
 							<div class="pt-5">
-								<button type="submit" class="btn btn-outline-primary float-none mr-4">Finalizar Pedido</button>
-								<button type="submit" class="btn btn-outline-danger float-none">Limpar Pedido</button>
+								<button type="submit" class="btn btn-outline-primary float-none mr-4" name="cmd" value="finalizar-pedido">Finalizar Pedido</button>
+								<button type="submit" class="btn btn-outline-danger float-none" name="cmd" value="limpar-pedido">Limpar Pedido</button>
 							</div>
 						</form>
 				</div>
