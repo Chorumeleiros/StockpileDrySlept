@@ -55,7 +55,15 @@ public class FuncionarioController extends HttpServlet {
 			}
 			
 			if ("adicionar".equals(cmd)) {
+				
 				Funcionario funcionario = new Funcionario();
+
+				
+				if (funcionarioDAO.comparaCPF(request.getParameter("txtCpf")) == true) {
+					msg = "CPF já cadastrado";
+					
+				} else {
+					
 				funcionario.setNome(request.getParameter("txtNome"));
 				funcionario.setCpf(request.getParameter("txtCpf"));
 				funcionario.setPassword(request.getParameter("txtSenha"));
@@ -67,6 +75,7 @@ public class FuncionarioController extends HttpServlet {
 
 				msg = "Funcionário adicionado com sucesso";
 				
+				}
 			}
 		
 		} catch (GenericDAOException e) {

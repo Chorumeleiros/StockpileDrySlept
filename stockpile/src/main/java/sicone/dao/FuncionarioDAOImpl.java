@@ -26,13 +26,17 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 
 	@Override
 	public void adicionar(Funcionario funcionario) throws GenericDAOException {
-		String sql = "INSERT INTO FUNCIONARIO (NOME, CPF, SENHA) VALUES (?, ?, ?)"; // no banco este campo password é
+		String sql = "INSERT INTO FUNCIONARIO (NOME, CPF, SENHA) VALUES (?, ?, ?)";
 
 		try {
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.setString(1, funcionario.getNome());
 			pstmt.setString(2, funcionario.getCpf());
 			pstmt.setString(3, funcionario.getPassword());
+			
+			if (funcionario.getCpf().equals(sql))
+			
+			
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -65,6 +69,32 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 			throw new GenericDAOException(e);
 		}
 		return listaFuncionario;
+	}
+	
+	@Override
+	public boolean comparaCPF(String cpf) throws GenericDAOException {
+		Connection connection = ConnectionFactory.createConnection();
+		boolean compararCPF = false;
+		
+		String sql = "SELECT * FROM FUNCIONARIO WHERE CPF LIKE ?";
+
+		try {
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			pstmt.setString(1, cpf);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Funcionario funcionario = new Funcionario();
+				funcionario.setCpf(rs.getString("CPF"));
+				
+				if (rs.getString("CPF").equals(cpf)) {
+					return compararCPF = true;
+				}
+			}
+
+		} catch (SQLException e) {
+			throw new GenericDAOException(e);
+		}
+		return compararCPF;
 	}
 
 }
