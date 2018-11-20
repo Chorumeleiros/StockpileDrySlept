@@ -1,60 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE web-app PUBLIC
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>SICONE: Sistema Integrado de Controle de Estoque</display-name>
-  <servlet>
-  	<servlet-name>AuthController</servlet-name>
-  	<display-name>AuthController</display-name>
-  	<description></description>
-  	<servlet-class>sicone.controller.AuthController</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>FornecedorController</servlet-name>
-  	<display-name>FornecedorController</display-name>
-  	<description></description>
-  	<servlet-class>sicone.controller.FornecedorController</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>FuncionarioController</servlet-name>
-  	<display-name>FuncionarioController</display-name>
-  	<description></description>
-  	<servlet-class>sicone.controller.FuncionarioController</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>ClienteController</servlet-name>
-  	<display-name>ClienteController</display-name>
-  	<description></description>
-  	<servlet-class>sicone.controller.ClienteController</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>LogoutController</servlet-name>
-  	<display-name>LogoutController</display-name>
-  	<description></description>
-  	<servlet-class>sicone.controller.LogoutController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>AuthController</servlet-name>
-  	<url-pattern>/AuthController</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>FornecedorController</servlet-name>
-  	<url-pattern>/FornecedorController</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>FuncionarioController</servlet-name>
-  	<url-pattern>/FuncionarioController</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>ClienteController</servlet-name>
-  	<url-pattern>/ClienteController</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>LogoutController</servlet-name>
-  	<url-pattern>/LogoutController</url-pattern>
-  </servlet-mapping>
-  <welcome-file-list>
-  	<welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
+	<display-name>SICONE: Sistema Integrado de Controle de Estoque</display-name>
+	<servlet>
+		<servlet-name>AuthController</servlet-name>
+		<display-name>AuthController</display-name>
+		<description></description>
+		<servlet-class>sicone.controller.AuthController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>FornecedorController</servlet-name>
+		<display-name>FornecedorController</display-name>
+		<description></description>
+		<servlet-class>sicone.controller.FornecedorController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>FuncionarioController</servlet-name>
+		<display-name>FuncionarioController</display-name>
+		<description></description>
+		<servlet-class>sicone.controller.FuncionarioController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ClienteController</servlet-name>
+		<display-name>ClienteController</display-name>
+		<description></description>
+		<servlet-class>sicone.controller.ClienteController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>LogoutController</servlet-name>
+		<display-name>LogoutController</display-name>
+		<description></description>
+		<servlet-class>sicone.controller.LogoutController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AuthController</servlet-name>
+		<url-pattern>/AuthController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FornecedorController</servlet-name>
+		<url-pattern>/FornecedorController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FuncionarioController</servlet-name>
+		<url-pattern>/FuncionarioController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ClienteController</servlet-name>
+		<url-pattern>/ClienteController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LogoutController</servlet-name>
+		<url-pattern>/LogoutController</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+<!-- 	<taglib> -->
+<!-- 		<taglib-uri>http://java.sun.com/jstl/core</taglib-uri> -->
+<!-- 		<taglib-location>/WEB-INF/lib/jstl.tld</taglib-location> -->
+<!-- 	</taglib> -->
+<!-- 	<taglib> -->
+<!-- 		<taglib-uri>http://java.sun.com/jstl/core</taglib-uri> -->
+<!-- 		<taglib-location>/WEB-INF/lib/standard.tld</taglib-location> -->
+<!-- 	</taglib> -->
 </web-app>
