@@ -26,19 +26,39 @@ import sicone.model.Fornecedor;
 public class FornecedorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	
 	public FornecedorController() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+//		String msg = null;
+//		HttpSession session = request.getSession();
+//		
+//		try {
+//		FornecedorDAO fornecedorDAO = new FornecedorDAOImpl();
+//		
+//		List<Fornecedor> listaFornecedor = fornecedorDAO.pesquisaFornecedor("");
+//		request.setAttribute("LISTA_FORNECEDOR", listaFornecedor);
+//        request.getRequestDispatcher("/WEB-INF/estoque.jsp").forward(request, response);
+//		} catch (GenericDAOException e) {
+//			e.printStackTrace();
+//			msg = "Erro ao adicionar fornecedor :(";
+//		}
+//		
+//		session.setAttribute("MENSAGEM", msg);
+		
+//		central.maven.org/maven2/javax/servlet/jstl/1.2/jstl-1.2.jar
+		
 		response.getWriter().append("Você não tem permissão para acessar este conteúdo. "
 				+ "Para acessá-lo se identifique <a href=\"./index.jsp\">aqui</a>");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("fui");
+		
 		String cmd = request.getParameter("cmd");
 		String msg = null;
 		HttpSession session = request.getSession();
