@@ -34,7 +34,7 @@ public class FuncionarioController extends HttpServlet {
 			throws ServletException, IOException {
 		response.getWriter().append("Você não tem permissão para acessar este conteúdo. "
 				+ "Para acessá-lo se identifique <a href=\"./index.jsp\">aqui</a>");
-		
+				
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -60,11 +60,18 @@ public class FuncionarioController extends HttpServlet {
 
 				
 				if (funcionarioDAO.comparaCPF(request.getParameter("txtCpf")) == true) {
+					List<Funcionario> listaFuncionario = funcionarioDAO.pesquisarPorNome("");
+					session.setAttribute("LISTA_FUNCIONARIO", listaFuncionario);
 					msg = "CPF já cadastrado";
+				
+					
 					
 				} else {
 					
+					
+					
 				funcionario.setNome(request.getParameter("txtNome"));
+				System.out.println(funcionario.getNome());
 				funcionario.setCpf(request.getParameter("txtCpf"));
 				funcionario.setPassword(request.getParameter("txtSenha"));
 

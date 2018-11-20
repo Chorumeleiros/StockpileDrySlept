@@ -77,7 +77,7 @@
 	      		<div class="collapse navbar-collapse" id="navbarMenu">
 	        		<ul class="navbar-nav">
 	          			<li class="nav-item"><a href="./fornecedor.jsp" class="nav-link">Fornecedores</a></li>
-	          			<li class="nav-item"><a href="./cliente.jsp" class="nav-link">Clientes</a></li>
+	          			<li class="nav-item"><a href="./cliente.jsp" class="nav-link" style="color:#FF6347;">Clientes</a></li>
 	          			<li class="nav-item"><a href="./funcionario.jsp" class="nav-link">Funcionários</a></li>
 	        		</ul>
 					<div class="container">
@@ -112,6 +112,7 @@
 		
 		<div class="row justify-content-around">
 			<div class="col-7">
+			<h4>LISTA DE CLIENTES</h4>
 				<table class="table table-hover">
 					<thead>
 						<tr>

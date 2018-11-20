@@ -36,6 +36,7 @@ public class LogoutController extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		if ("sair".equals(cmd)) {
+			System.out.println("opa");
 			msg = "Sessão encerrada com sucesso!";
 	        session.setAttribute("MENSAGEM", msg);
 			

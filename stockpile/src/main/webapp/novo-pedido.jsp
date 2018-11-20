@@ -90,7 +90,7 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
 	          			<li class="nav-item"><a href="./estoque.jsp" class="nav-link">Estoque</a></li>
 	          			<li class="nav-item dropdown">
 							<a class="nav-link" data-toggle="dropdown" href="#" role="button" 
-								aria-haspopup="true" aria-expanded="false">Pedidos
+								aria-haspopup="true" aria-expanded="false" style="color:#FF6347;">Pedidos
 							</a>
 						    <div class="dropdown-menu">
 						    	<a class="dropdown-item" href="./novo-pedido.jsp">Novo</a>
@@ -125,6 +125,7 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
 	<div class="container-fluid pt-4">
 		<div class="row justify-content-around">
 			<div class="col-6">
+			<h4>LISTA DE PEDIDOS</h4>
 				<div class="row pt-3">
 					<table class="table table-hover">
 						<thead>

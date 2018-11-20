@@ -14,6 +14,7 @@ import sicone.dao.GenericDAOException;
 import sicone.dao.ProdutoDAO;
 import sicone.dao.ProdutoDAOImpl;
 import sicone.model.Fornecedor;
+import sicone.model.Funcionario;
 import sicone.model.Produto;
 
 
@@ -48,7 +49,10 @@ public class ProdutoController extends HttpServlet {
 		try {
 			
 			ProdutoDAO produtoDAO = new ProdutoDAOImpl();
-			
+			if ("atualizar".equals(cmd)) {
+				List<Produto> listaProduto = produtoDAO.pesquisarNomeProduto("");
+				session.setAttribute("LISTA_PROD", listaProduto);
+			}
 			 if ("adicionar".equals(cmd)) {
 				Produto produto = new Produto();
 				Fornecedor fornecedor = new Fornecedor();

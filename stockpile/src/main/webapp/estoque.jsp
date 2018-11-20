@@ -1,3 +1,5 @@
+<%@page import="sicone.dao.FuncionarioDAOImpl"%>
+<%@page import="sicone.model.Funcionario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="sicone.model.Produto, sicone.model.Fornecedor, sicone.model.UserInfo, java.util.List, java.util.ArrayList"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -25,6 +27,7 @@
 	
 	if (funcionarioLogado == null) {
 		funcionarioLogado = new UserInfo();
+		
 	} else {
 		session.setAttribute("FUNCIONARIO_LOGADO", null);
 	}
@@ -52,6 +55,15 @@
  		} else {  
  			session.setAttribute("LISTA_FORNECEDOR", null); 
  		}
+ 		Fornecedor fornecedorAtual = (Fornecedor)session.getAttribute("FORNECEDOR_ATUAL"); 
+		  
+ 		if (fornecedorAtual == null) { 
+ 			fornecedorAtual = new Fornecedor();  	
+		   
+ 		} else {  
+ 		   session.setAttribute("FORNECEDOR_ATUAL", null);
+ 		   
+ 		} 
 			
  		if (msg != null) { 
  			session.setAttribute("MENSAGEM", null); 
@@ -81,7 +93,7 @@
 	        	</button>
 	      		<div class="collapse navbar-collapse" id="navbarMenu">
 	        		<ul class="navbar-nav">
-	          			<li class="nav-item"><a href="./estoque.jsp" class="nav-link">Estoque</a></li>
+	          			<li class="nav-item"><a href="./estoque.jsp" class="nav-link" style="color:#FF6347;">Estoque</a></li>
 	          			<li class="nav-item dropdown">
 							<a class="nav-link" data-toggle="dropdown" href="#" role="button" 
 								aria-haspopup="true" aria-expanded="false">Pedidos
@@ -125,6 +137,7 @@
 	<div class="container-fluid pt-4">
 		<div class="row justify-content-around">
 			<div class="col-7 pt-3">
+			<h4>LISTA DE PRODUTOS</h4>
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -180,6 +193,7 @@
   									<% } 
   								}%>
 							</select>
+							
 						</div>
 						<div>
 							

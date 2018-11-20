@@ -66,7 +66,7 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a href="./fornecedor.jsp" class="nav-link">Fornecedores</a></li>
 					<li class="nav-item"><a href="./cliente.jsp" class="nav-link">Clientes</a></li>
-					<li class="nav-item"><a href="./funcionario.jsp" class="nav-link">Funcionários</a></li>
+					<li class="nav-item"><a href="./funcionario.jsp" class="nav-link" style="color:#FF6347;">Funcionários</a></li>
 				</ul>
 					<div class="container">
 						<form class="form-inline" name="atualizar-funcionario" action="./FuncionarioC" method="post">
@@ -101,6 +101,7 @@
 	<div class="container-fluid pt-4">
 		<div class="row justify-content-around">
 			<div class="col-7">
+				<h4>LISTA DE FUNCIONARIOS</h4>
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -115,10 +116,11 @@
 						<% for (Funcionario funcionario : listaFuncionario) {
 						%>
 						<tr>
-							<th scope="row"><%=funcionario.getId()%></th>
-							<th scope="row"><%=funcionario.getNome()%></th>
-							<th scope="row"><%=funcionario.getCpf()%></th>
-							<th scope="row"><%=funcionario.getPassword()%></th>
+							<td scope="row"><%=funcionario.getId()%></td>
+							<td scope="row"><%=funcionario.getNome()%></td>
+							<td scope="row"><%=funcionario.getCpf()%></td>
+							<td scope="row"><%=funcionario.getPassword()%></td>
+							
 						</tr>
 							<%}
 						}

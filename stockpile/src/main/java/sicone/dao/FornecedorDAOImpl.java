@@ -19,14 +19,15 @@ import sicone.model.Fornecedor;
  */
 
 public class FornecedorDAOImpl implements FornecedorDAO {
+	Connection connection = ConnectionFactory.createConnection();
 	
 	public FornecedorDAOImpl() throws GenericDAOException {
-	
+		
 	}
 	
 	@Override
 	public void adicionar (Fornecedor fornecedor) throws GenericDAOException {
-		Connection connection = ConnectionFactory.createConnection();
+		
 		String sql = "INSERT INTO FORNECEDOR (CNPJ, NOME) VALUES (?, ?)";
 	
 		try {
