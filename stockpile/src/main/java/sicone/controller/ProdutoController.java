@@ -78,7 +78,7 @@ public class ProdutoController extends HttpServlet {
 			}  if ("pesquisar".equals(cmd)) {
 				List<Produto> buscaProduto = produtoDAO.pesquisarNomeProduto(request.getParameter("txtNome"));
 				session.setAttribute("LISTA_PROD", buscaProduto);
-				
+			
 			}
 
 		} catch (GenericDAOException e) {

@@ -22,7 +22,7 @@
 	<body>
 	
 	<% 
-
+	
 	UserInfo funcionarioLogado = (UserInfo)session.getAttribute("FUNCIONARIO_LOGADO");
 	
 	if (funcionarioLogado == null) {
@@ -55,15 +55,7 @@
  		} else {  
  			session.setAttribute("LISTA_FORNECEDOR", null); 
  		}
- 		Fornecedor fornecedorAtual = (Fornecedor)session.getAttribute("FORNECEDOR_ATUAL"); 
-		  
- 		if (fornecedorAtual == null) { 
- 			fornecedorAtual = new Fornecedor();  	
-		   
- 		} else {  
- 		   session.setAttribute("FORNECEDOR_ATUAL", null);
- 		   
- 		} 
+ 		
 			
  		if (msg != null) { 
  			session.setAttribute("MENSAGEM", null); 

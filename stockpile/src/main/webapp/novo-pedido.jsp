@@ -111,7 +111,7 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
 			      				</a>
 			      				<div class="dropdown-menu dropdown-menu-right">
 			      					<form action="./Logout" method="post">
-		      							<a class="dropdown-item" name="cmd" value="sair" href="#">Sair</a>
+		      							<a class="dropdown-item" name="cmd" value="sair" href="logout.jsp">Sair</a>
 		      						</form>
 		      					</div>
 		      					<div>
@@ -215,6 +215,7 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
 	  									<option name="qtd" value="qtd" required="required"><%=produto.getQtd()%></option>
 	  										<% } 
 	  									}%>
+	  									
 									</select>
 								</div>
 							</div>

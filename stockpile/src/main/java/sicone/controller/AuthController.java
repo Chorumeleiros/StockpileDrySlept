@@ -16,6 +16,8 @@ import sicone.dao.ClienteDAO;
 import sicone.dao.ClienteDAOImpl;
 import sicone.dao.FornecedorDAO;
 import sicone.dao.FornecedorDAOImpl;
+import sicone.dao.FuncionarioDAO;
+import sicone.dao.FuncionarioDAOImpl;
 import sicone.dao.GenericDAOException;
 import sicone.dao.ProdutoDAO;
 import sicone.dao.ProdutoDAOImpl;
@@ -72,6 +74,8 @@ public class AuthController extends HttpServlet {
 					
 					
 					response.sendRedirect("./funcionario.jsp");
+					carregaConteudo(session);
+					
 
 				} else if (daoLogin.checkLogin(Integer.parseInt(user), pass)) {
 
@@ -82,18 +86,7 @@ public class AuthController extends HttpServlet {
 					session.setAttribute("FUNCIONARIO_LOGADO", userInfo);
 					response.sendRedirect("./estoque.jsp");
 					
-
-					ProdutoDAO produtoDAO = new ProdutoDAOImpl();
-					FornecedorDAO fornecedorDAO = new FornecedorDAOImpl();
-					ClienteDAO clienteDAO = new ClienteDAOImpl();
-					
-					List<Fornecedor> listaFornecedor = fornecedorDAO.pesquisaFornecedor("");
-					session.setAttribute("LISTA_FORNECEDOR", listaFornecedor);
-					List<Produto> listaProduto = produtoDAO.pesquisarNomeProduto("");
-					session.setAttribute("LISTA_PROD", listaProduto);
-					List<Cliente>listaCliente = clienteDAO.pesquisarNomeCliente("");
-					session.setAttribute ("LISTA_CLIENTE", listaCliente);
-					
+					carregaConteudo(session);
 
 				} else {
 					msg = "Usuário ou senha incorretos";
@@ -110,6 +103,31 @@ public class AuthController extends HttpServlet {
 			}
 		}
 		response.setContentType("text/html");
+	}
+	public void carregaConteudo(HttpSession session) {
+		ProdutoDAO produtoDAO;
+		try {
+			produtoDAO = new ProdutoDAOImpl();
+			FornecedorDAO fornecedorDAO = new FornecedorDAOImpl();
+			ClienteDAO clienteDAO = new ClienteDAOImpl();
+			FuncionarioDAO funcionarioDAO = new FuncionarioDAOImpl();
+			
+			List<Fornecedor> listaFornecedor = fornecedorDAO.pesquisaFornecedor("");
+			session.setAttribute("LISTA_FORNECEDOR", listaFornecedor);
+			List<Produto> listaProduto = produtoDAO.pesquisarNomeProduto("");
+			session.setAttribute("LISTA_PROD", listaProduto);
+			List<Cliente>listaCliente = clienteDAO.pesquisarNomeCliente("");
+			session.setAttribute ("LISTA_CLIENTE", listaCliente);
+			List<Funcionario> listaFuncionario = funcionarioDAO.pesquisarPorNome("");
+			session.setAttribute("LISTA_FUNCIONARIO", listaFuncionario);
+			
+		} catch (GenericDAOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 	}
 
 }

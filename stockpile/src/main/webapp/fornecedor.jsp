@@ -32,9 +32,12 @@
 	@SuppressWarnings("unchecked")
 	
  	List<Fornecedor> listaFornecedor = (List<Fornecedor>)session.getAttribute("LISTA_FORNECEDOR"); 
+	session.setAttribute("LISTA_FORNECEDOR", listaFornecedor);
+	
 	if (listaFornecedor == null) {  
 		listaFornecedor = new ArrayList<Fornecedor>(); 
-	
+		
+		session.setAttribute("LISTA_FORNECEDOR", listaFornecedor);
 		} else {  
 			session.setAttribute("LISTA_FORNECEDOR", null); 
 		} 			   
@@ -82,12 +85,7 @@
 	          			<li class="nav-item"><a href="./cliente.jsp" class="nav-link">Clientes</a></li>
 	          			<li class="nav-item"><a href="./funcionario.jsp" class="nav-link">Funcionários</a></li>
 	        		</ul>
-					<div class="container">
-						<form class="form-inline" name="atualizar-fornecedor" action="./FornecedorC" method="post">
-						<button class="btn btn-sm btn-outline-secondary" type="submit" 
-							name="cmd" value="atualizar" data-toggle="modal" data-target="#modalAlert">Atualizar</button>
-						</form>
-					</div>	        		
+					       		
 	      		</div>
 	      		<div class="container text-center">
 	      			<ul class="navbar-nav ml-md-auto">
@@ -98,7 +96,7 @@
 			      					<i class="fas fa-user-tie fas fa-stroopwafel fa-2x" style="color: #fff"></i>
 			      				</a>
 			      				<div class="dropdown-menu dropdown-menu-right">
-		      						<a class="dropdown-item" href="#">Sair</a>
+		      						<a class="dropdown-item" name="cmd" value="sair" href="./logout.jsp">Sair</a>
 		      					</div>
 		      					<div>
 		      						<span class="navbar-text">Admin</span>

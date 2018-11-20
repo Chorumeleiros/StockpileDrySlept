@@ -49,6 +49,7 @@
 		
 	if (msg != null) { 
 		session.setAttribute("MENSAGEM", null); 
+		
 	%>	
 	
 	 		<div class="modal fade" id="modalAlert" aria-hidden="true" tabindex="-1" role="dialog">
@@ -80,12 +81,7 @@
 	          			<li class="nav-item"><a href="./cliente.jsp" class="nav-link" style="color:#FF6347;">Clientes</a></li>
 	          			<li class="nav-item"><a href="./funcionario.jsp" class="nav-link">Funcionários</a></li>
 	        		</ul>
-					<div class="container">
-						<form class="form-inline" name="atualizar-cliente" action="./ClienteC" method="post">
-						<button class="btn btn-sm btn-outline-secondary" type="submit" 
-							name="cmd" value="atualizar" data-toggle="modal" data-target="#modalAlert">Atualizar</button>
-						</form>
-					</div>	        		
+					       		
 	      		</div>
 	      		<div class="container text-center">
 	      			<ul class="navbar-nav ml-md-auto">
@@ -96,7 +92,7 @@
 			      					<i class="fas fa-user-tie fas fa-stroopwafel fa-2x" style="color: #fff"></i>
 			      				</a>
 			      				<div class="dropdown-menu dropdown-menu-right">
-		      						<a class="dropdown-item" href="#">Sair</a>
+		      						<a class="dropdown-item" name="cmd" value="sair" href="./logout.jsp">Sair</a>
 		      					</div>
 		      					<div>
 		      						<span class="navbar-text">Admin</span>

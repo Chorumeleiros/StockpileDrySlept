@@ -68,12 +68,7 @@
 					<li class="nav-item"><a href="./cliente.jsp" class="nav-link">Clientes</a></li>
 					<li class="nav-item"><a href="./funcionario.jsp" class="nav-link" style="color:#FF6347;">Funcionários</a></li>
 				</ul>
-					<div class="container">
-						<form class="form-inline" name="atualizar-funcionario" action="./FuncionarioC" method="post">
-						<button class="btn btn-sm btn-outline-secondary" type="submit" 
-							name="cmd" value="atualizar" data-toggle="modal" data-target="#modalAlert">Atualizar</button>
-						</form>
-					</div>
+					
 			</div>
 			
 			<div class="container text-center">
@@ -85,7 +80,7 @@
 							</a>
 							<div class="dropdown-menu dropdown-menu-right">
 								<form action="./Logout" method="post">
-		      						<a class="dropdown-item" name="cmd" value="sair" href="#">Sair</a>
+		      						<a class="dropdown-item" name="cmd" value="sair" href="./logout.jsp">Sair</a>
 		      					</form>
 							</div>
 							<div>
