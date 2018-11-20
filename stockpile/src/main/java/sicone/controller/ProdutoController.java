@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import sicone.dao.FornecedorDAO;
+import sicone.dao.FornecedorDAOImpl;
 import sicone.dao.GenericDAOException;
 import sicone.dao.ProdutoDAO;
 import sicone.dao.ProdutoDAOImpl;
@@ -49,9 +51,12 @@ public class ProdutoController extends HttpServlet {
 		try {
 			
 			ProdutoDAO produtoDAO = new ProdutoDAOImpl();
+			FornecedorDAO fornecedorDAO = new FornecedorDAOImpl();
 			if ("atualizar".equals(cmd)) {
 				List<Produto> listaProduto = produtoDAO.pesquisarNomeProduto("");
 				session.setAttribute("LISTA_PROD", listaProduto);
+				
+				
 			}
 			 if ("adicionar".equals(cmd)) {
 				Produto produto = new Produto();

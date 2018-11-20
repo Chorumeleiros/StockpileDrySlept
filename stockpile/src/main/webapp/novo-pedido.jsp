@@ -27,6 +27,8 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
 	<body>
 	
 		<% 
+
+		
 			Pedido pedido = new Pedido();
 			Funcionario funcionario = new Funcionario(); 
 	 		String msg = (String)session.getAttribute("MENSAGEM"); 

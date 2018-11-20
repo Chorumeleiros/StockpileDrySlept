@@ -104,12 +104,7 @@
 							</div>
 						</li>
 	        		</ul>
-					<div class="container">
-						<form class="form-inline" name="atualizar-produto" action="./ProdutoC" method="post">
-						<button class="btn btn-sm btn-outline-secondary" type="submit" 
-							name="cmd" value="atualizar" data-toggle="modal" data-target="#modalAlert">Atualizar</button>
-						</form>
-					</div>		        		
+						        		
 	      		</div>
 	      		<div class="container text-center">
 	      			<ul class="navbar-nav ml-md-auto">
@@ -121,11 +116,11 @@
 			      				</a>
 			      				<div class="dropdown-menu dropdown-menu-right">
 			      					<form action="./Logout" method="post">
-		      							<a class="dropdown-item" name="cmd" value="sair" href="#">Sair</a>
+		      							<a class="dropdown-item" name="cmd" value="sair" href="./logout.jsp">Sair</a>
 		      						</form>
 		      					</div>
 		      					<div>
-		      						<span class="navbar-text"><%=funcionarioLogado.getNome() %></span>
+		      						<span class="navbar-text"><%=funcionarioLogado.getProfile() %></span>
 								</div>
 							</li>
 						</nav>

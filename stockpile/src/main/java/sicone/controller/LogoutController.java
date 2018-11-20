@@ -40,9 +40,6 @@ public class LogoutController extends HttpServlet {
 			msg = "Sessão encerrada com sucesso!";
 	        session.setAttribute("MENSAGEM", msg);
 			
-	        session.invalidate();
-	        
-	        response.sendRedirect("./index.jsp");
 		}
 		
 		response.setContentType("text/html");
