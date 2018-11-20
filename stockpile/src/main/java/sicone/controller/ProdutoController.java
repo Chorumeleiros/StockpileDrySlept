@@ -64,9 +64,7 @@ public class ProdutoController extends HttpServlet {
 				List<Produto> listaProduto = produtoDAO.pesquisarNomeProduto("");
 				session.setAttribute("LISTA_PROD", listaProduto);
 
-				if ("adicionar" != null) {
-					msg = "Produto adicionado com sucesso";
-				}
+				msg = "Produto adicionado com sucesso";
 
 			}  if ("pesquisar".equals(cmd)) {
 				List<Produto> buscaProduto = produtoDAO.pesquisarNomeProduto(request.getParameter("txtNome"));
