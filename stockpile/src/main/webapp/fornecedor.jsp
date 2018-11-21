@@ -38,18 +38,12 @@
 		listaFornecedor = new ArrayList<Fornecedor>(); 
 		
 		session.setAttribute("LISTA_FORNECEDOR", listaFornecedor);
-		} else {  
-			session.setAttribute("LISTA_FORNECEDOR", null); 
-		} 			   
-			
+		} 
 		Fornecedor fornecedorAtual = (Fornecedor)session.getAttribute("FORNECEDOR_ATUAL"); 
 	  
 		if (fornecedorAtual == null) { 
 			fornecedorAtual = new Fornecedor();  	
 	   
-		} else {  
-		   session.setAttribute("FORNECEDOR_ATUAL", null);
-		   
 		} 
 		
 	if (msg != null) { 

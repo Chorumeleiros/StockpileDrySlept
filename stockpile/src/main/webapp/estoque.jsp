@@ -27,12 +27,8 @@
 	
 	if (funcionarioLogado == null) {
 		funcionarioLogado = new UserInfo();
-		
-	} else {
-		session.setAttribute("FUNCIONARIO_LOGADO", null);
+	
 	}
-	
-	
 	String msg = (String)session.getAttribute("MENSAGEM");
 
 	
@@ -41,22 +37,14 @@
 	
 	if (listaProduto == null) {  
 			listaProduto = new ArrayList<Produto>(); 
-	
-		} else {  
-			session.setAttribute("LISTA_PROD", null); 
-		} 			   
-	
+	}
 	@SuppressWarnings("unchecked")
 	List<Fornecedor> listaFornecedor = (List<Fornecedor>)session.getAttribute("LISTA_FORNECEDOR");
  		
  		if (listaFornecedor == null) {  
  			listaFornecedor = new ArrayList<Fornecedor>(); 
-		
- 		} else {  
- 			session.setAttribute("LISTA_FORNECEDOR", null); 
+
  		}
- 		
-			
  		if (msg != null) { 
  			session.setAttribute("MENSAGEM", null); 
  		%>
@@ -176,7 +164,7 @@
 								<option selected>Selecione</option>
 								<%if (listaFornecedor.size() > 0) {%>
 									<%for (Fornecedor fornecedor : listaFornecedor) { %> 
-  								<option name="txtFornecedor" value="txtFornecedor" required="required"><%=fornecedor.getNome()%></option>
+  								<option name="txtFornecedor" value="txtFornecedor"><%=fornecedor.getNome()%></option>
   									<% } 
   								}%>
 							</select>

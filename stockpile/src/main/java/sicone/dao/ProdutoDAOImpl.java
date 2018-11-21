@@ -28,7 +28,7 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 			pstmt.setString(1, produto.getNome());
 			pstmt.setInt(2, produto.getQtd());
 			pstmt.setString(3, produto.getDescr());
-			pstmt.setString(4,  fornecedor.getCnpj());
+			pstmt.setString(4, fornecedor.getCnpj());
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {

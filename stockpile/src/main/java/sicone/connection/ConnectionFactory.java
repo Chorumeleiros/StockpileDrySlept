@@ -13,13 +13,18 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://localhost:3306/sicone";
-	private static final String USER = "root";
-	private static final String PASS = "";
+	private static final String URL = "jdbc:mysql://127.0.0.1:49442/localdb";
+	private static final String USER = "azure";
+	private static final String PASS = "6#vWHD_$";
+	
+//	private static final String DRIVER = "com.mysql.jdbc.Driver";
+//	private static final String URL = "jdbc:mysql://localhost:3306/sicone";
+//	private static final String USER = "root";
+//	private static final String PASS = "";
 
 //	private static final String O_DRIVER = "";
 //	private static final String O_URL = "jdbc:oracle:thin:@localhost:1521:siconeORA";
-//	private static final String O_USER = "sys";
+//	private static final String O_USER = "system";
 //	private static final String O_PASS = "alunofatec";
 
 	/**

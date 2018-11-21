@@ -80,7 +80,8 @@ public class AuthController extends HttpServlet {
 				} else if (daoLogin.checkLogin(Integer.parseInt(user), pass)) {
 
 					UserInfo userInfo = new UserInfo();
-					userInfo.setProfile("funcionario");
+					Funcionario funcionario = new Funcionario();
+					userInfo.setProfile("Funcionario");
 					userInfo.setNome(funcionario.getNome());
 					userInfo.setLogado(true);
 					session.setAttribute("FUNCIONARIO_LOGADO", userInfo);
@@ -105,6 +106,9 @@ public class AuthController extends HttpServlet {
 		response.setContentType("text/html");
 	}
 	public void carregaConteudo(HttpSession session) {
+		
+		String msg = null;
+		
 		ProdutoDAO produtoDAO;
 		try {
 			produtoDAO = new ProdutoDAOImpl();
@@ -122,7 +126,7 @@ public class AuthController extends HttpServlet {
 			session.setAttribute("LISTA_FUNCIONARIO", listaFuncionario);
 			
 		} catch (GenericDAOException e) {
-			// TODO Auto-generated catch block
+			msg = "Erro ao acessar conteúdo :(";
 			e.printStackTrace();
 		}
 		

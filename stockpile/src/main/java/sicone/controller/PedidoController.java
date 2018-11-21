@@ -52,6 +52,7 @@ public class PedidoController extends HttpServlet  {
 			
 			 if ("novo-pedido".equals(cmd)) {
 				List<Produto> itemPedido = new ArrayList<>();
+				
 				 
 				Cliente cliente = new Cliente();
 				Produto produto = new Produto();
@@ -60,6 +61,10 @@ public class PedidoController extends HttpServlet  {
 				pedido.setNumPedido(Integer.parseInt(request.getParameter("numPedido")));
 				pedido.setDataPedido(request.getParameter("dataPedido"));
 				cliente.setNome(request.getParameter("nomeCliente"));
+				
+				
+				
+			 
 
 				if ("adicionar".equals(cmd)) {
 					

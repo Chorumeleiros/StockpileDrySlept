@@ -32,8 +32,6 @@
 	
 	if (listaFuncionario == null) {
 		listaFuncionario = new ArrayList<Funcionario>();
-	} else {
-		session.setAttribute("LISTA_FUNCIONARIO", null);
 	} 
 		
 	if (msg != null) { 

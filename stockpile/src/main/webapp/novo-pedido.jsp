@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="sicone.model.Produto, sicone.model.Fornecedor, sicone.model.Funcionario, sicone.model.Cliente, 
-sicone.model.Pedido, java.util.List, java.util.ArrayList"%> 
+sicone.model.Pedido, sicone.model.UserInfo, java.util.List, java.util.ArrayList"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -27,7 +27,12 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
 	<body>
 	
 		<% 
-
+		UserInfo funcionarioLogado = (UserInfo)session.getAttribute("FUNCIONARIO_LOGADO");
+		
+		if (funcionarioLogado == null) {
+			funcionarioLogado = new UserInfo();
+		
+		}
 		
 			Pedido pedido = new Pedido();
 			Funcionario funcionario = new Funcionario(); 
@@ -38,27 +43,21 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
 				   
 	 			if (listaItemPedido == null) {  
 	 				listaItemPedido = new ArrayList<Produto>(); 
-	 			} else {  
-	 				session.setAttribute("LISTA_ITEM_PEDIDO", null); 
-	 			} 
+	 			}
  			
  			@SuppressWarnings("unchecked")
  	 		List<Produto> listaProduto = (List<Produto>)session.getAttribute("LISTA_PROD"); 
  				   
  	 			if (listaProduto == null) {  
  	 				listaProduto = new ArrayList<Produto>(); 
- 	 			} else {  
- 	 				session.setAttribute("LISTA_PROD", null); 
- 	 			} 
+ 	 			}
  			
  			@SuppressWarnings("unchecked")
  	 		List<Cliente> listaCliente = (List<Cliente>)session.getAttribute("LISTA_CLIENTE"); 
  				   
  	 			if (listaCliente == null) {  
  	 				listaCliente = new ArrayList<Cliente>(); 
- 	 			} else {  
- 	 				session.setAttribute("LISTA_CLIENTE", null); 
- 	 			} 
+ 	 			}
 			
  			if (msg != null) {
   				session.setAttribute("MENSAGEM", null);
@@ -115,7 +114,7 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
 		      						</form>
 		      					</div>
 		      					<div>
-		      						<span class="navbar-text"><%=funcionario.getNome() %></span>
+		      						<span class="navbar-text"><%=funcionarioLogado.getProfile() %></span>
 								</div>
 							</li>
 						</nav>
@@ -174,7 +173,7 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
     							<div class="input-group-prepend">
       								<div class="input-group-text">Nº do Pedido</div>
     							</div>
-    							<input type="text" class="form-control" name="numPedido" id="numPedido" value="<%=pedido.getNumPedido()%>" readonly>
+    							<input type="text" class="form-control" name="numPedido" id="numPedido" value="<%=pedido.getNumPedido() %>" readonly>
   							</div>
   						</div>
 						<div class="form-row pt-3">
@@ -182,7 +181,7 @@ sicone.model.Pedido, java.util.List, java.util.ArrayList"%>
     							<div class="input-group-prepend">
       								<div class="input-group-text">Data</div>
     							</div>
-    							<input type="text" class="form-control" name="dataPedido" id="dataPedido" value="<%=pedido.getDataPedido()%>" readonly>
+    							<input type="text" class="form-control" name="dataPedido" id="dataPedido" value="<%=pedido.getDataPedido() %>" readonly>
   							</div>
 						</div>
 	

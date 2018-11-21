@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ page import="sicone.model.Produto, sicone.model.Fornecedor, sicone.model.Funcionario, java.util.List, java.util.ArrayList"%> 
+<%@ page import="sicone.model.Produto, sicone.model.Fornecedor, sicone.model.Funcionario, 
+sicone.model.UserInfo, java.util.List, java.util.ArrayList"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -26,8 +27,14 @@
 	
 	<body>
 	
-		<% 
-		Funcionario funcionario = new Funcionario();
+		<% 		
+		UserInfo funcionarioLogado = (UserInfo)session.getAttribute("FUNCIONARIO_LOGADO");
+		
+		if (funcionarioLogado == null) {
+			funcionarioLogado = new UserInfo();
+		
+		}
+		
  		String msg = (String)session.getAttribute("MENSAGEM");
  		
  		@SuppressWarnings("unchecked")
@@ -35,16 +42,12 @@
 			   
  			if (listarProduto == null) {  
  				listarProduto = new ArrayList<Produto>(); 
- 			} else {  
- 				session.setAttribute("LISTA", null); 
- 			} 
+ 			}
 		   
  			Produto produtoAtual = (Produto)session.getAttribute("PRODUTO_ATUAL"); 
 			  
  			if (produtoAtual == null) {  
  			   produtoAtual = new Produto(); 
- 		   	} else {  
- 			   session.setAttribute("PRODUTO_ATUAL", null);			       
  		   	} 
 			
  			if (msg != null) {
@@ -97,10 +100,10 @@
 			      					<i class="fas fa-user-tie fas fa-stroopwafel fa-2x" style="color: #fff"></i>
 			      				</a>
 			      				<div class="dropdown-menu dropdown-menu-right">
-		      						<a class="dropdown-item" href="#">Sair</a>
+		      						<a class="dropdown-item" name="cmd" value="sair" href="./logout.jsp">Sair</a>
 		      					</div>
 		      					<div>
-		      						<span class="navbar-text"><%=funcionario.getNome() %></span>
+		      						<span class="navbar-text"><%=funcionarioLogado.getProfile() %></span>
 								</div>
 							</li>
 						</nav>

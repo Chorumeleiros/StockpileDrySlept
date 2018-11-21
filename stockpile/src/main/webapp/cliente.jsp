@@ -33,18 +33,13 @@
 	if (listaCliente == null) {  
 			listaCliente = new ArrayList<Cliente>(); 
 	
-		} else {  
-			session.setAttribute("LISTA", null); 
-		} 			   
+		} 	   
 			
 		Cliente clienteAtual = (Cliente)session.getAttribute("CLIENTE_ATUAL"); 
 	  
 		if (clienteAtual == null) { 
 			clienteAtual = new Cliente();  	
 	   
-		} else {  
-		   session.setAttribute("CLIENTE_ATUAL", null);
-		   
 		} 
 		
 	if (msg != null) { 
