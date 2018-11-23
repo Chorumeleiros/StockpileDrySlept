@@ -1,5 +1,3 @@
--- drop database sicone;
-
 select * from funcionario;
 select * from cliente;
 select * from fornecedor;
