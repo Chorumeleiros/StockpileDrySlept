@@ -1,14 +1,9 @@
-select * from funcionario;
-select * from cliente;
-select * from fornecedor;
-select * from produto;
-
 CREATE TABLE FUNCIONARIO (
-  ID INT NOT NULL,
+  ID_FUNC INT,
   NOME VARCHAR(40),
   CPF CHAR(14),
   SENHA VARCHAR(20),
-  PRIMARY KEY (ID)
+  PRIMARY KEY (ID_FUNC)
 );
 
 CREATE TABLE CLIENTE (
@@ -32,3 +27,16 @@ CREATE TABLE PRODUTO (
   PRIMARY KEY (CODPROD),
   FOREIGN KEY (FK_FORNCNPJ) REFERENCES FORNECEDOR(CNPJ)
 );
+
+select * from funcionario;
+select * from cliente;
+select * from fornecedor;
+select * from produto;
+
+
+CREATE OR REPLACE PROCEDURE p_addFuncionario (ID_FUNC IN INT, NOME IN VARCHAR, CPF IN CHAR, SENHA IN VARCHAR) AS
+BEGIN
+  INSERT INTO FUNCIONARIO VALUES (ID_FUNC, NOME, CPF, SENHA);
+END p_addFuncionario;
+/
+

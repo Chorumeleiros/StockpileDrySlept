@@ -1,9 +1,11 @@
 package sicone.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,12 +29,14 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 	@Override
 	public void adicionar(Funcionario funcionario) throws GenericDAOException {
 		String sql = "INSERT INTO FUNCIONARIO (NOME, CPF, SENHA) VALUES (?, ?, ?)";
+		String ora = "CALL p_addFunario(?, ?, ?, ?)";
 
 		try {
-			PreparedStatement pstmt = connection.prepareStatement(sql);
-			pstmt.setString(1, funcionario.getNome());
-			pstmt.setString(2, funcionario.getCpf());
-			pstmt.setString(3, funcionario.getPassword());
+			PreparedStatement pstmt = connection.prepareStatement(ora);
+			pstmt.setInt(1, funcionario.getId());
+			pstmt.setString(2, funcionario.getNome());
+			pstmt.setString(3, funcionario.getCpf());
+			pstmt.setString(4, funcionario.getPassword());
 						
 			pstmt.executeUpdate();
 			
@@ -42,6 +46,47 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 		
 	}
 
+	@Override
+	public void remover(int id) throws GenericDAOException {
+		String ora = "DELETE FROM FUNCIONARIO WHERE ID_FUNC = ?";
+		
+		Connection connection = ConnectionFactory.createConnection();
+
+		try {
+			PreparedStatement pstmt = connection.prepareStatement(ora);
+			pstmt.setInt(1, id);
+			System.out.println("q");
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new GenericDAOException(e);
+		}
+	}
+		
+	@Override
+	public void editar(Funcionario funcionario) throws GenericDAOException {
+		String ora = "UPDATE FUNCIONARIO SET NOME = ?, CPF = ?, SENHA = ? "
+				+ "WHERE ID_FUNC = ?";
+		
+		Connection connection = ConnectionFactory.createConnection();
+
+		try {
+			PreparedStatement pstmt = connection.prepareStatement(ora);
+			pstmt.setString(1, funcionario.getNome());
+			pstmt.setString(2, funcionario.getCpf());
+			pstmt.setString(3, funcionario.getPassword());
+						
+			pstmt.setInt(4, funcionario.getId());
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new GenericDAOException(e);
+		}
+	}
+	
+
+	
 	@Override
 	public List<Funcionario> pesquisarPorNome(String nome) throws GenericDAOException {
 		Connection connection = ConnectionFactory.createConnection();
@@ -54,7 +99,7 @@ public class FuncionarioDAOImpl implements FuncionarioDAO {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Funcionario funcionario = new Funcionario();
-				funcionario.setId(rs.getInt("ID"));
+				funcionario.setId(rs.getInt("ID_FUNC"));
 				funcionario.setCpf(rs.getString("CPF"));
 				funcionario.setNome(rs.getString("NOME"));
 				funcionario.setPassword(rs.getString("SENHA"));

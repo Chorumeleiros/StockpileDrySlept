@@ -14,6 +14,7 @@ import sicone.dao.FuncionarioDAO;
 import sicone.dao.FuncionarioDAOImpl;
 import sicone.dao.GenericDAOException;
 import sicone.model.Funcionario;
+import sicone.model.Produto;
 
 /**
  * classe responsavel por receber os parametros do funcionario da view
@@ -44,6 +45,8 @@ public class FuncionarioController extends HttpServlet {
 		String msg = null;
 		HttpSession session = request.getSession();
 		
+		Funcionario funcionario = new Funcionario();
+		
 		
 		try {
 
@@ -52,26 +55,52 @@ public class FuncionarioController extends HttpServlet {
 			if ("atualizar".equals(cmd)) {
 				List<Funcionario> listaFuncionario = funcionarioDAO.pesquisarPorNome("");
 				session.setAttribute("LISTA_FUNCIONARIO", listaFuncionario);
+			
+			}
+			
+			if ("pesquisar".equals(cmd)) {
+				List<Funcionario> listaFuncionario = funcionarioDAO.pesquisarPorNome(request.getParameter("txtNome"));
+				session.setAttribute("LISTA_FUNCIONARIO", listaFuncionario);
+			}
+			
+			if ("remover".equals(cmd)) {
+				int id = Integer.parseInt(request.getParameter("txtId"));
+				
+				funcionarioDAO.remover(id);
+				
+				List<Funcionario> listaFuncionario = funcionarioDAO.pesquisarPorNome("");
+				session.setAttribute("LISTA_FUNCIONARIO", listaFuncionario);
+				
+				msg = "Funcionário removido com sucesso";
+			}
+			
+			if ("editar".equals(cmd)) {
+				
+				funcionario.setId(Integer.parseInt(request.getParameter("txtId")));
+				funcionario.setNome(request.getParameter("txtNome"));
+				funcionario.setCpf(request.getParameter("txtCpf"));
+				funcionario.setPassword(request.getParameter("txtSenha"));
+
+				funcionarioDAO.editar(funcionario);
+				
+				
+				List<Funcionario> listaFuncionario = funcionarioDAO.pesquisarPorNome("");
+				session.setAttribute("LISTA_FUNCIONARIO", listaFuncionario);
+				
+				msg = "Funcionário editado com sucesso";
 			}
 			
 			if ("adicionar".equals(cmd)) {
-				
-				Funcionario funcionario = new Funcionario();
-
 				
 				if (funcionarioDAO.comparaCPF(request.getParameter("txtCpf")) == true) {
 					List<Funcionario> listaFuncionario = funcionarioDAO.pesquisarPorNome("");
 					session.setAttribute("LISTA_FUNCIONARIO", listaFuncionario);
 					msg = "CPF já cadastrado";
-				
-					
 					
 				} else {
 					
-					
-					
+				funcionario.setId(Integer.parseInt(request.getParameter("txtId")));
 				funcionario.setNome(request.getParameter("txtNome"));
-				System.out.println(funcionario.getNome());
 				funcionario.setCpf(request.getParameter("txtCpf"));
 				funcionario.setPassword(request.getParameter("txtSenha"));
 

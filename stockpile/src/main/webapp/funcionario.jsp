@@ -32,7 +32,8 @@
 	
 	if (listaFuncionario == null) {
 		listaFuncionario = new ArrayList<Funcionario>();
-	} 
+	}
+	
 		
 	if (msg != null) { 
 		session.setAttribute("MENSAGEM", null); 
@@ -127,36 +128,47 @@
 					<div class="row">
 						<div class="form-group w-25">
 							<label for="id" class="form-label">ID</label>
-							<input class="form-control" type="text" value="<%=listaFuncionario.size() + 1%>" id="id" readonly>
+							<input class="form-control" type="text" name="txtId" id="id" required="required">
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group w-75">
 							<label for="nome" class="form-label">Nome</label>
-							 <input	class="form-control" type="text" id="nome" required="required" name="txtNome" required="required">
+							 <input	class="form-control" type="text" id="nome"  name="txtNome" >
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group w-50">
 							<label for="cpf" class="form-label">CPF</label>
-							<input class="form-control" type="text" name="txtCpf" id="txtCpf" required="required">
+							<input class="form-control" type="text" name="txtCpf" id="txtCpf" >
 							<small id="cpfHelp" class="form-text text-muted text-gray">Digite apenas números</small>
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group w-50">
 							<label for="senha" class="form-label">Senha</label> 
-							<input class="form-control" type="password" name="txtSenha" id="senha" required="required">
+							<input class="form-control" type="password" name="txtSenha" id="senha" >
 							<small id="senhaHelp" class="form-text text-muted text-gray">Até 20 caracteres</small>
 						</div>
 					</div>
 					<div class="row">
 						<button type="submit" class="btn btn-outline-primary float-none mr-3" name="cmd" value="adicionar" data-toggle="modal" data-target="#modalAlert">Adicionar</button>
+						<button type="submit" class="btn btn-outline-primary float-none mr-3" name="cmd" value="remover" data-toggle="modal" data-target="#modalAlert">Remover</button>
+						<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="editar" data-toggle="modal" data-target="#modalAlert">Editar</button>						
 					</div>
 					</form>
-						
-<!-- 							<button type="submit" class="btn btn-outline-primary float-none" name="cmd" value="atualizar" data-toggle="modal" data-target="#modalAlert">Atualizar</button> -->
-						
+					<div class="row-md-4 pt-5">
+						<form name="buscar-produto" action="./FuncionarioC" method="post" class="form-inline">
+							<div class="form-row">
+								<div class="form-group col-md-8">
+									<input class="form-control" type="text" name="txtNome" id="txtNome" placeholder="Nome">
+								</div>
+								<div class="form-group col-md-4">
+									<button type="submit" class="btn btn-outline-primary ml-4" name="cmd" value="pesquisar">Pesquisar</button>
+								</div>
+							</div>
+						</form>
+					</div>
 					</div>
 					
 			</div>

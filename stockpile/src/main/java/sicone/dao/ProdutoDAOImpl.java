@@ -5,8 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
+
+import java.sql.CallableStatement;
 
 import sicone.connection.ConnectionFactory;
 import sicone.model.Produto;
@@ -58,6 +61,34 @@ public class ProdutoDAOImpl implements ProdutoDAO {
 
 				lista.add(produto);
 			}
+			
+		} catch (SQLException e) {
+			throw new GenericDAOException(e);
+		}
+		
+		return lista;
+	}
+	
+	@Override
+	public List<Produto> pesquisarCodigo(int codigo) throws GenericDAOException {
+		Connection connection = ConnectionFactory.createConnection();
+		List<Produto> lista = new ArrayList<>();
+		String ora = "{CALL P_BUSCA(?)}";
+		
+		try {
+			CallableStatement cst = connection.prepareCall(ora);
+			cst.registerOutParameter(1, Types.INTEGER);
+			cst.setInt(1, codigo);
+			cst.execute();
+			
+			Produto produto = new Produto();
+			
+			produto.setCodigo(cst.getInt("CODPROD"));
+			produto.setNome(cst.getString("NOMEPROD"));
+			produto.setQtd(cst.getInt("QTDPROD"));
+			produto.setDescr(cst.getString("DESCRPROD"));
+
+			lista.add(produto);
 			
 		} catch (SQLException e) {
 			throw new GenericDAOException(e);
